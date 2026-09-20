@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kunststoff-Jeopardy</title>
+</head>
+<body>
+
+<style>
+:root{
+  --bg:#0b2230;
+  --board:#123449;
+  --board-edge:#0a2634;
+  --tile:#164a63;
+  --tile-hover:#1c5c79;
+  --tile-done:#0c2836;
+  --accent:#ff8a3d;
+  --accent-2:#ffd166;
+  --text:#f4f1e9;
+  --muted:#9fc1cf;
+  --panel:#0e2a3a;
+  --good:#5fb488;
+  --bad:#e0654f;
+  --line:#1e5064;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#eef3f2;
+    --board:#ffffff;
+    --board-edge:#c9d8db;
+    --tile:#0f6d8f;
+    --tile-hover:#0a5570;
+    --tile-done:#dbe6e6;
+    --accent:#e2661f;
+    --accent-2:#c9911a;
+    --text:#12262b;
+    --muted:#4c6a70;
+    --panel:#ffffff;
+    --good:#2f8a5e;
+    --bad:#c94a36;
+    --line:#d5e1e2;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#eef3f2;
+  --board:#ffffff;
+  --board-edge:#c9d8db;
+  --tile:#0f6d8f;
+  --tile-hover:#0a5570;
+  --tile-done:#dbe6e6;
+  --accent:#e2661f;
+  --accent-2:#c9911a;
+  --text:#12262b;
+  --muted:#4c6a70;
+  --panel:#ffffff;
+  --good:#2f8a5e;
+  --bad:#c94a36;
+  --line:#d5e1e2;
+}
+
+*{box-sizing:border-box;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'IBM Plex Sans', system-ui, sans-serif;
+  padding:24px 16px 40px;
+  min-height:100%;
+}
+h1,h2,h3,.display{
+  font-family:'Oswald', system-ui, sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.03em;
+}
+.wrap{max-width:1180px;margin:0 auto;}
+
+header.top{
+  display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;
+  margin-bottom:20px;
+  border-bottom:2px solid var(--line);
+  padding-bottom:14px;
+}
+header.top .title-block h1{
+  font-size:clamp(28px,4.5vw,44px);
+  color:var(--accent);
+  margin:0 0 4px;
+  text-wrap:balance;
+}
+header.top .title-block p{
+  margin:0;color:var(--muted);font-size:14px;max-width:60ch;
+}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;}
+.badge{
+  background:var(--panel);border:1px solid var(--line);color:var(--muted);
+  padding:6px 12px;border-radius:999px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;
+  display:flex;align-items:center;gap:6px;
+}
+
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
+button{
+  font-family:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);
+  background:var(--panel);color:var(--text);padding:8px 14px;font-size:14px;
+  transition:transform .08s ease, background .15s ease, border-color .15s ease;
+}
+button:hover{border-color:var(--accent);}
+button:active{transform:scale(.97);}
+button.primary{background:var(--accent);border-color:var(--accent);color:#26140a;font-weight:700;}
+button.primary:hover{background:var(--accent-2);border-color:var(--accent-2);}
+button.ghost{background:transparent;}
+button:disabled{opacity:.4;cursor:not-allowed;}
+
+/* board */
+.board{
+  background:var(--board);
+  border:2px solid var(--board-edge);
+  border-radius:14px;
+  padding:14px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+  overflow-x:auto;
+}
+.cat-head{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:10px 6px;
+  text-align:center;
+  font-size:clamp(11px,1.6vw,14px);
+  color:var(--accent-2);
+  min-height:56px;
+  display:flex;align-items:center;justify-content:center;
+  line-height:1.15;
+}
+.tile{
+  background:var(--tile);
+  border:none;
+  border-radius:8px;
+  color:var(--accent-2);
+  font-family:'Oswald', system-ui, sans-serif;
+  font-size:clamp(16px,3vw,26px);
+  font-weight:600;
+  padding:18px 4px;
+  min-height:64px;
+  display:flex;align-items:center;justify-content:center;
+}
+.tile:hover:not(:disabled){background:var(--tile-hover);}
+.tile:disabled{background:var(--tile-done);color:var(--line);}
+
+@media (max-width:640px){
+  .board{grid-template-columns:repeat(5,minmax(72px,1fr));}
+}
+
+/* teams */
+.teams-section{margin-top:26px;}
+.teams-section h2{font-size:18px;color:var(--muted);margin:0 0 10px;}
+.teams-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;
+}
+.team-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;
+  display:flex;flex-direction:column;gap:8px;
+}
+.team-card .name-row{display:flex;align-items:center;gap:8px;}
+.team-card input.team-name{
+  background:transparent;border:none;border-bottom:1px solid var(--line);color:var(--text);
+  font-family:'Oswald',sans-serif;font-size:16px;padding:2px 2px 4px;flex:1;min-width:0;
+  text-transform:uppercase;letter-spacing:.02em;
+}
+.team-card input.team-name:focus{outline:none;border-color:var(--accent);}
+.team-card .score{
+  font-family:'Oswald',sans-serif;font-size:32px;color:var(--accent);
+  font-variant-numeric:tabular-nums;
+}
+.team-card .remove-btn{background:transparent;border:none;color:var(--muted);font-size:16px;padding:2px 6px;}
+.team-card .remove-btn:hover{color:var(--bad);}
+
+/* modal */
+.overlay{
+  position:fixed;inset:0;background:rgba(6,16,22,.72);
+  display:flex;align-items:center;justify-content:center;padding:20px;z-index:50;
+}
+.overlay[hidden]{display:none!important;}
+.modal{
+  background:var(--board);border:2px solid var(--board-edge);border-radius:16px;
+  max-width:640px;width:100%;padding:28px 26px;max-height:90vh;overflow-y:auto;
+}
+.modal .cat-tag{color:var(--accent-2);font-size:13px;letter-spacing:.08em;margin-bottom:6px;}
+.modal .value-tag{font-family:'Oswald',sans-serif;color:var(--accent);font-size:22px;margin-bottom:14px;}
+.modal .q-text{font-size:clamp(17px,2.6vw,22px);line-height:1.45;margin-bottom:18px;}
+.modal .a-box{
+  background:var(--panel);border:1px dashed var(--line);border-radius:10px;padding:14px 16px;
+  margin-bottom:20px;font-size:15px;line-height:1.5;color:var(--muted);
+}
+.modal .a-box strong{color:var(--good);display:block;margin-bottom:4px;font-family:'Oswald',sans-serif;letter-spacing:.03em;}
+.reveal-row{display:flex;justify-content:center;margin-bottom:18px;}
+
+.award-section h4{margin:0 0 10px;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+.award-grid{display:flex;flex-direction:column;gap:8px;}
+.award-row{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;
+}
+.award-row .aname{font-family:'Oswald',sans-serif;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.award-row .abtns{display:flex;gap:6px;}
+.award-row button{padding:6px 10px;font-size:13px;}
+.btn-plus{border-color:var(--good);color:var(--good);}
+.btn-plus:hover{background:var(--good);color:#08251a;}
+.btn-minus{border-color:var(--bad);color:var(--bad);}
+.btn-minus:hover{background:var(--bad);color:#2a0d08;}
+.modal-close-row{display:flex;justify-content:flex-end;margin-top:16px;}
+
+/* confirm modal (custom, not native confirm) */
+.confirm-box{max-width:380px;text-align:center;}
+.confirm-box p{margin:0 0 20px;font-size:15px;line-height:1.5;}
+.confirm-actions{display:flex;gap:10px;justify-content:center;}
+
+/* ranking */
+.rank-list{display:flex;flex-direction:column;gap:10px;margin:18px 0;}
+.rank-row{
+  display:flex;align-items:center;gap:14px;background:var(--panel);border:1px solid var(--line);
+  border-radius:10px;padding:12px 16px;
+}
+.rank-row .place{font-family:'Oswald',sans-serif;font-size:26px;color:var(--accent);width:34px;}
+.rank-row .rname{flex:1;font-family:'Oswald',sans-serif;font-size:18px;letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.rank-row .rscore{font-family:'Oswald',sans-serif;font-size:22px;color:var(--accent-2);font-variant-numeric:tabular-nums;}
+.rank-row.gold{border-color:var(--accent);}
+
+footer.credit{margin-top:30px;color:var(--muted);font-size:12px;text-align:center;}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<div class="wrap">
+  <header class="top">
+    <div class="title-block">
+      <h1>Kunststoff-Jeopardy</h1>
+      <p>Vorbereitung auf die Klassenarbeit „Kunststoff- und Klebstofftechnologie" — 5 Kategorien, 25 Fragen, Teamspiel.</p>
+    </div>
+    <div class="badge-row">
+      <span class="badge" id="progressBadge">0 / 25 gespielt</span>
+    </div>
+  </header>
+
+  <div class="controls">
+    <button class="ghost" id="addTeamBtn">+ Team hinzufügen</button>
+    <button class="ghost" id="rankBtn">Rangliste anzeigen</button>
+    <button id="resetBtn">Neues Spiel</button>
+  </div>
+
+  <div class="board" id="board"></div>
+
+  <section class="teams-section">
+    <h2>Teams &amp; Punktestand</h2>
+    <div class="teams-grid" id="teamsGrid"></div>
+  </section>
+
+  <footer class="credit">BL · Klassenarbeitsvorbereitung Kunststoff- &amp; Klebstofftechnologie</footer>
+</div>
+
+<!-- Question modal -->
+<div class="overlay" id="qOverlay" hidden>
+  <div class="modal" id="qModal">
+    <div class="cat-tag" id="qCat"></div>
+    <div class="value-tag" id="qVal"></div>
+    <div class="q-text" id="qText"></div>
+    <div class="reveal-row">
+      <button class="primary" id="revealBtn">Antwort aufdecken</button>
+    </div>
+    <div class="a-box" id="aBox" hidden>
+      <strong>Antwort</strong>
+      <span id="aText"></span>
+    </div>
+    <div class="award-section" id="awardSection" hidden>
+      <h4>Punkte vergeben</h4>
+      <div class="award-grid" id="awardGrid"></div>
+    </div>
+    <div class="modal-close-row">
+      <button id="closeQBtn">Schließen (ohne Wertung)</button>
+    </div>
+  </div>
+</div>
+
+<!-- Ranking modal -->
+<div class="overlay" id="rankOverlay" hidden>
+  <div class="modal">
+    <h3 style="margin-top:0;color:var(--accent-2);">Abschluss-Ranking</h3>
+    <div class="rank-list" id="rankList"></div>
+    <div class="modal-close-row">
+      <button class="primary" id="closeRankBtn">Schließen</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm modal (custom — replaces blocked native confirm()) -->
+<div class="overlay" id="confirmOverlay" hidden>
+  <div class="modal confirm-box">
+    <p id="confirmText">Bist du sicher?</p>
+    <div class="confirm-actions">
+      <button id="confirmYes" class="primary">Ja</button>
+      <button id="confirmNo">Abbrechen</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+var CATEGORIES = [
+  {
+    name: "Kunststoff-Grundlagen",
+    questions: [
+      { value:100, q:"Seit wie vielen Jahren gibt es Kunststoffe – ungefähr?", a:"Seit ca. 150 Jahren." },
+      { value:200, q:"In welche drei Hauptgruppen werden Kunststoffe grob eingeteilt?", a:"Thermoplaste, Duromere und Elastomere." },
+      { value:300, q:"Wie sind die Makromoleküle in einem Duromer aufgebaut?", a:"Eng (stark) vernetzt zu einem dreidimensionalen Netzwerk – nach dem Aushärten nicht mehr schmelzbar." },
+      { value:400, q:"Wie sind die Makromoleküle in einem Elastomer aufgebaut?", a:"Weitmaschig vernetzte, kettenförmige Makromoleküle – dadurch dehnbar/elastisch, aber ebenfalls nicht schmelzbar." },
+      { value:500, q:"Nenne einen typischen Unterschied im Brandverhalten zwischen einem Duromer (z. B. PF) und einem Thermoplasten.", a:"Duromere kokeln bzw. verkohlen beim Abbrennen und schmelzen nicht; Thermoplaste erweichen, schmelzen und tropfen oft brennend ab." }
+    ]
+  },
+  {
+    name: "Kunststoffarten",
+    questions: [
+      { value:100, q:"Wofür steht die Abkürzung PVC?", a:"Polyvinylchlorid." },
+      { value:200, q:"Wofür steht PE, und zu welcher Kunststoffgruppe gehört es?", a:"Polyethylen – ein Thermoplast (kein Duromer)." },
+      { value:300, q:"Wofür steht PF, und zu welcher Kunststoffgruppe gehört es?", a:"Phenol-Formaldehyd-Harz – ein Duromer." },
+      { value:400, q:"Woraus wird textiler Teppichboden häufig hergestellt?", a:"Häufig aus PA (Polyamid)." },
+      { value:500, q:"Nenne zwei typische Eigenschaften von PE.", a:"Geringe Dichte (schwimmt in Wasser), brennt gut und tropft brennend ab, kaum Eigengeruch, gute Chemikalienbeständigkeit." }
+    ]
+  },
+  {
+    name: "Herstellungsverfahren",
+    questions: [
+      { value:100, q:"Wie nennt man das Verfahren, bei dem Monomere unter Abspaltung eines Nebenprodukts (z. B. Wasser) zu Makromolekülen verknüpft werden?", a:"Polykondensation." },
+      { value:200, q:"Was bedeutet „Polyaddition\"?", a:"Verknüpfung von Monomeren zu Makromolekülen durch Anlagerung (z. B. über reaktionsfähige Gruppen wie OH oder NCO), ohne dass dabei ein Nebenprodukt abgespalten wird." },
+      { value:300, q:"Welches technische Herstellungsverfahren zeigt eine Skizze mit einer Förderschnecke, die Granulat durch einen beheizten Zylinder in eine Düse presst?", a:"Extrusion (Extrudieren)." },
+      { value:400, q:"Nenne ein weiteres technisches Verfahren zur Kunststoffherstellung bzw. -verarbeitung außer der Extrusion.", a:"Zum Beispiel Spritzgießen, Blasformen, Kalandrieren oder Tiefziehen." },
+      { value:500, q:"Erkläre kurz den Unterschied zwischen Polymerisation und Polykondensation.", a:"Polymerisation: Monomere mit Doppelbindungen werden ohne Abspaltung eines Nebenprodukts aneinandergekettet. Polykondensation: Monomere werden verknüpft, wobei ein Nebenprodukt (z. B. Wasser) abgespalten wird." }
+    ]
+  },
+  {
+    name: "Klebstofftechnologie",
+    questions: [
+      { value:100, q:"Was versteht man unter der „Topfzeit\" eines Klebstoffs?", a:"Die Zeit, in der ein angemischter (z. B. 2-Komponenten-)Klebstoff verarbeitbar bleibt, bevor er zu zäh wird oder aushärtet." },
+      { value:200, q:"Was bedeutet „Offene Zeit\" bei einer Verklebung?", a:"Die Zeitspanne nach dem Auftragen des Klebstoffs, in der die Fügeteile noch zusammengefügt werden können, bevor der Klebstoff angezogen bzw. eine Haut gebildet hat." },
+      { value:300, q:"Was ist ein „Adhäsionsbruch\" bei einer Verklebung?", a:"Der Klebstoff löst sich vollständig von der Oberfläche eines Fügeteils – der Bruch erfolgt direkt an der Grenzfläche zwischen Klebstoff und Untergrund." },
+      { value:400, q:"Was ist im Gegensatz dazu ein „Kohäsionsbruch\"?", a:"Der Bruch erfolgt innerhalb der Klebstoffschicht selbst – auf beiden Fügeteilen bleiben Klebstoffreste zurück." },
+      { value:500, q:"Nenne zwei Faktoren, die Topfzeit und offene Zeit eines Klebstoffs beeinflussen können.", a:"Zum Beispiel Temperatur, Luftfeuchtigkeit, Mischungsverhältnis der Komponenten und Saugfähigkeit des Untergrunds." }
+    ]
+  },
+  {
+    name: "Kunststoffe im Handwerk",
+    questions: [
+      { value:100, q:"Nenne ein konkretes Beispiel für einen Kunststoff, dem Bodenleger:innen in ihrem Handwerk begegnen.", a:"Zum Beispiel PVC (Vinylboden), PA (Teppichboden), Klebstoffe auf Kunststoffbasis oder Sockelleisten aus Kunststoff." },
+      { value:200, q:"Warum eignet sich PVC gut als Werkstoff für Bodenbeläge?", a:"Es ist robust, wasser- und feuchtigkeitsbeständig, abriebfest, pflegeleicht und vergleichsweise günstig." },
+      { value:300, q:"In einem Schwimmversuch schwimmt eine Kunststoffprobe in Wasser, eine andere sinkt. Welche Eigenschaft entscheidet darüber?", a:"Die Dichte des Kunststoffs im Vergleich zu Wasser: Kunststoffe mit einer Dichte unter 1 g/cm³ (z. B. PE) schwimmen, dichtere Kunststoffe (z. B. PA) sinken." },
+      { value:400, q:"Was ist „Klick-Vinyl\", und welcher Kunststoff steckt in der Regel dahinter?", a:"Ein Vinylboden-Belag mit einem mechanischen Klick-Verbindungssystem zum Verlegen ohne Kleben – die Basis ist meist PVC." },
+      { value:500, q:"Warum ist das Wissen um Topfzeit und offene Zeit für Bodenleger:innen in der Praxis besonders wichtig?", a:"Damit der Klebstoff rechtzeitig verarbeitet, die Verlegezeit realistisch geplant und Verklebungsfehler (z. B. Hohllagen, schlechte Haftung) vermieden werden." }
+    ]
+  }
+];
+
+var STORAGE_KEY = "kunststoff-jeopardy-state-v1";
+
+var state = {
+  teams: [
+    { id: cryptoId(), name: "Team 1", score: 0 },
+    { id: cryptoId(), name: "Team 2", score: 0 }
+  ],
+  played: {} // "catIdx-qIdx" -> true
+};
+
+function cryptoId(){
+  return 't' + Math.random().toString(36).slice(2,9);
+}
+
+function loadState(){
+  try{
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      var parsed = JSON.parse(raw);
+      if(parsed && parsed.teams && parsed.played){
+        state = parsed;
+      }
+    }
+  }catch(e){ /* ignore, fall back to default state */ }
+}
+
+function saveState(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){ /* ignore */ }
+}
+
+// ---------- rendering ----------
+
+var boardEl = document.getElementById('board');
+var teamsGridEl = document.getElementById('teamsGrid');
+var progressBadge = document.getElementById('progressBadge');
+
+function render(){
+  renderBoard();
+  renderTeams();
+  renderProgress();
+  saveState();
+}
+
+function renderProgress(){
+  var total = 0, done = 0;
+  CATEGORIES.forEach(function(cat, ci){
+    cat.questions.forEach(function(q, qi){
+      total++;
+      if(state.played[ci+'-'+qi]) done++;
+    });
+  });
+  progressBadge.textContent = done + ' / ' + total + ' gespielt';
+}
+
+function renderBoard(){
+  boardEl.innerHTML = '';
+  CATEGORIES.forEach(function(cat){
+    var h = document.createElement('div');
+    h.className = 'cat-head';
+    h.textContent = cat.name;
+    boardEl.appendChild(h);
+  });
+  var maxRows = Math.max.apply(null, CATEGORIES.map(function(c){return c.questions.length;}));
+  for(let r=0;r<maxRows;r++){
+    CATEGORIES.forEach(function(cat, ci){
+      var q = cat.questions[r];
+      if(!q){
+        var spacer = document.createElement('div');
+        boardEl.appendChild(spacer);
+        return;
+      }
+      var btn = document.createElement('button');
+      btn.className = 'tile';
+      var key = ci+'-'+r;
+      var isDone = !!state.played[key];
+      btn.disabled = isDone;
+      btn.textContent = isDone ? '' : q.value;
+      btn.setAttribute('aria-label', cat.name + ' ' + q.value + ' Punkte');
+      btn.addEventListener('click', function(){ openQuestion(ci, r); });
+      boardEl.appendChild(btn);
+    });
+  }
+}
+
+function renderTeams(){
+  teamsGridEl.innerHTML = '';
+  state.teams.forEach(function(team){
+    var card = document.createElement('div');
+    card.className = 'team-card';
+
+    var nameRow = document.createElement('div');
+    nameRow.className = 'name-row';
+
+    var input = document.createElement('input');
+    input.className = 'team-name';
+    input.value = team.name;
+    input.maxLength = 24;
+    input.addEventListener('input', function(){
+      team.name = input.value;
+      saveState();
+    });
+    nameRow.appendChild(input);
+
+    if(state.teams.length > 2){
+      var rm = document.createElement('button');
+      rm.className = 'remove-btn';
+      rm.textContent = '✕';
+      rm.title = 'Team entfernen';
+      rm.addEventListener('click', function(){
+        askConfirm('Team „' + team.name + '“ wirklich entfernen?', function(){
+          state.teams = state.teams.filter(function(t){ return t.id !== team.id; });
+          render();
+        });
+      });
+      nameRow.appendChild(rm);
+    }
+
+    card.appendChild(nameRow);
+
+    var score = document.createElement('div');
+    score.className = 'score';
+    score.textContent = team.score;
+    card.appendChild(score);
+
+    teamsGridEl.appendChild(card);
+  });
+}
+
+// ---------- question modal ----------
+
+var qOverlay = document.getElementById('qOverlay');
+var qCat = document.getElementById('qCat');
+var qVal = document.getElementById('qVal');
+var qText = document.getElementById('qText');
+var revealBtn = document.getElementById('revealBtn');
+var aBox = document.getElementById('aBox');
+var aText = document.getElementById('aText');
+var awardSection = document.getElementById('awardSection');
+var awardGrid = document.getElementById('awardGrid');
+var closeQBtn = document.getElementById('closeQBtn');
+
+var currentQ = null; // {ci, qi}
+
+function openQuestion(ci, qi){
+  var cat = CATEGORIES[ci];
+  var q = cat.questions[qi];
+  currentQ = { ci: ci, qi: qi };
+  qCat.textContent = cat.name;
+  qVal.textContent = q.value + ' Punkte';
+  qText.textContent = q.q;
+  aBox.hidden = true;
+  awardSection.hidden = true;
+  aText.textContent = q.a;
+  revealBtn.hidden = false;
+  buildAwardGrid(q.value);
+  qOverlay.hidden = false;
+}
+
+function buildAwardGrid(value){
+  awardGrid.innerHTML = '';
+  state.teams.forEach(function(team){
+    var row = document.createElement('div');
+    row.className = 'award-row';
+
+    var name = document.createElement('div');
+    name.className = 'aname';
+    name.textContent = team.name;
+    row.appendChild(name);
+
+    var btns = document.createElement('div');
+    btns.className = 'abtns';
+
+    var plus = document.createElement('button');
+    plus.className = 'btn-plus';
+    plus.textContent = '+' + value;
+    plus.addEventListener('click', function(){
+      team.score += value;
+      markPlayedAndClose();
+    });
+
+    var minus = document.createElement('button');
+    minus.className = 'btn-minus';
+    minus.textContent = '−' + value;
+    minus.addEventListener('click', function(){
+      team.score -= value;
+      markPlayedAndClose();
+    });
+
+    btns.appendChild(plus);
+    btns.appendChild(minus);
+    row.appendChild(btns);
+    awardGrid.appendChild(row);
+  });
+}
+
+function markPlayedAndClose(){
+  if(currentQ){
+    state.played[currentQ.ci+'-'+currentQ.qi] = true;
+  }
+  qOverlay.hidden = true;
+  currentQ = null;
+  render();
+}
+
+revealBtn.addEventListener('click', function(){
+  aBox.hidden = false;
+  awardSection.hidden = false;
+  revealBtn.hidden = true;
+});
+
+closeQBtn.addEventListener('click', function(){
+  // closing without awarding still marks the tile as played, so it can't be replayed
+  markPlayedAndClose();
+});
+
+// ---------- teams: add ----------
+
+document.getElementById('addTeamBtn').addEventListener('click', function(){
+  if(state.teams.length >= 6){
+    return;
+  }
+  state.teams.push({ id: cryptoId(), name: 'Team ' + (state.teams.length+1), score: 0 });
+  render();
+});
+
+// ---------- ranking ----------
+
+var rankOverlay = document.getElementById('rankOverlay');
+var rankList = document.getElementById('rankList');
+
+document.getElementById('rankBtn').addEventListener('click', showRanking);
+document.getElementById('closeRankBtn').addEventListener('click', function(){
+  rankOverlay.hidden = true;
+});
+
+function showRanking(){
+  var sorted = state.teams.slice().sort(function(a,b){ return b.score - a.score; });
+  rankList.innerHTML = '';
+  sorted.forEach(function(team, idx){
+    var row = document.createElement('div');
+    row.className = 'rank-row' + (idx === 0 ? ' gold' : '');
+    var place = document.createElement('div');
+    place.className = 'place';
+    place.textContent = (idx+1) + '.';
+    var name = document.createElement('div');
+    name.className = 'rname';
+    name.textContent = team.name;
+    var score = document.createElement('div');
+    score.className = 'rscore';
+    score.textContent = team.score + ' P.';
+    row.appendChild(place);
+    row.appendChild(name);
+    row.appendChild(score);
+    rankList.appendChild(row);
+  });
+  rankOverlay.hidden = false;
+}
+
+// ---------- custom confirm modal (native confirm() is blocked in the artifact frame) ----------
+
+var confirmOverlay = document.getElementById('confirmOverlay');
+var confirmText = document.getElementById('confirmText');
+var confirmYes = document.getElementById('confirmYes');
+var confirmNo = document.getElementById('confirmNo');
+var pendingConfirmAction = null;
+
+function askConfirm(message, onYes){
+  confirmText.textContent = message;
+  pendingConfirmAction = onYes;
+  confirmOverlay.hidden = false;
+}
+
+confirmYes.addEventListener('click', function(){
+  confirmOverlay.hidden = true;
+  var action = pendingConfirmAction;
+  pendingConfirmAction = null;
+  if(action) action();
+});
+
+confirmNo.addEventListener('click', function(){
+  confirmOverlay.hidden = true;
+  pendingConfirmAction = null;
+});
+
+// ---------- reset ----------
+
+document.getElementById('resetBtn').addEventListener('click', function(){
+  askConfirm('Neues Spiel starten? Punktestand und gespielte Fragen werden zurückgesetzt.', function(){
+    state = {
+      teams: [
+        { id: cryptoId(), name: "Team 1", score: 0 },
+        { id: cryptoId(), name: "Team 2", score: 0 }
+      ],
+      played: {}
+    };
+    render();
+  });
+});
+
+// ---------- boot ----------
+
+function start(){
+  loadState();
+  render();
+}
+
+if(window.claude && window.claude.hot){
+  window.claude.hot.snapshot(function(){ return state; });
+  window.claude.hot.ready ? window.claude.hot.ready(function(data){
+    if(data && data.teams && data.played){ state = data; }
+    render();
+  }) : start();
+} else {
+  start();
+}
+
+})();
+</script>
+
+</body>
+</html>
