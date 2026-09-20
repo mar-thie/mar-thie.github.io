@@ -1,0 +1,415 @@
+{
+  "anfaenger": {
+    "sc": [
+      {
+        "q": "Wie viele Sozialversicherungen gibt es in Deutschland?",
+        "opts": [
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "c": 2,
+        "e": "Es gibt fünf Sozialversicherungen: Kranken-, Unfall-, Renten-, Arbeitslosen- und Pflegeversicherung (Merkwort: KURAP)."
+      },
+      {
+        "q": "Bei welcher Sozialversicherung zahlt der Arbeitgeber die Beiträge zu 100 %?",
+        "opts": [
+          "Krankenversicherung",
+          "Rentenversicherung",
+          "Unfallversicherung",
+          "Arbeitslosenversicherung"
+        ],
+        "c": 2,
+        "e": "Die Unfallversicherung wird zu 100 % vom Arbeitgeber finanziert (Arbeitnehmer: 0 %). Alle anderen Sozialversicherungen werden je zur Hälfte von Arbeitnehmer und Arbeitgeber bezahlt."
+      },
+      {
+        "q": "Wie viele Lohnsteuerklassen gibt es in Deutschland?",
+        "opts": [
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "c": 2,
+        "e": "Es gibt 6 Lohnsteuerklassen (I bis VI)."
+      },
+      {
+        "q": "Was ist der wichtigste Unterschied zwischen Sozialversicherung und Individualversicherung?",
+        "opts": [
+          "Die Sozialversicherung ist freiwillig, die Individualversicherung ist Pflicht",
+          "Die Sozialversicherung ist Pflicht, die Individualversicherung ist freiwillig",
+          "Die Sozialversicherung gilt nur für Beamte",
+          "Die Individualversicherung wird vom Arbeitgeber bezahlt"
+        ],
+        "c": 1,
+        "e": "Sozialversicherung = Pflicht, Individualversicherung = freiwillig."
+      },
+      {
+        "q": "Welche der folgenden Versicherungen ist eine Sachversicherung?",
+        "opts": [
+          "Berufsunfähigkeitsversicherung",
+          "Haftpflichtversicherung",
+          "Rechtsschutzversicherung",
+          "Hausratversicherung"
+        ],
+        "c": 3,
+        "e": "Die Hausratversicherung ist eine Sachversicherung: Sie schützt Sachen (z. B. Möbel, Kleidung, Geräte)."
+      },
+      {
+        "q": "Wie kommt man vom Brutto-Lohn zum Netto-Lohn?",
+        "opts": [
+          "Man addiert die Sozialversicherungsbeiträge und die Steuern zum Brutto-Lohn",
+          "Man zieht SV-Beiträge, Lohnsteuer und ggf. weitere Abzüge vom Brutto-Lohn ab",
+          "Man zieht nur die Lohnsteuer ab",
+          "Man multipliziert den Brutto-Lohn mit der Steuerklasse"
+        ],
+        "c": 1,
+        "e": "Brutto = Lohn vor Abzügen. Davon werden SV-Beiträge, Lohnsteuer, ggf. Kirchensteuer, Solidaritätszuschlag und individuelle Zusatzbeiträge abgezogen. Übrig bleibt der Netto-Lohn."
+      },
+      {
+        "q": "Ein Bodenleger wird nach den verlegten Quadratmetern bezahlt. Um welche Lohnform handelt es sich?",
+        "opts": [
+          "Zeitlohn",
+          "Akkordlohn",
+          "Monatsgehalt",
+          "Sachleistung"
+        ],
+        "c": 1,
+        "e": "Beim Akkordlohn richtet sich die Bezahlung nach der Leistungsmenge in einer bestimmten Zeit, z. B. nach den verlegten Quadratmetern Boden."
+      }
+    ],
+    "open": [
+      {
+        "q": "Was ist der Unterschied zwischen dem Brutto-Lohn und dem Netto-Lohn?",
+        "a": "Der Brutto-Lohn ist der Lohn vor Abzügen, der Netto-Lohn der Lohn nach Abzügen. Abgezogen werden SV-Beiträge, Lohnsteuer sowie ggf. Kirchensteuer, Solidaritätszuschlag und individuelle Zusatzbeiträge. Merksatz: Brutto = brutal viel, Netto = net so viel."
+      },
+      {
+        "q": "Nenne die fünf Sozialversicherungen.",
+        "a": "Krankenversicherung, Unfallversicherung, Rentenversicherung, Arbeitslosenversicherung und Pflegeversicherung (Merkwort: KURAP)."
+      },
+      {
+        "q": "Erkläre, wie ein Zeitlohn funktioniert.",
+        "a": "Beim Zeitlohn wird nach der Arbeitszeit bezahlt (= Stundenlohn). Je mehr Stunden gearbeitet werden, desto mehr Lohn gibt es."
+      },
+      {
+        "q": "Was ist der wichtigste Unterschied zwischen einer Sozialversicherung und einer Individualversicherung? Nenne jeweils ein Beispiel.",
+        "a": "Die Sozialversicherung ist eine Pflichtversicherung (z. B. Krankenversicherung, Rentenversicherung), die Individualversicherung ist freiwillig (z. B. Hausratversicherung, Haftpflichtversicherung)."
+      }
+    ],
+    "tf": [
+      {
+        "s": "Die Unfallversicherung wird je zur Hälfte von Arbeitnehmer und Arbeitgeber bezahlt.",
+        "c": false,
+        "e": "Falsch: Die Unfallversicherung wird zu <strong>100 % vom Arbeitgeber</strong> bezahlt."
+      },
+      {
+        "s": "In Deutschland gibt es sechs Lohnsteuerklassen.",
+        "c": true,
+        "e": "Richtig: Es gibt die Lohnsteuerklassen <strong>I bis VI</strong>, also sechs."
+      },
+      {
+        "s": "Die Hausratversicherung gehört zu den Sozialversicherungen.",
+        "c": false,
+        "e": "Falsch: Die Hausratversicherung ist eine freiwillige <strong>Individualversicherung</strong> (Sachversicherung), keine Sozialversicherung."
+      },
+      {
+        "s": "Beamte sind rentenversicherungspflichtig.",
+        "c": false,
+        "e": "Falsch: <strong>Beamte und Selbstständige</strong> sind nicht rentenversicherungspflichtig."
+      },
+      {
+        "s": "Beim Akkordlohn richtet sich die Bezahlung nach der Leistungsmenge in einer bestimmten Zeit.",
+        "c": true,
+        "e": "Richtig: Beim <strong>Akkordlohn</strong> zählt die Leistungsmenge, z. B. die verlegten Quadratmeter Boden."
+      },
+      {
+        "s": "Der Brutto-Lohn ist der Lohn vor allen Abzügen.",
+        "c": true,
+        "e": "Richtig: <strong>Brutto</strong> = vor Abzügen, <strong>Netto</strong> = nach Abzügen."
+      }
+    ],
+    "cloze": [
+      {
+        "t": "Der Lohn vor allen Abzügen heißt "
+      },
+      {
+        "b": "af1",
+        "a": [
+          "Brutto-Lohn",
+          "Bruttolohn",
+          "Brutto"
+        ]
+      },
+      {
+        "t": ", der Lohn nach den Abzügen heißt "
+      },
+      {
+        "b": "af2",
+        "a": [
+          "Netto-Lohn",
+          "Nettolohn",
+          "Netto"
+        ]
+      },
+      {
+        "t": ". Die Sozialversicherung ist eine "
+      },
+      {
+        "b": "af3",
+        "a": [
+          "Pflichtversicherung",
+          "Pflicht"
+        ]
+      },
+      {
+        "t": ", die Individualversicherung ist "
+      },
+      {
+        "b": "af4",
+        "a": [
+          "freiwillig"
+        ]
+      },
+      {
+        "t": ". In Deutschland gibt es "
+      },
+      {
+        "b": "af5",
+        "a": [
+          "6",
+          "sechs"
+        ]
+      },
+      {
+        "t": " Lohnsteuerklassen. Die "
+      },
+      {
+        "b": "af6",
+        "a": [
+          "Unfallversicherung"
+        ]
+      },
+      {
+        "t": " wird zu 100 % vom Arbeitgeber bezahlt."
+      }
+    ]
+  },
+  "fortgeschritten": {
+    "sc": [
+      {
+        "q": "Was bedeutet das „Solidaritätsprinzip“ der Sozialversicherungen?",
+        "opts": [
+          "Beiträge nach Einkommen, Leistungen nach Bedarf",
+          "Beiträge nach Risiko, Leistungen nach Einkommen",
+          "Alle zahlen den gleichen Betrag in Euro",
+          "Nur der Arbeitgeber zahlt die Beiträge"
+        ],
+        "c": 0,
+        "e": "Die finanziell „Stärkeren“ unterstützen die „Schwächeren“: Beiträge werden in Prozent vom Einkommen erhoben, Leistungen richten sich nach dem Bedarf."
+      },
+      {
+        "q": "Wie werden die aktuellen Renten nach dem „Generationenvertrag“ (mit)finanziert?",
+        "opts": [
+          "Aus den Rentenversicherungsbeiträgen der aktuell Beschäftigten",
+          "Aus dem Ersparten der Rentnerinnen und Rentner selbst",
+          "Allein aus den Beiträgen der Arbeitgeber",
+          "Aus den Beiträgen der Krankenkassen"
+        ],
+        "c": 0,
+        "e": "Die Renten der heutigen Rentnerinnen und Rentner werden aus den RV-Beiträgen der aktuell Beschäftigten (mit)finanziert. Problem: Durch den demografischen Wandel gibt es immer mehr Ältere und weniger Junge."
+      },
+      {
+        "q": "Was gilt für Einkommen oberhalb der Beitragsbemessungsgrenze (BBG)?",
+        "opts": [
+          "Es wird doppelt mit Beiträgen belastet",
+          "Es ist beitragsfrei, nur das Einkommen bis zur BBG wird berechnet",
+          "Es wird nur mit Lohnsteuer belastet, nicht mit Sozialabgaben",
+          "Es wird auf das Netto-Gehalt aufgeschlagen"
+        ],
+        "c": 1,
+        "e": "Die BBG ist die Obergrenze für Sozialversicherungsbeiträge. Einkommen darüber ist beitragsfrei, deshalb bleiben die Beiträge für Besserverdienende begrenzt."
+      },
+      {
+        "q": "Welche Steuerklasse wählt der Ehegatte mit dem höheren Einkommen in Kombination mit Steuerklasse V?",
+        "opts": [
+          "Steuerklasse I",
+          "Steuerklasse II",
+          "Steuerklasse III",
+          "Steuerklasse IV"
+        ],
+        "c": 2,
+        "e": "Steuerklasse III gilt für Ehegatten mit höherem Einkommen in Kombination mit Steuerklasse V (der Partner mit dem geringeren Einkommen)."
+      },
+      {
+        "q": "Was ist mit dem Begriff „Überversicherung“ gemeint?",
+        "opts": [
+          "Die Versicherungssumme ist höher als der tatsächliche Wert",
+          "Die Versicherungssumme ist niedriger als der tatsächliche Wert",
+          "Man hat zu viele Sozialversicherungen abgeschlossen",
+          "Der Arbeitgeber zahlt zu viele Beiträge"
+        ],
+        "c": 0,
+        "e": "Bei einer Überversicherung ist die Versicherungssumme höher als der tatsächliche Wert. Man versichert unnötig mehr als 100 %."
+      },
+      {
+        "q": "Wer ist Träger der Arbeitslosenversicherung?",
+        "opts": [
+          "Die Deutsche Rentenversicherung",
+          "Die Bundesagentur für Arbeit",
+          "Die Berufsgenossenschaften",
+          "Die Pflegekassen"
+        ],
+        "c": 1,
+        "e": "Träger der Arbeitslosenversicherung ist die Bundesagentur für Arbeit. Die Finanzierung erfolgt je zur Hälfte durch Arbeitnehmer und Arbeitgeber."
+      },
+      {
+        "q": "Welche Leistung gehört zur Unfallversicherung bei Arbeitsunfällen, Wegeunfällen und Berufskrankheiten?",
+        "opts": [
+          "Kurzarbeitergeld",
+          "Verletztengeld",
+          "Altersrente",
+          "Krankengeld"
+        ],
+        "c": 1,
+        "e": "Die Unfallversicherung (Träger: Berufsgenossenschaften, Unfallkassen) zahlt u. a. Heilbehandlung, Verletztengeld, Berufshilfe, Pflegegeld und Verletztenrente."
+      },
+      {
+        "q": "Was bedeutet die Abkürzung „KFB“ auf der Lohnabrechnung?",
+        "opts": [
+          "Kirchenfreibetrag",
+          "Kinderfreibetrag",
+          "Krankenkassen-Beitrag",
+          "Kurzarbeitsfreibetrag"
+        ],
+        "c": 1,
+        "e": "KFB = Kinderfreibetrag. Weitere Kürzel: StKl = Steuerklasse, SV-Tage = sozialversicherungspflichtige Tage, Konf. = Konfession, lfd. = laufend."
+      }
+    ],
+    "open": [
+      {
+        "q": "Erkläre das „Solidaritätsprinzip“ der Sozialversicherungen.",
+        "a": "Beiträge nach Einkommen, Leistungen nach Bedarf: Die finanziell „Stärkeren“ unterstützen die finanziell „Schwächeren“. Die Beiträge werden in Prozent erhoben, d. h. je höher der Lohn, desto höher die Abgabe in absoluten Zahlen."
+      },
+      {
+        "q": "Was bedeutet der „Generationenvertrag“? Nenne außerdem ein Problem, das durch den demografischen Wandel entsteht.",
+        "a": "Die aktuellen Renten-Zahlungen für die heutigen Rentnerinnen und Rentner werden aus den Rentenversicherungsbeiträgen der aktuell Beschäftigten (mit)finanziert. Problem: Durch den demografischen Wandel gibt es immer mehr „Alte“ und weniger „Junge“ bei fehlendem Lohnausgleich."
+      },
+      {
+        "q": "Was versteht man unter der Beitragsbemessungsgrenze (BBG) und welchen Vorteil hat sie für Besserverdienende?",
+        "a": "Die BBG ist die Obergrenze für Sozialversicherungsbeiträge. Nur das Einkommen bis zur BBG wird berechnet, Einkommen darüber ist beitragsfrei. Vorteil für Besserverdienende: Ihre Beiträge bleiben begrenzt."
+      },
+      {
+        "q": "Erkläre die drei Lohnformen Zeitlohn, Akkordlohn und (Monats-)Gehalt.",
+        "a": "Zeitlohn: Bezahlung nach Arbeitszeit (= Stundenlohn). Akkordlohn: Bezahlung nach Leistungsmenge in einer bestimmten Zeit (z. B. Quadratmeter Boden). Gehalt: gleichbleibende monatliche Zahlung mit fest vorgeschriebener Stundenzahl."
+      },
+      {
+        "q": "Was bedeuten die Kürzel StKl, SV-Tage, VL-Zuschuss, KFB, Konf. und lfd. auf der Lohnabrechnung?",
+        "a": "StKl = Steuerklasse; SV-Tage = sozialversicherungspflichtige Tage; VL-Zuschuss = Zuschuss zu den Vermögenswirksamen Leistungen; KFB = Kinderfreibetrag; Konf. = Konfession; lfd. = laufend."
+      },
+      {
+        "q": "Nenne für die Krankenversicherung den Träger, die Finanzierung und mindestens drei mögliche Leistungen.",
+        "a": "Träger: Krankenkassen. Finanzierung: Arbeitnehmer 50 %, Arbeitgeber 50 %. Mögliche Leistungen (drei genügen): Vorsorgeuntersuchungen, Krankenpflege (Behandlung, Medikamente), Krankenhauspflege, Krankengeld (nach sechs Wochen), Mutterschaftshilfe, Familienhilfe, Rehabilitation."
+      }
+    ],
+    "tf": [
+      {
+        "s": "Beim Solidaritätsprinzip zahlen alle Versicherten den gleichen Betrag in Euro.",
+        "c": false,
+        "e": "Falsch: Die Beiträge werden <strong>in Prozent vom Einkommen</strong> erhoben. Je höher der Lohn, desto höher ist der Beitrag in absoluten Zahlen."
+      },
+      {
+        "s": "Einkommen oberhalb der Beitragsbemessungsgrenze ist beitragsfrei.",
+        "c": true,
+        "e": "Richtig: Nur das Einkommen <strong>bis zur BBG</strong> wird für die Sozialversicherungsbeiträge berechnet."
+      },
+      {
+        "s": "Die Krankenversicherung zahlt Krankengeld nach sechs Wochen.",
+        "c": true,
+        "e": "Richtig: <strong>Krankengeld</strong> gehört zu den Leistungen der Krankenversicherung und wird nach sechs Wochen gezahlt."
+      },
+      {
+        "s": "Die Rentenversicherung wird zu 100 % vom Arbeitnehmer finanziert.",
+        "c": false,
+        "e": "Falsch: Die Rentenversicherung wird je zur Hälfte vom <strong>Arbeitnehmer (50 %)</strong> und vom <strong>Arbeitgeber (50 %)</strong> finanziert."
+      },
+      {
+        "s": "Die Unfallversicherung leistet auch bei Wegeunfällen und Berufskrankheiten.",
+        "c": true,
+        "e": "Richtig: Die <strong>Unfallversicherung</strong> greift bei Arbeitsunfällen, Wegeunfällen und Berufskrankheiten."
+      },
+      {
+        "s": "Von einer Überversicherung spricht man, wenn die Versicherungssumme niedriger ist als der tatsächliche Wert.",
+        "c": false,
+        "e": "Falsch: Bei einer <strong>Überversicherung</strong> ist die Versicherungssumme <strong>höher</strong> als der tatsächliche Wert."
+      }
+    ],
+    "cloze": [
+      {
+        "t": "Nach dem "
+      },
+      {
+        "b": "fg1",
+        "a": [
+          "Generationenvertrag"
+        ]
+      },
+      {
+        "t": " werden die aktuellen Renten aus den Beiträgen der aktuell Beschäftigten (mit)finanziert. Wegen des "
+      },
+      {
+        "b": "fg2",
+        "a": [
+          "demografischen Wandels",
+          "demografische Wandel",
+          "demographischen Wandels",
+          "demographische Wandel"
+        ]
+      },
+      {
+        "t": " gibt es immer mehr Ältere und weniger "
+      },
+      {
+        "b": "fg3",
+        "a": [
+          "Junge",
+          "Jüngere",
+          "Beitragszahler",
+          "Erwerbstätige"
+        ]
+      },
+      {
+        "t": ". Träger der Arbeitslosenversicherung ist die "
+      },
+      {
+        "b": "fg4",
+        "a": [
+          "Bundesagentur für Arbeit"
+        ]
+      },
+      {
+        "t": ". Einkommen oberhalb der "
+      },
+      {
+        "b": "fg5",
+        "a": [
+          "Beitragsbemessungsgrenze",
+          "BBG"
+        ]
+      },
+      {
+        "t": " ist beitragsfrei. Die Steuerklasse "
+      },
+      {
+        "b": "fg6",
+        "a": [
+          "VI",
+          "6"
+        ]
+      },
+      {
+        "t": " gilt für Arbeitnehmer mit mehreren Arbeitgebern."
+      }
+    ]
+  }
+}

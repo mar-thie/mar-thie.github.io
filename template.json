@@ -1,0 +1,122 @@
+{
+  "anfaenger": {
+    "sc": [
+      {
+        "q": "Ab wie vielen wahlberechtigten Arbeitnehmern kann ein Betriebsrat gegründet werden?",
+        "opts": [
+          "Ab 3 wahlberechtigten Arbeitnehmern",
+          "Ab 5 wahlberechtigten Arbeitnehmern",
+          "Ab 10 wahlberechtigten Arbeitnehmern",
+          "Ab 20 wahlberechtigten Arbeitnehmern"
+        ],
+        "c": 1,
+        "e": "Ein Betriebsrat kann in Betrieben mit mindestens 5 wahlberechtigten Arbeitnehmern gegründet werden, von denen 3 wählbar sein müssen."
+      },
+      {
+        "q": "Ab welchem Alter ist ein Arbeitnehmer wahlberechtigt für den Betriebsrat?",
+        "opts": [
+          "Ab 14 Jahren",
+          "Ab 16 Jahren",
+          "Ab 18 Jahren",
+          "Ab 21 Jahren"
+        ],
+        "c": 1,
+        "e": "Seit dem Betriebsrätemodernisierungsgesetz (2021) sind Arbeitnehmer bereits mit 16 Jahren wahlberechtigt (§ 7 BetrVG) – zuvor lag die Grenze bei 18 Jahren."
+      }
+    ],
+    "open": [
+      {
+        "q": "Was regelt das Betriebsverfassungsgesetz (BetrVG) allgemein?",
+        "a": "Es regelt die Rechte und Pflichten von Arbeitgebern und Arbeitnehmern (bzw. deren gewählter Vertretung, dem Betriebsrat) im Betrieb – insbesondere die Mitwirkungs- und Mitbestimmungsrechte der Arbeitnehmer."
+      },
+      {
+        "q": "Was ist ein Betriebsrat?",
+        "a": "Eine von den Arbeitnehmern gewählte Interessenvertretung, die die Belange aller Beschäftigten des Betriebs gegenüber dem Arbeitgeber vertritt."
+      }
+    ],
+    "tf": [
+      {
+        "s": "Ein Betriebsrat kann in jedem Betrieb ab 3 Arbeitnehmern gegründet werden.",
+        "c": false,
+        "e": "Falsch: Ein Betriebsrat kann erst ab mindestens <strong>5 wahlberechtigten Arbeitnehmern</strong> gegründet werden."
+      },
+      {
+        "s": "Betriebsratsmitglieder werden von den Arbeitnehmern gewählt, nicht vom Arbeitgeber bestimmt.",
+        "c": true,
+        "e": "Richtig: Der Betriebsrat wird durch eine <strong>Wahl</strong> der Belegschaft bestimmt."
+      }
+    ],
+    "cloze": [
+      {
+        "t": "Der Betriebsrat wird von den "
+      },
+      {
+        "b": "af1",
+        "a": [
+          "Arbeitnehmern",
+          "Beschäftigten"
+        ]
+      },
+      {
+        "t": " gewählt und vertritt deren Interessen gegenüber dem "
+      },
+      {
+        "b": "af2",
+        "a": [
+          "Arbeitgeber"
+        ]
+      },
+      {
+        "t": ". Er kann ab mindestens "
+      }
+    ]
+  },
+  "fortgeschritten": {
+    "sc": [
+      {
+        "q": "Wie viele Betriebsratsmitglieder hat nach § 9 BetrVG ein Betrieb mit 51 bis 100 wahlberechtigten Arbeitnehmern?",
+        "opts": [
+          "1",
+          "3",
+          "5",
+          "7",
+          "9"
+        ],
+        "c": 2,
+        "e": "Nach der Staffelung des § 9 BetrVG hat ein Betrieb mit 51–100 wahlberechtigten Arbeitnehmern 5 Betriebsratsmitglieder."
+      }
+    ],
+    "open": [
+      {
+        "q": "Nenne die wichtigsten Schritte zur Gründung eines Betriebsrats.",
+        "a": "1) Wahlberechtigte Arbeitnehmer oder eine Gewerkschaft laden zu einer Wahlversammlung ein. 2) Ein Wahlvorstand wird bestellt (mind. 3 wahlberechtigte Arbeitnehmer). 3) Der Wahlvorstand ermittelt die Zahl der wahlberechtigten/wählbaren Arbeitnehmer und erstellt die Wählerliste. 4) Der Wahlvorstand erlässt das Wahlausschreiben mit den Fristen. 5) Wahlvorschläge (Vorschlagslisten) werden eingereicht, ggf. mit Stützunterschriften. 6) Die geheime und unmittelbare Wahl wird durchgeführt. 7) Das Wahlergebnis wird ausgezählt, bekanntgegeben, und der neue Betriebsrat konstituiert sich."
+      },
+      {
+        "q": "Erläutere, was „geheim“ und „unmittelbar“ bei der Betriebsratswahl bedeuten.",
+        "a": "Geheim bedeutet, dass niemand nachvollziehen kann, wie eine bestimmte Person gewählt hat (verdeckte Stimmabgabe, z. B. per Wahlkabine und verschlossenem Umschlag). Unmittelbar bedeutet, dass die Arbeitnehmer die Betriebsratsmitglieder direkt selbst wählen, ohne Zwischenschritt über Wahlmänner oder Delegierte."
+      }
+    ],
+    "tf": [
+      {
+        "s": "Ein Wirtschaftsausschuss muss in jedem Betrieb mit Betriebsrat gebildet werden.",
+        "c": false,
+        "e": "Falsch: Ein <strong>Wirtschaftsausschuss</strong> ist erst in Unternehmen mit in der Regel mehr als 100 ständig beschäftigten Arbeitnehmern zu bilden (§ 106 BetrVG)."
+      },
+      {
+        "s": "Der Spruch der Einigungsstelle ist in mitbestimmungspflichtigen Angelegenheiten in der Regel verbindlich.",
+        "c": true,
+        "e": "Richtig: Der Spruch der <strong>Einigungsstelle</strong> ersetzt dann die Einigung zwischen Arbeitgeber und Betriebsrat."
+      }
+    ],
+    "cloze": [
+      {
+        "t": "Ab in der Regel mehr als 100 Beschäftigten muss ein "
+      },
+      {
+        "b": "fg1",
+        "a": [
+          "Wirtschaftsausschuss"
+        ]
+      }    ]
+  }
+}
