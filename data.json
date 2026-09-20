@@ -1,0 +1,720 @@
+{
+  "anfaenger": {
+    "sc": [
+      {
+        "q": "Ab wie vielen wahlberechtigten Arbeitnehmern kann ein Betriebsrat gegründet werden?",
+        "opts": [
+          "Ab 3 wahlberechtigten Arbeitnehmern",
+          "Ab 5 wahlberechtigten Arbeitnehmern",
+          "Ab 10 wahlberechtigten Arbeitnehmern",
+          "Ab 20 wahlberechtigten Arbeitnehmern"
+        ],
+        "c": 1,
+        "e": "Ein Betriebsrat kann in Betrieben mit mindestens 5 wahlberechtigten Arbeitnehmern gegründet werden, von denen 3 wählbar sein müssen."
+      },
+      {
+        "q": "Ab welchem Alter ist ein Arbeitnehmer wahlberechtigt für den Betriebsrat?",
+        "opts": [
+          "Ab 14 Jahren",
+          "Ab 16 Jahren",
+          "Ab 18 Jahren",
+          "Ab 21 Jahren"
+        ],
+        "c": 1,
+        "e": "Seit dem Betriebsrätemodernisierungsgesetz (2021) sind Arbeitnehmer bereits mit 16 Jahren wahlberechtigt (§ 7 BetrVG) – zuvor lag die Grenze bei 18 Jahren."
+      },
+      {
+        "q": "Was ist Voraussetzung, um in den Betriebsrat gewählt zu werden (wählbar zu sein)?",
+        "opts": [
+          "Das 18. Lebensjahr vollendet und mind. 6 Monate dem Betrieb angehören",
+          "Das 16. Lebensjahr vollendet und einen unbefristeten Vertrag haben",
+          "Mitgliedschaft in einer Gewerkschaft",
+          "Mindestens 2 Jahre Berufserfahrung im erlernten Beruf"
+        ],
+        "c": 0,
+        "e": "Wählbar ist nach § 8 BetrVG, wer das 18. Lebensjahr vollendet hat und dem Betrieb seit mindestens 6 Monaten angehört – die Wählbarkeit setzt also ein höheres Alter voraus als die Wahlberechtigung (16 Jahre)."
+      },
+      {
+        "q": "Welches Gesetz regelt die Arbeit des Betriebsrats?",
+        "opts": [
+          "Betriebsverfassungsgesetz (BetrVG)",
+          "Kündigungsschutzgesetz (KSchG)",
+          "Tarifvertragsgesetz (TVG)",
+          "Arbeitszeitgesetz (ArbZG)"
+        ],
+        "c": 0,
+        "e": "Das Betriebsverfassungsgesetz (BetrVG) regelt Bildung, Rechte und Pflichten des Betriebsrats."
+      },
+      {
+        "q": "Wie lange dauert die Amtszeit des Betriebsrats in der Regel?",
+        "opts": [
+          "2 Jahre",
+          "3 Jahre",
+          "4 Jahre",
+          "5 Jahre"
+        ],
+        "c": 2,
+        "e": "Die regelmäßige Amtszeit des Betriebsrats beträgt 4 Jahre (§ 21 BetrVG)."
+      },
+      {
+        "q": "Was bedeutet „Mitbestimmungsrecht“ des Betriebsrats?",
+        "opts": [
+          "Der Arbeitgeber entscheidet allein, der BR wird nur informiert",
+          "Der Arbeitgeber muss den BR anhören, entscheidet aber allein",
+          "Arbeitgeber und Betriebsrat entscheiden gemeinsam – ohne Zustimmung des BR gibt es keine Regelung",
+          "Der Betriebsrat entscheidet allein, ohne den Arbeitgeber"
+        ],
+        "c": 2,
+        "e": "Beim Mitbestimmungsrecht (sozialer Bereich, z. B. § 87 BetrVG) müssen Arbeitgeber und Betriebsrat gemeinsam entscheiden."
+      },
+      {
+        "q": "In welchem Bereich hat der Betriebsrat in der Regel nur ein Informationsrecht (der Arbeitgeber entscheidet allein)?",
+        "opts": [
+          "Bei Kündigungen",
+          "Bei der Urlaubsplanung",
+          "Bei rein wirtschaftlichen Entscheidungen (z. B. Investitionsplanung)",
+          "Bei Arbeitszeitregelungen"
+        ],
+        "c": 2,
+        "e": "Im wirtschaftlichen Bereich (z. B. Investitions- oder Absatzentscheidungen) entscheidet der Arbeitgeber allein; der BR hat lediglich ein Informationsrecht."
+      },
+      {
+        "q": "Bei welcher Maßnahme hat der Betriebsrat ein Mitwirkungsrecht (er wird angehört, entscheidet aber nicht mit)?",
+        "opts": [
+          "Einführung von Kurzarbeit",
+          "Kündigung eines Arbeitnehmers",
+          "Regelung der Pausenzeiten",
+          "Einführung von Gleitzeit"
+        ],
+        "c": 1,
+        "e": "Vor jeder Kündigung muss der Arbeitgeber den Betriebsrat anhören (§ 102 BetrVG, Mitwirkungsrecht im personellen Bereich) – die Entscheidung selbst trifft aber der Arbeitgeber."
+      },
+      {
+        "q": "Wofür steht die Abkürzung JAV?",
+        "opts": [
+          "Jugend- und Arbeitnehmervertretung",
+          "Jugend- und Auszubildendenvertretung",
+          "Junge Arbeitnehmervereinigung",
+          "Jugendausschuss und Vertrauensrat"
+        ],
+        "c": 1,
+        "e": "JAV steht für Jugend- und Auszubildendenvertretung."
+      },
+      {
+        "q": "Wer darf die JAV wählen (ist wahlberechtigt)?",
+        "opts": [
+          "Nur Auszubildende",
+          "Alle Beschäftigten unter 18 Jahren sowie alle Auszubildenden – unabhängig vom Alter",
+          "Alle Beschäftigten unter 25 Jahren",
+          "Nur Beschäftigte über 18 Jahren"
+        ],
+        "c": 1,
+        "e": "Wahlberechtigt zur JAV sind alle Beschäftigten unter 18 Jahren sowie alle Auszubildenden, unabhängig von deren Alter."
+      },
+      {
+        "q": "Wer kann Mitglied der JAV werden (ist wählbar)?",
+        "opts": [
+          "Nur Auszubildende unter 18 Jahren",
+          "Alle Auszubildenden sowie Beschäftigte unter 25 Jahren",
+          "Alle Beschäftigten unter 18 Jahren",
+          "Nur volljährige Auszubildende"
+        ],
+        "c": 1,
+        "e": "Wählbar zur JAV sind alle Auszubildenden (unabhängig vom Alter) sowie Beschäftigte unter 25 Jahren."
+      },
+      {
+        "q": "Wie oft wird die JAV gewählt?",
+        "opts": [
+          "Jährlich",
+          "Alle 2 Jahre",
+          "Alle 4 Jahre",
+          "Nur einmalig"
+        ],
+        "c": 1,
+        "e": "Die JAV wird alle 2 Jahre neu gewählt."
+      },
+      {
+        "q": "Was ist eine Betriebsvereinbarung?",
+        "opts": [
+          "Ein individueller Arbeitsvertrag",
+          "Eine verbindliche, schriftliche Regelung zwischen Betriebsrat und Arbeitgeber, die für alle Arbeitnehmer gilt",
+          "Eine mündliche Absprache einzelner Mitarbeiter mit dem Chef",
+          "Ein Tarifvertrag der Gewerkschaft"
+        ],
+        "c": 1,
+        "e": "Eine Betriebsvereinbarung ist eine verbindliche schriftliche Regelung zwischen BR und Arbeitgeber (z. B. zu Arbeitszeiten oder Datenschutz), die für alle Arbeitnehmer des Betriebs gilt."
+      },
+      {
+        "q": "Welchen besonderen Kündigungsschutz haben Betriebsratsmitglieder?",
+        "opts": [
+          "Gar keinen – wie alle anderen Arbeitnehmer",
+          "Nur die ordentliche Kündigung ist ausgeschlossen, die außerordentliche ist jederzeit ohne besonderen Grund möglich",
+          "Eine Kündigung ist nur noch außerordentlich und bei einem schwerwiegenden Grund möglich (§ 15 KSchG)",
+          "Kündigung nur mit Zustimmung der Gewerkschaft möglich"
+        ],
+        "c": 2,
+        "e": "Betriebsratsmitglieder genießen besonderen Kündigungsschutz nach § 15 KSchG: Eine Kündigung ist in der Regel nur noch außerordentlich und bei einem wichtigen, schwerwiegenden Grund zulässig."
+      }
+    ],
+    "open": [
+      {
+        "q": "Was regelt das Betriebsverfassungsgesetz (BetrVG) allgemein?",
+        "a": "Es regelt die Rechte und Pflichten von Arbeitgebern und Arbeitnehmern (bzw. deren gewählter Vertretung, dem Betriebsrat) im Betrieb – insbesondere die Mitwirkungs- und Mitbestimmungsrechte der Arbeitnehmer."
+      },
+      {
+        "q": "Was ist ein Betriebsrat?",
+        "a": "Eine von den Arbeitnehmern gewählte Interessenvertretung, die die Belange aller Beschäftigten des Betriebs gegenüber dem Arbeitgeber vertritt."
+      },
+      {
+        "q": "Formuliere das Ziel des BetrVG in einem Satz.",
+        "a": "Das BetrVG soll den sozialen Frieden im Betrieb sichern und eine vertrauensvolle Zusammenarbeit zwischen Arbeitgeber und Belegschaft fördern."
+      },
+      {
+        "q": "Nenne und erkläre die drei Rechte des Betriebsrats (Informations-, Mitwirkungs- und Mitbestimmungsrecht).",
+        "a": "Informationsrecht (wirtschaftlicher Bereich): Der Arbeitgeber entscheidet allein, muss den BR aber informieren (z. B. Investitionsplanung). Mitwirkungsrecht (personeller Bereich): Der Arbeitgeber muss den BR anhören/beraten, entscheidet aber selbst (z. B. Kündigung). Mitbestimmungsrecht (sozialer Bereich): Arbeitgeber und BR entscheiden gemeinsam – ohne Zustimmung des BR keine Regelung (z. B. Arbeitszeiten)."
+      },
+      {
+        "q": "Wozu dienen Betriebsvereinbarungen?",
+        "a": "Sie regeln verbindlich und einheitlich betriebliche Angelegenheiten (z. B. Arbeitszeiten, Überstunden, Datenschutz) für alle Arbeitnehmer und ergänzen damit Gesetze und Tarifverträge."
+      },
+      {
+        "q": "In der Betriebskantine soll ab nächster Woche nur noch vegetarisches Essen angeboten werden. Muss der Betriebsrat das einfach hinnehmen, oder hat er hier ein Mitbestimmungsrecht?",
+        "a": "Nein, er muss es nicht einfach hinnehmen: Die Gestaltung von Sozialeinrichtungen wie der Kantine fällt unter das Mitbestimmungsrecht des Betriebsrats in sozialen Angelegenheiten (§ 87 BetrVG). Der Arbeitgeber braucht die Zustimmung des Betriebsrats – eine reine Information reicht nicht."
+      },
+      {
+        "q": "Nenne zwei Argumente, warum ein Betriebsrat für die Beschäftigten wichtig ist.",
+        "a": "Zum Beispiel: (1) Er sorgt für einheitliche, faire Regelungen (z. B. bei Arbeitszeiten oder Urlaub) statt einseitiger Einzelentscheidungen des Arbeitgebers. (2) Er schützt die Beschäftigten vor willkürlichen Entscheidungen, z. B. durch das Anhörungsrecht bei Kündigungen (§ 102 BetrVG) oder die Mitbestimmung bei Versetzungen."
+      },
+      {
+        "q": "Was unterscheidet die Wahlberechtigung von der Wählbarkeit zur JAV? Erkläre am Beispiel eines 19-jährigen Auszubildenden.",
+        "a": "Wahlberechtigt (dürfen wählen) sind alle Beschäftigten unter 18 Jahren sowie alle Auszubildenden unabhängig vom Alter. Wählbar (können Mitglied werden) sind alle Auszubildenden sowie Beschäftigte unter 25 Jahren. Ein 19-jähriger Auszubildender darf also sowohl wählen als auch selbst gewählt werden – weil er Auszubildender ist, spielt sein Alter für ihn keine Rolle."
+      }
+    ],
+    "tf": [
+      {
+        "s": "Ein Betriebsrat kann in jedem Betrieb ab 3 Arbeitnehmern gegründet werden.",
+        "c": false,
+        "e": "Falsch: Ein Betriebsrat kann erst ab mindestens <strong>5 wahlberechtigten Arbeitnehmern</strong> gegründet werden."
+      },
+      {
+        "s": "Betriebsratsmitglieder werden von den Arbeitnehmern gewählt, nicht vom Arbeitgeber bestimmt.",
+        "c": true,
+        "e": "Richtig: Der Betriebsrat wird durch eine <strong>Wahl</strong> der Belegschaft bestimmt."
+      },
+      {
+        "s": "Die Wahlberechtigung zum Betriebsrat beginnt erst mit 18 Jahren.",
+        "c": false,
+        "e": "Falsch: Seit dem Betriebsrätemodernisierungsgesetz (2021) sind Arbeitnehmer bereits mit <strong>16 Jahren</strong> wahlberechtigt (§ 7 BetrVG)."
+      },
+      {
+        "s": "Um wählbar zu sein, muss man mindestens 6 Monate dem Betrieb angehören.",
+        "c": true,
+        "e": "Richtig: Wählbar ist, wer das 18. Lebensjahr vollendet hat <strong>und</strong> mindestens 6 Monate dem Betrieb angehört (§ 8 BetrVG)."
+      },
+      {
+        "s": "Das Betriebsverfassungsgesetz regelt ausschließlich die Rechte der Gewerkschaften.",
+        "c": false,
+        "e": "Falsch: Das <strong>BetrVG</strong> regelt die Rechte und Pflichten von Betriebsrat und Arbeitgeber im Betrieb – mit Gewerkschaften hat es nichts direkt zu tun."
+      },
+      {
+        "s": "Beim Mitbestimmungsrecht entscheidet der Arbeitgeber allein, der Betriebsrat wird nur angehört.",
+        "c": false,
+        "e": "Falsch: Beim <strong>Mitbestimmungsrecht</strong> entscheiden Arbeitgeber und Betriebsrat gemeinsam – ohne Zustimmung des BR gibt es keine Regelung."
+      },
+      {
+        "s": "Die JAV vertritt die Interessen von Jugendlichen unter 18 Jahren und Auszubildenden.",
+        "c": true,
+        "e": "Richtig: Die <strong>Jugend- und Auszubildendenvertretung</strong> vertritt genau diese Gruppen."
+      },
+      {
+        "s": "Betriebsratsmitglieder können jederzeit ganz normal ordentlich gekündigt werden.",
+        "c": false,
+        "e": "Falsch: Sie haben besonderen Kündigungsschutz nach <strong>§ 15 KSchG</strong> – eine Kündigung ist in der Regel nur außerordentlich und bei schwerwiegendem Grund möglich."
+      }
+    ],
+    "cloze": [
+      {
+        "t": "Der Betriebsrat wird von den "
+      },
+      {
+        "b": "af1",
+        "a": [
+          "Arbeitnehmern",
+          "Beschäftigten"
+        ]
+      },
+      {
+        "t": " gewählt und vertritt deren Interessen gegenüber dem "
+      },
+      {
+        "b": "af2",
+        "a": [
+          "Arbeitgeber"
+        ]
+      },
+      {
+        "t": ". Er kann ab mindestens "
+      },
+      {
+        "b": "af3",
+        "a": [
+          "5",
+          "fünf"
+        ]
+      },
+      {
+        "t": " wahlberechtigten Beschäftigten gegründet werden. Wahlberechtigt ist, wer das "
+      },
+      {
+        "b": "af4",
+        "a": [
+          "16",
+          "sechzehn"
+        ]
+      },
+      {
+        "t": ". Lebensjahr vollendet hat. Wählbar ist dagegen erst, wer das "
+      },
+      {
+        "b": "af5",
+        "a": [
+          "18",
+          "achtzehn"
+        ]
+      },
+      {
+        "t": ". Lebensjahr vollendet hat und mindestens "
+      },
+      {
+        "b": "af6",
+        "a": [
+          "6",
+          "sechs"
+        ]
+      },
+      {
+        "t": " Monate dem Betrieb angehört. Die Amtszeit des Betriebsrats beträgt in der Regel "
+      },
+      {
+        "b": "af7",
+        "a": [
+          "4",
+          "vier"
+        ]
+      },
+      {
+        "t": " Jahre. Das zugrunde liegende Gesetz heißt "
+      },
+      {
+        "b": "af8",
+        "a": [
+          "Betriebsverfassungsgesetz",
+          "BetrVG"
+        ]
+      },
+      {
+        "t": "."
+      }
+    ]
+  },
+  "fortgeschritten": {
+    "sc": [
+      {
+        "q": "Wie viele Betriebsratsmitglieder hat nach § 9 BetrVG ein Betrieb mit 51 bis 100 wahlberechtigten Arbeitnehmern?",
+        "opts": [
+          "1",
+          "3",
+          "5",
+          "7",
+          "9"
+        ],
+        "c": 2,
+        "e": "Nach der Staffelung des § 9 BetrVG hat ein Betrieb mit 51–100 wahlberechtigten Arbeitnehmern 5 Betriebsratsmitglieder."
+      },
+      {
+        "q": "Ab welcher Betriebsgröße muss laut § 106 BetrVG ein Wirtschaftsausschuss gebildet werden?",
+        "opts": [
+          "In jedem Betrieb mit Betriebsrat",
+          "In der Regel bei mehr als 100 ständig beschäftigten Arbeitnehmern",
+          "Erst ab 500 Arbeitnehmern",
+          "Nur in Aktiengesellschaften",
+          "Ab 5 Arbeitnehmern"
+        ],
+        "c": 1,
+        "e": "Ein Wirtschaftsausschuss ist in Unternehmen mit in der Regel mehr als 100 ständig beschäftigten Arbeitnehmern zu bilden (§ 106 BetrVG)."
+      },
+      {
+        "q": "Was ist die Aufgabe des Wirtschaftsausschusses?",
+        "opts": [
+          "Er entscheidet über Kündigungen mit",
+          "Er berät mit dem Unternehmer wirtschaftliche Angelegenheiten und unterrichtet den Betriebsrat darüber",
+          "Er ersetzt den Betriebsrat in wirtschaftlichen Fragen vollständig",
+          "Er vertritt speziell die Jugendlichen im Betrieb",
+          "Er verhandelt Tarifverträge mit der Gewerkschaft"
+        ],
+        "c": 1,
+        "e": "Der Wirtschaftsausschuss berät mit dem Unternehmer wirtschaftliche Angelegenheiten (§ 106 ff. BetrVG) und unterrichtet den Betriebsrat rechtzeitig und umfassend darüber."
+      },
+      {
+        "q": "Wann wird eine Einigungsstelle (§ 76 BetrVG) eingeschaltet?",
+        "opts": [
+          "Wenn sich Betriebsrat und Arbeitgeber bei einer mitbestimmungspflichtigen Angelegenheit nicht einigen können",
+          "Wenn ein Arbeitnehmer gekündigt werden soll",
+          "Bei jeder Betriebsversammlung",
+          "Nur auf Anordnung des Arbeitsgerichts",
+          "Wenn die Gewerkschaft es verlangt"
+        ],
+        "c": 0,
+        "e": "Die Einigungsstelle wird angerufen, wenn sich Arbeitgeber und Betriebsrat bei einer mitbestimmungspflichtigen Angelegenheit nicht einigen können."
+      },
+      {
+        "q": "Wie ist der Spruch der Einigungsstelle in mitbestimmungspflichtigen Angelegenheiten in der Regel?",
+        "opts": [
+          "Unverbindlich, nur eine Empfehlung",
+          "Verbindlich – er ersetzt die Einigung zwischen Arbeitgeber und Betriebsrat",
+          "Er muss erst vom Arbeitsgericht bestätigt werden",
+          "Er gilt nur für ein Jahr",
+          "Er muss von der Gewerkschaft genehmigt werden"
+        ],
+        "c": 1,
+        "e": "In mitbestimmungspflichtigen Angelegenheiten ist der Spruch der Einigungsstelle in der Regel verbindlich und ersetzt die Einigung zwischen Arbeitgeber und Betriebsrat."
+      },
+      {
+        "q": "Ab welcher Betriebsgröße greift § 111 BetrVG (Beteiligung des Betriebsrats bei Betriebsänderungen)?",
+        "opts": [
+          "Ab 5 Arbeitnehmern",
+          "In Unternehmen mit in der Regel mehr als 20 wahlberechtigten Arbeitnehmern",
+          "Erst ab 100 Arbeitnehmern",
+          "Erst ab 500 Arbeitnehmern",
+          "Unabhängig von der Betriebsgröße"
+        ],
+        "c": 1,
+        "e": "§ 111 BetrVG gilt in Unternehmen mit in der Regel mehr als 20 wahlberechtigten Arbeitnehmern."
+      },
+      {
+        "q": "Was regelt der Interessenausgleich im Unterschied zum Sozialplan?",
+        "opts": [
+          "Der Interessenausgleich regelt das „Ob, Wann und Wie“ der Betriebsänderung, der Sozialplan den Ausgleich wirtschaftlicher Nachteile für die Beschäftigten",
+          "Beide regeln genau dasselbe",
+          "Der Interessenausgleich ist immer gerichtlich erzwingbar, der Sozialplan nie",
+          "Der Sozialplan regelt die Wahl des Betriebsrats",
+          "Es gibt keinen Unterschied zwischen beiden"
+        ],
+        "c": 0,
+        "e": "Der Interessenausgleich betrifft das Ob/Wann/Wie der Betriebsänderung selbst, der Sozialplan den Ausgleich bzw. die Milderung wirtschaftlicher Nachteile für die betroffenen Arbeitnehmer."
+      },
+      {
+        "q": "Wann wird ein Gesamtbetriebsrat (§ 47 BetrVG) gebildet?",
+        "opts": [
+          "In jedem Betrieb, unabhängig von der Struktur",
+          "Wenn ein Unternehmen mehrere Betriebe mit jeweils eigenem Betriebsrat hat",
+          "Nur in Konzernen mit mehreren Unternehmen",
+          "Wenn die JAV es beantragt",
+          "Nur bei mehr als 1000 Arbeitnehmern"
+        ],
+        "c": 1,
+        "e": "Ein Gesamtbetriebsrat wird gebildet, wenn in einem Unternehmen mehrere Betriebe jeweils einen eigenen Betriebsrat haben (§ 47 BetrVG)."
+      },
+      {
+        "q": "Ab welcher Betriebsgröße muss laut § 38 BetrVG mindestens ein Betriebsratsmitglied von der Arbeit freigestellt werden?",
+        "opts": [
+          "Ab 50 Arbeitnehmern",
+          "In der Regel ab 200 Arbeitnehmern",
+          "Erst ab 500 Arbeitnehmern",
+          "Ab 20 Arbeitnehmern",
+          "Erst ab 1000 Arbeitnehmern"
+        ],
+        "c": 1,
+        "e": "Nach § 38 BetrVG ist in Betrieben mit in der Regel mindestens 200 Arbeitnehmern ein Betriebsratsmitglied von der beruflichen Tätigkeit freizustellen."
+      },
+      {
+        "q": "Wer trägt nach § 37 Abs. 6 BetrVG die Kosten für erforderliche Schulungen von Betriebsratsmitgliedern?",
+        "opts": [
+          "Das Betriebsratsmitglied selbst",
+          "Der Arbeitgeber",
+          "Die zuständige Gewerkschaft",
+          "Die Bundesagentur für Arbeit",
+          "Die Kosten werden geteilt"
+        ],
+        "c": 1,
+        "e": "Der Arbeitgeber trägt die Kosten für erforderliche Schulungs- und Bildungsveranstaltungen von Betriebsratsmitgliedern (§ 37 Abs. 6 BetrVG)."
+      },
+      {
+        "q": "Wer wird durch das Sprecherausschussgesetz (SprAuG) vertreten – anstelle des Betriebsrats?",
+        "opts": [
+          "Auszubildende",
+          "Leitende Angestellte",
+          "Schwerbehinderte Beschäftigte",
+          "Teilzeitbeschäftigte",
+          "Praktikantinnen und Praktikanten"
+        ],
+        "c": 1,
+        "e": "Leitende Angestellte fallen nicht unter das BetrVG, sondern werden durch einen nach dem Sprecherausschussgesetz (SprAuG) gewählten Sprecherausschuss vertreten."
+      },
+      {
+        "q": "Welchen besonderen Anspruch können Auszubildende bzw. JAV-Mitglieder unter bestimmten Voraussetzungen nach Ausbildungsende haben?",
+        "opts": [
+          "Anspruch auf doppeltes Gehalt",
+          "Anspruch auf unbefristete Übernahme in ein Arbeitsverhältnis (§ 78a BetrVG)",
+          "Anspruch auf ein Jahr Freistellung",
+          "Automatische Beförderung zum Betriebsratsmitglied",
+          "Anspruch auf eine zweite, kostenlose Ausbildung"
+        ],
+        "c": 1,
+        "e": "Unter bestimmten Voraussetzungen (z. B. JAV-Mitgliedschaft) besteht nach § 78a BetrVG ein Anspruch auf Weiterbeschäftigung/Übernahme in ein unbefristetes Arbeitsverhältnis nach Ausbildungsende."
+      },
+      {
+        "q": "Wer darf nach § 83 BetrVG Einsicht in die eigene Personalakte nehmen und dabei ein Betriebsratsmitglied hinzuziehen?",
+        "opts": [
+          "Nur der Arbeitgeber",
+          "Der Arbeitnehmer selbst – auf Wunsch mit einem Betriebsratsmitglied",
+          "Nur die Personalabteilung",
+          "Nur der Betriebsrat allein, ohne den Arbeitnehmer",
+          "Niemand hat dieses Recht"
+        ],
+        "c": 1,
+        "e": "Jeder Arbeitnehmer hat das Recht, Einsicht in seine Personalakte zu nehmen, und darf hierzu ein Betriebsratsmitglied hinzuziehen (§ 83 BetrVG)."
+      },
+      {
+        "q": "Bei welcher personellen Maßnahme muss der Betriebsrat in Betrieben mit mehr als 20 wahlberechtigten Arbeitnehmern nach § 99 BetrVG zustimmen?",
+        "opts": [
+          "Urlaubsgenehmigung eines einzelnen Mitarbeiters",
+          "Einstellung, Versetzung oder Umgruppierung von Arbeitnehmern",
+          "Krankmeldung eines Mitarbeiters",
+          "Planung der Weihnachtsfeier",
+          "Wahl des Betriebsrats selbst"
+        ],
+        "c": 1,
+        "e": "Nach § 99 BetrVG hat der Betriebsrat bei Einstellungen, Versetzungen, Umgruppierungen und Eingruppierungen ein Mitbestimmungsrecht (Zustimmungsverweigerungsrecht)."
+      },
+      {
+        "q": "Wie oft muss laut § 71 BetrVG mindestens eine Jugend- und Auszubildendenversammlung durchgeführt werden?",
+        "opts": [
+          "Einmal im Monat",
+          "Mindestens einmal im Kalenderjahr",
+          "Nur bei Bedarf, es besteht keine Pflicht",
+          "Alle 4 Jahre",
+          "Das gibt es im BetrVG nicht"
+        ],
+        "c": 1,
+        "e": "Die JAV hat mindestens einmal im Kalenderjahr eine Jugend- und Auszubildendenversammlung einzuberufen (§ 71 BetrVG)."
+      },
+      {
+        "q": "Mit welchem Recht darf ein JAV-Mitglied nach § 67 BetrVG an Betriebsratssitzungen teilnehmen, in denen überwiegend Belange von Jugendlichen/Azubis behandelt werden?",
+        "opts": [
+          "Mit gar keinem Recht – die JAV bleibt außen vor",
+          "Mit vollem Stimmrecht in allen Angelegenheiten des Betriebsrats",
+          "Mit Teilnahme- und Antragsrecht, wenn überwiegend Belange von Jugendlichen/Azubis betroffen sind",
+          "Nur als stille Zuschauerin ohne jedes Recht",
+          "Nur einmal jährlich"
+        ],
+        "c": 2,
+        "e": "JAV-Mitglieder dürfen an Betriebsratssitzungen teilnehmen und Anträge stellen, wenn überwiegend Belange von Jugendlichen oder Auszubildenden behandelt werden (§ 67 BetrVG)."
+      },
+      {
+        "q": "Wie muss die Wahl zum Betriebsrat nach § 14 BetrVG grundsätzlich durchgeführt werden?",
+        "opts": [
+          "Offen, durch Handzeichen",
+          "Geheim und unmittelbar",
+          "Öffentlich per Akklamation",
+          "Der Arbeitgeber bestimmt die Mitglieder",
+          "Durch ein Losverfahren"
+        ],
+        "c": 1,
+        "e": "Die Betriebsratswahl erfolgt nach § 14 BetrVG geheim und unmittelbar."
+      },
+      {
+        "q": "Was hat sich durch das Betriebsrätemodernisierungsgesetz (2021) unter anderem geändert?",
+        "opts": [
+          "Die Wählbarkeit sank auf 16 Jahre",
+          "Die Wahlberechtigung sank von 18 auf 16 Jahre, zudem wurden vereinfachte Wahlverfahren ausgeweitet",
+          "Der Kündigungsschutz für Betriebsratsmitglieder wurde abgeschafft",
+          "Betriebsräte dürfen seither nicht mehr per Video tagen",
+          "Die Amtszeit wurde auf 6 Jahre verlängert"
+        ],
+        "c": 1,
+        "e": "Das Betriebsrätemodernisierungsgesetz senkte 2021 die Wahlberechtigung von 18 auf 16 Jahre und erleichterte u. a. vereinfachte Wahlverfahren sowie virtuelle Sitzungen unter bestimmten Voraussetzungen."
+      },
+      {
+        "q": "Wie lange wirkt der besondere Kündigungsschutz eines ehemaligen Betriebsratsmitglieds nach, nachdem sein Amt geendet hat?",
+        "opts": [
+          "Gar nicht – der Schutz endet sofort mit dem Amt",
+          "Noch 1 Jahr nach Ende des Amtes nach",
+          "Noch 5 Jahre nach",
+          "Lebenslang",
+          "Nur 3 Monate nach"
+        ],
+        "c": 1,
+        "e": "Der besondere Kündigungsschutz wirkt nach Ende der Amtszeit noch ein Jahr nach (§ 15 KSchG)."
+      },
+      {
+        "q": "In welchen Betrieben ist die Mitbestimmung des Betriebsrats gesetzlich eingeschränkt, soweit es um die Eigenart des Betriebszwecks geht?",
+        "opts": [
+          "In allen Kleinbetrieben mit unter 5 Arbeitnehmern",
+          "In sogenannten Tendenzbetrieben (z. B. konfessionell, karitativ, politisch, wissenschaftlich oder künstlerisch geprägte Betriebe)",
+          "In allen Großkonzernen generell",
+          "In allen befristeten Arbeitsverhältnissen",
+          "In der Zeitarbeitsbranche generell"
+        ],
+        "c": 1,
+        "e": "In sogenannten Tendenzbetrieben (z. B. konfessionelle, karitative, politische, wissenschaftliche oder künstlerische Bestimmung) ist die Mitbestimmung eingeschränkt, soweit die Eigenart des Betriebszwecks entgegensteht (§ 118 BetrVG)."
+      }
+    ],
+    "open": [
+      {
+        "q": "Nenne die wichtigsten Schritte zur Gründung eines Betriebsrats.",
+        "a": "1) Wahlberechtigte Arbeitnehmer oder eine Gewerkschaft laden zu einer Wahlversammlung ein. 2) Ein Wahlvorstand wird bestellt (mind. 3 wahlberechtigte Arbeitnehmer). 3) Der Wahlvorstand ermittelt die Zahl der wahlberechtigten/wählbaren Arbeitnehmer und erstellt die Wählerliste. 4) Der Wahlvorstand erlässt das Wahlausschreiben mit den Fristen. 5) Wahlvorschläge (Vorschlagslisten) werden eingereicht, ggf. mit Stützunterschriften. 6) Die geheime und unmittelbare Wahl wird durchgeführt. 7) Das Wahlergebnis wird ausgezählt, bekanntgegeben, und der neue Betriebsrat konstituiert sich."
+      },
+      {
+        "q": "Erläutere, was „geheim“ und „unmittelbar“ bei der Betriebsratswahl bedeuten.",
+        "a": "Geheim bedeutet, dass niemand nachvollziehen kann, wie eine bestimmte Person gewählt hat (verdeckte Stimmabgabe, z. B. per Wahlkabine und verschlossenem Umschlag). Unmittelbar bedeutet, dass die Arbeitnehmer die Betriebsratsmitglieder direkt selbst wählen, ohne Zwischenschritt über Wahlmänner oder Delegierte."
+      },
+      {
+        "q": "Welche der folgenden Angelegenheiten können durch eine Betriebsvereinbarung geregelt werden – und welche nicht? Begründe: (1) allgemeine Regelung der Arbeitszeit im Betrieb, (2) Gehaltshöhe eines einzelnen namentlich genannten Mitarbeiters, (3) betriebsweite Grundsätze des Gesundheitsschutzes, (4) individuelle Kündigungsfrist eines einzelnen Arbeitnehmers, (5) Nutzung der Betriebskantine.",
+        "a": "Durch eine Betriebsvereinbarung regelbar sind kollektive, betriebsweite Angelegenheiten, die für alle bzw. eine Gruppe von Arbeitnehmern gelten: (1) Arbeitszeitregelung – ja, (3) Gesundheitsschutz-Grundsätze – ja, (5) Kantinennutzung – ja. Nicht regelbar sind individuelle Einzelfallentscheidungen einer bestimmten Person: (2) die Gehaltshöhe eines einzelnen, namentlich genannten Mitarbeiters – nein, (4) die individuelle Kündigungsfrist eines einzelnen Arbeitnehmers – nein. Eine Betriebsvereinbarung regelt immer allgemeine, kollektive Sachverhalte, keine personenbezogenen Einzelfälle."
+      },
+      {
+        "q": "Prüfe für fünf fiktive Beschäftigte, ob sie zur JAV wahlberechtigt bzw. wählbar sind, und begründe kurz: (a) Lena, 17 Jahre, Auszubildende; (b) Jonas, 26 Jahre, Auszubildender (Zweitausbildung); (c) Sophie, 24 Jahre, keine Auszubildende; (d) Markus, 27 Jahre, keine Auszubildende; (e) Elif, 17 Jahre, keine Auszubildende.",
+        "a": "(a) Lena: wahlberechtigt Ja und wählbar Ja – als Auszubildende zählt das Alter nicht. (b) Jonas: wahlberechtigt Ja und wählbar Ja – ebenfalls Auszubildender, Alter spielt keine Rolle. (c) Sophie: wahlberechtigt Nein (über 18 und kein Azubi), wählbar Ja (unter 25). (d) Markus: wahlberechtigt Nein und wählbar Nein (über 18 und über 25, kein Azubi). (e) Elif: wahlberechtigt Ja (unter 18), wählbar Ja (unter 25)."
+      },
+      {
+        "q": "Entscheide für fünf Tagesordnungspunkte, ob der Betriebsrat mitbestimmungspflichtig zu beteiligen ist (Ja/Nein), und begründe: (1) Einführung von Kurzarbeit, (2) Kauf einer neuen Produktionsmaschine, (3) Einführung einer digitalen Zeiterfassung zur Arbeitszeitkontrolle, (4) Aufstellung der allgemeinen Urlaubsgrundsätze, (5) Erschließung eines neuen Absatzmarktes im Ausland.",
+        "a": "(1) Ja – vorübergehende Verkürzung der Arbeitszeit fällt unter § 87 Abs. 1 Nr. 3 BetrVG. (2) Nein – reine unternehmerische Investitionsentscheidung, allenfalls Informationsrecht. (3) Ja – technische Einrichtungen zur Verhaltens-/Leistungskontrolle sind mitbestimmungspflichtig (§ 87 Abs. 1 Nr. 6 BetrVG). (4) Ja – allgemeine Urlaubsgrundsätze sind mitbestimmungspflichtig (§ 87 Abs. 1 Nr. 5 BetrVG). (5) Nein – unternehmerische Entscheidung über neue Märkte, keine Mitbestimmung."
+      },
+      {
+        "q": "Nenne fünf Beispiele für die Mitbestimmung des Betriebsrats bei der Arbeitszeit (§ 87 BetrVG).",
+        "a": "Zum Beispiel: (1) Beginn und Ende der täglichen Arbeitszeit sowie der Pausen, (2) Verteilung der Arbeitszeit auf die einzelnen Wochentage, (3) vorübergehende Verkürzung oder Verlängerung der betriebsüblichen Arbeitszeit (z. B. Kurzarbeit oder Mehrarbeit), (4) Einführung von Gleitzeit- oder Schichtmodellen, (5) Regelungen zu Überstunden."
+      },
+      {
+        "q": "Ordne folgenden betrieblichen Organen kurz ihre Hauptaufgabe zu: Betriebsrat, JAV, Einigungsstelle, Betriebsversammlung, Schwerbehindertenvertretung.",
+        "a": "Betriebsrat: gewählte Interessenvertretung aller Arbeitnehmer mit Informations-, Mitwirkungs- und Mitbestimmungsrechten. JAV: vertritt speziell die Interessen der Jugendlichen unter 18 und der Auszubildenden, bringt Anliegen über den Betriebsrat ein. Einigungsstelle: schlichtet Streitfälle zwischen Betriebsrat und Arbeitgeber bei mitbestimmungspflichtigen Themen, ihr Spruch ist dort oft verbindlich. Betriebsversammlung: Versammlung aller Arbeitnehmer, vom Betriebsrat mindestens einmal pro Quartal einzuberufen, dient Information und Aussprache. Schwerbehindertenvertretung: vertritt speziell die Interessen schwerbehinderter und gleichgestellter Beschäftigter (nach SGB IX, nicht nach BetrVG)."
+      },
+      {
+        "q": "Welche Rechte hat der Betriebsrat bei einer geplanten größeren Betriebsänderung (z. B. Schließung einer Filiale), und kann er sie verhindern?",
+        "a": "Der Betriebsrat hat Informations- und Beratungsrechte: Der Arbeitgeber muss ihn rechtzeitig und umfassend unterrichten und mit ihm über einen Interessenausgleich beraten (§ 111 BetrVG); bei wirtschaftlichen Nachteilen für die Belegschaft kann zusätzlich ein Sozialplan verhandelt werden. Die unternehmerische Entscheidung selbst kann der Betriebsrat nicht verhindern – er kann nur auf das Verfahren (Interessenausgleich) und den Ausgleich der Folgen (Sozialplan) Einfluss nehmen; im Streitfall kann die Einigungsstelle angerufen werden."
+      },
+      {
+        "q": "Wie ist der Betriebsrat beteiligt, wenn ein Betrieb Leiharbeitnehmer einsetzen möchte, und was sind mögliche Vor- und Nachteile dieses Einsatzes?",
+        "a": "Der Einsatz von Leiharbeitnehmern gilt als Einstellung im Sinne von § 99 BetrVG – der Betriebsrat des Einsatzbetriebs muss dieser personellen Einzelmaßnahme zustimmen (Mitbestimmungsrecht). Vorteil für den Arbeitgeber: hohe Flexibilität bei Auftragsspitzen, keine langfristige Bindung. Möglicher Nachteil für die Leiharbeitnehmer: oft geringere Bezahlung und größere Unsicherheit im Vergleich zur Stammbelegschaft."
+      },
+      {
+        "q": "Ein Arbeitgeber kündigt einem Arbeitnehmer fristlos, ohne vorher den Betriebsrat anzuhören. Ist diese Kündigung zulässig?",
+        "a": "Nein. Nach § 102 BetrVG muss der Betriebsrat vor jeder Kündigung angehört werden – das gilt auch für eine außerordentliche (fristlose) Kündigung. Eine ohne ordnungsgemäße Anhörung ausgesprochene Kündigung ist unwirksam."
+      }
+    ],
+    "tf": [
+      {
+        "s": "Ein Wirtschaftsausschuss muss in jedem Betrieb mit Betriebsrat gebildet werden.",
+        "c": false,
+        "e": "Falsch: Ein <strong>Wirtschaftsausschuss</strong> ist erst in Unternehmen mit in der Regel mehr als 100 ständig beschäftigten Arbeitnehmern zu bilden (§ 106 BetrVG)."
+      },
+      {
+        "s": "Der Spruch der Einigungsstelle ist in mitbestimmungspflichtigen Angelegenheiten in der Regel verbindlich.",
+        "c": true,
+        "e": "Richtig: Der Spruch der <strong>Einigungsstelle</strong> ersetzt dann die Einigung zwischen Arbeitgeber und Betriebsrat."
+      },
+      {
+        "s": "Ein Gesamtbetriebsrat wird gebildet, wenn ein Unternehmen mehrere Betriebe mit jeweils eigenem Betriebsrat hat.",
+        "c": true,
+        "e": "Richtig: Genau das ist die Voraussetzung für einen <strong>Gesamtbetriebsrat</strong> (§ 47 BetrVG)."
+      },
+      {
+        "s": "Ab 200 Arbeitnehmern muss mindestens ein Betriebsratsmitglied von der Arbeit freigestellt werden.",
+        "c": true,
+        "e": "Richtig: Nach § 38 BetrVG ist ab in der Regel <strong>200 Arbeitnehmern</strong> eine Freistellung vorgesehen."
+      },
+      {
+        "s": "Leitende Angestellte werden ebenfalls durch den Betriebsrat vertreten.",
+        "c": false,
+        "e": "Falsch: Leitende Angestellte fallen nicht unter das BetrVG, sondern werden durch einen <strong>Sprecherausschuss</strong> nach dem SprAuG vertreten."
+      },
+      {
+        "s": "Bei einer Betriebsänderung kann der Betriebsrat die unternehmerische Entscheidung selbst verhindern.",
+        "c": false,
+        "e": "Falsch: Der Betriebsrat hat nur <strong>Informations- und Beratungsrechte</strong> (Interessenausgleich, ggf. Sozialplan) – die Entscheidung selbst kann er nicht verhindern."
+      },
+      {
+        "s": "Der besondere Kündigungsschutz eines Betriebsratsmitglieds endet sofort mit dem Ende der Amtszeit.",
+        "c": false,
+        "e": "Falsch: Der Kündigungsschutz wirkt nach Ende der Amtszeit noch <strong>1 Jahr</strong> nach."
+      },
+      {
+        "s": "Nach § 99 BetrVG muss der Betriebsrat bei Einstellungen, Versetzungen und Umgruppierungen zustimmen.",
+        "c": true,
+        "e": "Richtig: Das ist die <strong>Mitbestimmung bei personellen Einzelmaßnahmen</strong> nach § 99 BetrVG."
+      }
+    ],
+    "cloze": [
+      {
+        "t": "Ab in der Regel mehr als 100 Beschäftigten muss ein "
+      },
+      {
+        "b": "fg1",
+        "a": [
+          "Wirtschaftsausschuss"
+        ]
+      },
+      {
+        "t": " gebildet werden, der wirtschaftliche Angelegenheiten mit dem Unternehmer berät. Können sich Arbeitgeber und Betriebsrat bei einer mitbestimmungspflichtigen Frage nicht einigen, kann die "
+      },
+      {
+        "b": "fg2",
+        "a": [
+          "Einigungsstelle"
+        ]
+      },
+      {
+        "t": " angerufen werden. Bei einer größeren Betriebsänderung hat der Betriebsrat Anspruch auf einen "
+      },
+      {
+        "b": "fg3",
+        "a": [
+          "Interessenausgleich"
+        ]
+      },
+      {
+        "t": " zum Ob, Wann und Wie sowie ggf. einen "
+      },
+      {
+        "b": "fg4",
+        "a": [
+          "Sozialplan"
+        ]
+      },
+      {
+        "t": " zum Ausgleich wirtschaftlicher Nachteile. Ab mindestens "
+      },
+      {
+        "b": "fg5",
+        "a": [
+          "200",
+          "zweihundert"
+        ]
+      },
+      {
+        "t": " Arbeitnehmern muss ein Betriebsratsmitglied von der Arbeit freigestellt werden. Leitende Angestellte werden nicht vom Betriebsrat, sondern von einem Sprecherausschuss nach dem "
+      },
+      {
+        "b": "fg6",
+        "a": [
+          "Sprecherausschussgesetz",
+          "SprAuG"
+        ]
+      },
+      {
+        "t": " vertreten. Der besondere Kündigungsschutz eines Betriebsratsmitglieds wirkt nach Ende der Amtszeit noch "
+      },
+      {
+        "b": "fg7",
+        "a": [
+          "1",
+          "ein",
+          "einem"
+        ]
+      },
+      {
+        "t": " Jahr nach."
+      }
+    ]
+  }
+}

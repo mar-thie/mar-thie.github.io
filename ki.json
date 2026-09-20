@@ -1,0 +1,800 @@
+{
+  "anfaenger": {
+    "sc": [
+      {
+        "q": "Was bedeutet es, wenn ein KI-Chatbot „halluziniert“?",
+        "opts": [
+          "Der Chatbot wird müde und antwortet langsamer",
+          "Der Chatbot erfindet Inhalte, die überzeugend klingen, aber falsch sein können",
+          "Der Chatbot zeigt statt Text nur Bilder an",
+          "Der Chatbot verweigert grundsätzlich jede Antwort"
+        ],
+        "c": 1,
+        "e": "Sprachmodelle erzeugen Texte, die wahrscheinlich klingen – sie prüfen aber nicht, ob sie stimmen. Deshalb können sie Fakten, Zahlen oder Quellen erfinden."
+      },
+      {
+        "q": "Was solltest du tun, bevor du eine Information aus einer KI-Antwort in dein Referat übernimmst?",
+        "opts": [
+          "Sie unverändert übernehmen, weil KI immer recht hat",
+          "Sie von einem Freund prüfen lassen, der dieselbe KI benutzt",
+          "Sie mit zuverlässigen Quellen wie Schulbuch, Bibliothek oder Fachseiten überprüfen",
+          "Sie so umformulieren, dass niemand merkt, woher sie stammt"
+        ],
+        "c": 2,
+        "e": "KI-Antworten sind keine geprüften Fakten. Wichtige Aussagen müssen immer mit verlässlichen, unabhängigen Quellen abgeglichen werden."
+      },
+      {
+        "q": "Welche Eingabe ist in einem öffentlichen KI-Chatbot am unbedenklichsten?",
+        "opts": [
+          "Deine Adresse und Telefonnummer",
+          "Die Noten deiner Klassenkameraden",
+          "Ein Foto von dir und deinen Freunden",
+          "Eine allgemeine Frage wie „Erkläre mir den Dreisatz“"
+        ],
+        "c": 3,
+        "e": "Persönliche Daten (deine eigenen und die anderer) gehören nicht in öffentliche KI-Tools, weil Eingaben gespeichert und ausgewertet werden können. Allgemeine Sachfragen sind unproblematisch."
+      },
+      {
+        "q": "Warum ist es problematisch, eine KI die komplette Hausaufgabe erledigen zu lassen und sie als eigene Leistung abzugeben?",
+        "opts": [
+          "Es ist eine Täuschung, und du lernst den Stoff nicht selbst",
+          "Es ist verboten, weil KI nur für Erwachsene erlaubt ist",
+          "Es dauert immer länger, als selbst zu arbeiten",
+          "Es ist nur problematisch, wenn das KI-Tool Geld kostet"
+        ],
+        "c": 0,
+        "e": "Ohne Kennzeichnung gibst du fremde Arbeit als deine eigene aus. Außerdem baust du Wissen und Können nur durch eigenes Denken auf. Es gelten die Regeln deiner Schule und der Lehrkraft."
+      },
+      {
+        "q": "Woher „weiß“ ein KI-Sprachmodell seine Antworten?",
+        "opts": [
+          "Es sucht bei jeder Frage live in allen Bibliotheken der Welt",
+          "Es hat aus riesigen Textmengen Muster gelernt und berechnet, welche Wörter wahrscheinlich als Nächstes folgen",
+          "Es hat ein Bewusstsein und versteht die Welt wie ein Mensch",
+          "Im Hintergrund beantworten echte Lehrkräfte die Fragen"
+        ],
+        "c": 1,
+        "e": "Ein Sprachmodell rechnet mit Wahrscheinlichkeiten. Es versteht Inhalte nicht wie ein Mensch und kann deshalb überzeugend klingende, aber falsche Antworten geben."
+      },
+      {
+        "q": "Du darfst KI bei einer Schulaufgabe nutzen. Was ist die richtige Vorgehensweise?",
+        "opts": [
+          "Die Nutzung verschweigen, damit es keinen Ärger gibt",
+          "Sie nur nutzen, wenn niemand zuschaut",
+          "Die Nutzung nach den Regeln der Lehrkraft offenlegen und kennzeichnen, wo die KI geholfen hat",
+          "Nur die Ergebnisse kopieren und die Fragen löschen"
+        ],
+        "c": 2,
+        "e": "Transparenz ist der Kern eines fairen Umgangs mit KI: Wer offenlegt, wofür er die KI genutzt hat, kann ehrlich bewertet werden."
+      },
+      {
+        "q": "Ein Video zeigt eine bekannte Person bei einer Aussage, die sie nie gemacht hat. Wie nennt man solche täuschend echten, künstlich erzeugten Medien?",
+        "opts": [
+          "Screenshots",
+          "Podcasts",
+          "Cookies",
+          "Deepfakes"
+        ],
+        "c": 3,
+        "e": "Deepfakes werden mit KI erzeugt und können Menschen täuschen oder ihnen schaden. Vor dem Teilen solltest du Quelle und Echtheit prüfen."
+      },
+      {
+        "q": "Warum können KI-Antworten manchmal einseitig sein oder Vorurteile enthalten?",
+        "opts": [
+          "Weil die Trainingsdaten von Menschen stammen und deren Verzerrungen enthalten können",
+          "Weil KI absichtlich Menschen ärgern will",
+          "Weil KI nur in einer einzigen Sprache existiert",
+          "Weil Vorurteile nur bei Bildern auftreten, nie bei Texten"
+        ],
+        "c": 0,
+        "e": "KI lernt aus Daten, die Menschen erzeugt haben. Wenn diese Daten Stereotype oder Lücken enthalten, kann die KI sie übernehmen und verstärken (Bias)."
+      },
+      {
+        "q": "Was gehört zu einer guten, kritischen Nutzung von KI beim Lernen?",
+        "opts": [
+          "Nur die erste Antwort nehmen und nicht weiterfragen",
+          "KI als Hilfe nutzen (z. B. für Erklärungen oder Übungsaufgaben), aber selbst nachdenken und Ergebnisse prüfen",
+          "KI Klassenarbeiten schreiben lassen",
+          "Der KI persönliche Geheimnisse anvertrauen, weil sie schweigt"
+        ],
+        "c": 1,
+        "e": "KI kann Lernen unterstützen, ersetzt es aber nicht. Kritisch heißt: hinterfragen, prüfen und selbst Verantwortung für das Ergebnis übernehmen."
+      },
+      {
+        "q": "Warum solltest du dein Passwort niemals in einen KI-Chat schreiben?",
+        "opts": [
+          "Weil KI Passwörter nicht lesen kann",
+          "Weil Passwörter dann automatisch länger werden",
+          "Weil eingegebene Daten gespeichert und ausgewertet werden können und du nicht weißt, wer Zugriff hat",
+          "Weil Passwörter nur auf Papier sicher sind"
+        ],
+        "c": 2,
+        "e": "Alles, was du in einen Chat eingibst, verlässt dein Gerät. Geheime Zugangsdaten und persönliche Informationen gehören deshalb nie in KI-Tools."
+      }
+    ],
+    "open": [
+      {
+        "q": "Erkläre in eigenen Worten, was eine „KI-Halluzination“ ist, und nenne ein Beispiel.",
+        "a": "Eine Halluzination liegt vor, wenn eine KI Inhalte erfindet, die plausibel und überzeugend klingen, aber falsch sind. Beispiel: Die KI nennt ein Buch oder eine Studie mit Autor und Titel, die es in Wirklichkeit nicht gibt, oder sie nennt eine falsche Jahreszahl."
+      },
+      {
+        "q": "Nenne drei Möglichkeiten, wie du die Antwort eines KI-Chatbots überprüfen kannst.",
+        "a": "Zum Beispiel: 1) Die Aussage im Schulbuch, Lexikon oder in der Bibliothek nachschlagen. 2) Seriöse Internetseiten (z. B. Behörden, Universitäten, Fachverlage) vergleichen. 3) Die Lehrkraft oder eine Fachperson fragen. 4) Prüfen, ob genannte Quellen wirklich existieren. 5) Mehrere unabhängige Quellen heranziehen."
+      },
+      {
+        "q": "Welche persönlichen Daten solltest du nicht in KI-Tools eingeben? Nenne mindestens drei Beispiele und begründe kurz.",
+        "a": "Z. B. vollständiger Name, Adresse, Telefonnummer, Passwörter, Fotos von dir oder anderen, Noten oder Gesundheitsinformationen. Begründung: Eingaben können gespeichert, ausgewertet und für das Training genutzt werden; man verliert die Kontrolle darüber, wer sie sieht. Daten anderer Personen darf man ohnehin nicht ohne Erlaubnis weitergeben."
+      },
+      {
+        "q": "Worin besteht der Unterschied zwischen „KI als Lernhilfe nutzen“ und „KI die Arbeit erledigen lassen“?",
+        "a": "Als Lernhilfe dient die KI z. B. dazu, Themen zu erklären, Übungsaufgaben zu erstellen oder Feedback zu geben – du denkst aber selbst mit und lernst dabei. Wenn die KI die Arbeit erledigt, gibst du ihr Ergebnis als deine Leistung aus, lernst nichts und täuschst im Zweifel die Lehrkraft."
+      },
+      {
+        "q": "Warum ist es wichtig, die Nutzung von KI bei Schulaufgaben offenzulegen?",
+        "a": "Nur wenn klar ist, was von dir und was von der KI stammt, kann deine Leistung fair beurteilt werden. Offenlegen schafft Vertrauen, verhindert Täuschungsvorwürfe und zeigt, dass du verantwortungsvoll mit KI umgehst. Außerdem hilft es, die Herkunft von Inhalten nachvollziehbar zu machen."
+      },
+      {
+        "q": "Wie kann eine KI Vorurteile (Bias) verbreiten? Erkläre kurz, woher sie kommen.",
+        "a": "KI wird mit riesigen Datenmengen trainiert, die von Menschen stammen. Enthalten diese Daten Stereotype oder sind bestimmte Gruppen unterrepräsentiert, kann die KI diese Verzerrungen übernehmen und in Antworten oder Bildern wiedergeben – z. B. indem sie Berufe oder Herkunftsgruppen stereotyp darstellt."
+      },
+      {
+        "q": "Woran kannst du erkennen, dass ein Bild oder Video möglicherweise ein Deepfake ist? Nenne mindestens drei Hinweise.",
+        "a": "Z. B. unnatürliche Hände, Zähne oder Augen, verzerrte Schatten und Spiegelungen, unscharfe Übergänge an Gesicht und Haaren, unpassende Lippenbewegungen, seltsamer Hintergrundtext, ein unbekannter oder unseriöser Absender. Zusätzlich hilft eine Rückwärtssuche und der Abgleich mit seriösen Nachrichtenquellen."
+      },
+      {
+        "q": "Nenne je einen Vorteil und einen Nachteil von KI-Tools im Unterricht.",
+        "a": "Vorteil: individuelle Erklärungen, schnelle Übungsaufgaben und Feedback, Unterstützung beim Verstehen schwieriger Themen. Nachteil: Falschinformationen (Halluzinationen), Datenschutzrisiken, die Gefahr, das eigene Denken auszulagern oder abzuschreiben."
+      },
+      {
+        "q": "Warum „versteht“ eine KI Inhalte nicht wie ein Mensch?",
+        "a": "Ein Sprachmodell erkennt statistische Muster in Texten und berechnet, welche Wörter wahrscheinlich aufeinander folgen. Es hat kein Bewusstsein, keine Erfahrungen und kein echtes Weltverständnis. Deshalb kann es korrekt klingende Sätze bilden, ohne zu wissen, ob sie wahr sind."
+      },
+      {
+        "q": "Eine KI liefert dir eine Antwort mit Quellenangabe. Was machst du, bevor du der Quelle vertraust?",
+        "a": "Ich prüfe, ob die Quelle wirklich existiert (z. B. Link aufrufen, Titel und Autor suchen), ob sie seriös ist und ob dort tatsächlich das steht, was die KI behauptet. KI erfindet manchmal Quellen oder gibt sie falsch wieder."
+      }
+    ],
+    "tf": [
+      {
+        "s": "Man sollte Ergebnisse von KI vor der Verwendung in Hausaufgaben überprüfen.",
+        "c": true,
+        "e": "Richtig: KI-Antworten können Fehler enthalten. Deshalb müssen sie mit <strong>zuverlässigen Quellen</strong> überprüft werden."
+      },
+      {
+        "s": "KI-Chatbots liefern immer korrekte Antworten.",
+        "c": false,
+        "e": "Falsch: KI kann <strong>halluzinieren</strong>, also falsche Inhalte überzeugend darstellen."
+      },
+      {
+        "s": "Es ist unbedenklich, den vollständigen Namen und die Adresse in einen öffentlichen KI-Chatbot einzugeben.",
+        "c": false,
+        "e": "Falsch: Persönliche Daten können gespeichert und ausgewertet werden. Sie gehören <strong>nicht</strong> in öffentliche KI-Tools."
+      },
+      {
+        "s": "Wenn ich KI bei einer Hausaufgabe nutze, sollte ich das nach den Vorgaben der Lehrkraft kenntlich machen.",
+        "c": true,
+        "e": "Richtig: <strong>Transparenz</strong> über den KI-Einsatz ermöglicht eine faire Bewertung."
+      },
+      {
+        "s": "KI kann Vorurteile aus ihren Trainingsdaten übernehmen.",
+        "c": true,
+        "e": "Richtig: Verzerrungen in den Daten können zu <strong>Bias</strong> in den Ergebnissen führen."
+      },
+      {
+        "s": "Eine KI hat Gefühle und Meinungen wie ein Mensch.",
+        "c": false,
+        "e": "Falsch: KI berechnet Wahrscheinlichkeiten. Sie hat <strong>kein Bewusstsein</strong> und keine echten Gefühle oder Überzeugungen."
+      },
+      {
+        "s": "KI-generierte Bilder können täuschend echt wirken, obwohl das Gezeigte nie stattgefunden hat.",
+        "c": true,
+        "e": "Richtig: Solche Bilder und Videos nennt man <strong>Deepfakes</strong>. Herkunft und Echtheit sollten geprüft werden."
+      },
+      {
+        "s": "Wenn eine KI-Antwort sehr selbstsicher formuliert ist, muss sie richtig sein.",
+        "c": false,
+        "e": "Falsch: Der Tonfall sagt nichts über die Richtigkeit. Auch <strong>falsche Antworten</strong> klingen oft überzeugend."
+      },
+      {
+        "s": "Ich darf Fotos meiner Mitschüler ohne Nachfrage in KI-Tools hochladen.",
+        "c": false,
+        "e": "Falsch: Fotos anderer Personen dürfen nur mit <strong>Einwilligung</strong> verwendet werden – das Recht am eigenen Bild und der Datenschutz gelten auch hier."
+      },
+      {
+        "s": "Kritisch mit KI umzugehen heißt, sie zu hinterfragen, statt ihr blind zu vertrauen.",
+        "c": true,
+        "e": "Richtig: Kritische KI-Kompetenz bedeutet <strong>prüfen, einordnen und selbst Verantwortung übernehmen</strong>."
+      }
+    ],
+    "cloze": [
+      {
+        "t": "Künstliche Intelligenz, kurz "
+      },
+      {
+        "b": "af1",
+        "a": [
+          "KI"
+        ]
+      },
+      {
+        "t": ", ist aus dem Alltag vieler Schülerinnen und Schüler nicht mehr wegzudenken. Chatbots wie ChatGPT können Texte zusammenfassen, Vokabeln abfragen oder schwierige Themen in einfachen Worten erklären. Trotzdem ist es wichtig, kritisch mit diesen Werkzeugen umzugehen. Ein Sprachmodell hat sein Wissen aus riesigen Mengen an "
+      },
+      {
+        "b": "af2",
+        "a": [
+          "Texten",
+          "Daten",
+          "Trainingsdaten"
+        ]
+      },
+      {
+        "t": " gelernt und berechnet bei jeder Anfrage, welches Wort mit hoher "
+      },
+      {
+        "b": "af3",
+        "a": [
+          "Wahrscheinlichkeit"
+        ]
+      },
+      {
+        "t": " als Nächstes passt. Es "
+      },
+      {
+        "b": "af4",
+        "a": [
+          "versteht",
+          "begreift"
+        ]
+      },
+      {
+        "t": " die Inhalte also nicht wie ein Mensch, sondern erzeugt nur Sätze, die plausibel klingen. Dadurch kommt es manchmal zu "
+      },
+      {
+        "b": "af5",
+        "a": [
+          "Halluzinationen",
+          "Halluzination"
+        ]
+      },
+      {
+        "t": ". Die KI erfindet dann Fakten, Zahlen oder sogar "
+      },
+      {
+        "b": "af6",
+        "a": [
+          "Quellen"
+        ]
+      },
+      {
+        "t": ", die es gar nicht gibt. Deshalb gilt: Jede wichtige Aussage muss mit einer "
+      },
+      {
+        "b": "af7",
+        "a": [
+          "zuverlässigen",
+          "verlässlichen",
+          "seriösen"
+        ]
+      },
+      {
+        "t": " Quelle überprüft werden, zum Beispiel im Schulbuch, in der Bibliothek oder bei Behörden. Ein weiteres Thema ist der "
+      },
+      {
+        "b": "af8",
+        "a": [
+          "Datenschutz"
+        ]
+      },
+      {
+        "t": ". Was du in einen Chat eintippst, kann gespeichert und ausgewertet werden. Deshalb gehören "
+      },
+      {
+        "b": "af9",
+        "a": [
+          "persönliche",
+          "private"
+        ]
+      },
+      {
+        "t": " Angaben wie Adresse, Passwörter oder Fotos anderer Personen nicht in ein KI-Tool. Auch beim Lernen ist Vorsicht geboten. Wer die KI seine Hausaufgaben komplett erledigen lässt und sie als eigene Leistung ausgibt, begeht eine "
+      },
+      {
+        "b": "af10",
+        "a": [
+          "Täuschung"
+        ]
+      },
+      {
+        "t": " und lernt den Stoff nicht selbst. Besser ist es, die KI als "
+      },
+      {
+        "b": "af11",
+        "a": [
+          "Lernhilfe",
+          "Hilfsmittel",
+          "Unterstützung"
+        ]
+      },
+      {
+        "t": " zu nutzen, etwa um sich Übungsaufgaben erstellen zu lassen, und ihren Einsatz nach den Regeln der "
+      },
+      {
+        "b": "af12",
+        "a": [
+          "Lehrkraft",
+          "Lehrerin",
+          "Lehrer",
+          "Schule"
+        ]
+      },
+      {
+        "t": " offen zu "
+      },
+      {
+        "b": "af13",
+        "a": [
+          "kennzeichnen",
+          "nennen",
+          "machen"
+        ]
+      },
+      {
+        "t": ". Außerdem können KI-Antworten "
+      },
+      {
+        "b": "af14",
+        "a": [
+          "Vorurteile",
+          "Verzerrungen",
+          "Bias"
+        ]
+      },
+      {
+        "t": " enthalten, weil ihre Trainingsdaten von Menschen stammen und deren Sichtweisen widerspiegeln. Und schließlich können KI-Programme täuschend echte Bilder und Videos erzeugen, sogenannte "
+      },
+      {
+        "b": "af15",
+        "a": [
+          "Deepfakes"
+        ]
+      },
+      {
+        "t": ". Wer solche Inhalte teilt, ohne ihre Herkunft geprüft zu haben, kann anderen schaden. Kritisch mit KI umzugehen bedeutet also: nachdenken, "
+      },
+      {
+        "b": "af16",
+        "a": [
+          "prüfen",
+          "überprüfen",
+          "hinterfragen"
+        ]
+      },
+      {
+        "t": " und selbst Verantwortung übernehmen."
+      }
+    ]
+  },
+  "fortgeschritten": {
+    "sc": [
+      {
+        "q": "Was verlangt Art. 4 der EU-KI-Verordnung (in der Fassung nach dem „Digital Omnibus“, in Kraft seit 27. Juli 2026) von Anbietern und Betreibern von KI-Systemen?",
+        "opts": [
+          "Jede KI-Nutzung muss vorab von der Schulaufsicht genehmigt werden",
+          "Sie müssen die KI-Kompetenz ihres Personals und anderer im Auftrag handelnder Personen fördern",
+          "Sie müssen sämtliche Trainingsdaten öffentlich machen",
+          "Sie müssen KI-Systeme nach fünf Jahren abschalten",
+          "Sie müssen jeder Person ein Zertifikat über KI-Kompetenz ausstellen"
+        ],
+        "c": 1,
+        "e": "Art. 4 gilt seit dem 2. Februar 2025. Ursprünglich musste ein ausreichendes Maß an KI-Kompetenz „sichergestellt“ werden; seit dem Digital Omnibus besteht nur noch die Pflicht, KI-Kompetenz zu fördern, ohne ein bestimmtes Niveau garantieren zu müssen. Für Schulen ist das ein Argument für Fortbildung."
+      },
+      {
+        "q": "Wie stuft die EU-KI-Verordnung KI-Systeme ein, die in der Bildung z. B. Lernergebnisse bewerten oder Prüfungen überwachen?",
+        "opts": [
+          "Als verbotene Praxis",
+          "Als Hochrisiko-Systeme mit besonderen Anforderungen (Anhang III)",
+          "Als Systeme mit minimalem Risiko ohne Pflichten",
+          "Nur bei Kindern unter zehn Jahren als reguliert",
+          "Als grundsätzlich vom Anwendungsbereich ausgenommen"
+        ],
+        "c": 1,
+        "e": "Anhang III nennt Bildung als Hochrisiko-Bereich (u. a. Zugang, Bewertung von Lernergebnissen, Prüfungsüberwachung). Vorgesehen sind u. a. Risikomanagement, Datenqualität, Dokumentation und menschliche Aufsicht; die Pflichten für Anhang-III-Systeme gelten nach dem Digital Omnibus ab dem 2. Dezember 2027."
+      },
+      {
+        "q": "Was gilt nach der EU-KI-Verordnung grundsätzlich für Systeme zur Emotionserkennung in Bildungseinrichtungen?",
+        "opts": [
+          "Sie sind ohne Einschränkung erlaubt",
+          "Sie sind erlaubt, wenn die Eltern zustimmen",
+          "Sie sind nur mit Zustimmung der Schulleitung erlaubt",
+          "Sie sind grundsätzlich verboten (Ausnahmen für medizinische oder Sicherheitszwecke)",
+          "Sie müssen lediglich gekennzeichnet werden"
+        ],
+        "c": 3,
+        "e": "Art. 5 der KI-Verordnung verbietet seit dem 2. Februar 2025 das Inferieren von Emotionen am Arbeitsplatz und in Bildungseinrichtungen, außer aus medizinischen oder Sicherheitsgründen."
+      },
+      {
+        "q": "Eine Lehrkraft lädt Klassenarbeiten mit Schülernamen in einen frei zugänglichen Chatbot hoch, um sie bewerten zu lassen. Was ist das Hauptproblem?",
+        "opts": [
+          "Es werden personenbezogene Daten ohne Rechtsgrundlage und ohne geeignete Vertragsgrundlage an einen externen Anbieter übermittelt (DSGVO)",
+          "Es ist urheberrechtlich immer verboten, Klassenarbeiten zu scannen",
+          "Der Chatbot kann Handschrift grundsätzlich nicht lesen",
+          "Es gibt kein Problem, solange die Lehrkraft das Ergebnis noch einmal ansieht",
+          "Das Problem betrifft nur Klassenarbeiten in Fremdsprachen"
+        ],
+        "c": 0,
+        "e": "Namen, Leistungen und Bewertungen sind personenbezogene Daten. Ihre Verarbeitung braucht eine Rechtsgrundlage, geeignete Verträge (z. B. Auftragsverarbeitung) und bei Anbietern außerhalb der EU zusätzliche Garantien. Öffentliche Chatbots erfüllen das meist nicht."
+      },
+      {
+        "q": "Was beschreibt der Begriff „Automation Bias“?",
+        "opts": [
+          "Die Voreingenommenheit von Programmierern gegenüber Maschinen",
+          "Die Tendenz von KI, automatisch bestimmte Gruppen zu bevorzugen",
+          "Die Neigung von Menschen, Vorschläge automatisierter Systeme unkritisch zu übernehmen, auch wenn sie falsch sind",
+          "Die automatische Übersetzung von Texten in andere Sprachen",
+          "Die Verzerrung durch fehlende Trainingsdaten"
+        ],
+        "c": 2,
+        "e": "Automation Bias bedeutet Übervertrauen in maschinelle Ausgaben. In der Schule ist er riskant, wenn KI-Vorschläge (z. B. zu Noten) ungeprüft übernommen werden."
+      },
+      {
+        "q": "Was meint „Cognitive Offloading“ im Zusammenhang mit KI beim Lernen, und worin liegt das Risiko?",
+        "opts": [
+          "Das Speichern von Daten in der Cloud; Risiko ist Datenverlust",
+          "Das Auswendiglernen ganzer Texte; Risiko ist Überforderung",
+          "Das Verlangsamen des Denkens durch Müdigkeit; Risiko sind schlechtere Noten",
+          "Das Übertragen von Rechenleistung an Server; Risiko sind hohe Stromkosten",
+          "Das Auslagern von Denkprozessen an externe Hilfsmittel; Risiko ist, dass Lernende eigene Kompetenzen nicht aufbauen"
+        ],
+        "c": 4,
+        "e": "Wer kognitive Anstrengung dauerhaft an KI abgibt, übt Verstehen, Argumentieren und Formulieren weniger selbst. Sinnvoll ist eine Nutzung, die das eigene Denken anregt statt ersetzt."
+      },
+      {
+        "q": "Warum sind KI-Detektoren als alleiniger Beleg für einen Täuschungsversuch ungeeignet?",
+        "opts": [
+          "Weil sie nur bei Bildern funktionieren",
+          "Weil sie nur Wahrscheinlichkeiten liefern, falsch-positive Ergebnisse erzeugen und bestimmte Gruppen (z. B. Nicht-Muttersprachler) besonders oft fälschlich verdächtigen können",
+          "Weil sie immer zu hundert Prozent zuverlässig sind und deshalb nicht überprüft werden müssen",
+          "Weil sie gesetzlich verboten sind",
+          "Weil sie nur Texte über 10.000 Wörter analysieren können"
+        ],
+        "c": 1,
+        "e": "Detektoren sind unzuverlässig und leicht zu umgehen. Ein Verdacht sollte durch weitere Hinweise (Fachgespräch, Entstehungsprozess, Vergleich mit früheren Arbeiten) abgesichert werden – nie durch das Detektor-Ergebnis allein."
+      },
+      {
+        "q": "Wie ist ein rein KI-generiertes Bild nach deutschem Urheberrecht grundsätzlich einzuordnen?",
+        "opts": [
+          "In der Regel nicht geschützt, weil § 2 Abs. 2 UrhG eine persönliche geistige Schöpfung eines Menschen voraussetzt",
+          "Immer automatisch zugunsten der KI geschützt",
+          "Immer zugunsten desjenigen geschützt, der den Prompt eingegeben hat, unabhängig vom Umfang der eigenen Gestaltung",
+          "Immer zugunsten der Schule geschützt",
+          "Nie nutzbar, da alle KI-Bilder Fälschungen sind"
+        ],
+        "c": 0,
+        "e": "Urheberrechtlichen Schutz gibt es nur für persönliche geistige Schöpfungen von Menschen. Rein maschinell erzeugte Ergebnisse sind daher in der Regel nicht geschützt; zudem können sie fremde Rechte verletzen, wenn sie geschützte Werke oder Personen erkennbar nachahmen."
+      },
+      {
+        "q": "Was besagt Art. 22 DSGVO im Hinblick auf Entscheidungen über Schülerinnen und Schüler?",
+        "opts": [
+          "Automatisierte Entscheidungen sind stets erwünscht, weil sie objektiv sind",
+          "Er regelt ausschließlich den Umgang mit Cookies",
+          "Er verpflichtet Schulen, KI-Systeme zur Notengebung einzusetzen",
+          "Betroffene haben grundsätzlich das Recht, nicht einer ausschließlich automatisierten Entscheidung mit erheblicher Wirkung unterworfen zu werden",
+          "Er gilt nur für Unternehmen, nicht für Schulen"
+        ],
+        "c": 3,
+        "e": "Entscheidungen mit erheblicher Wirkung (z. B. Versetzung, Zeugnisnoten) dürfen grundsätzlich nicht allein von einem Algorithmus getroffen werden. Es braucht menschliche Prüfung und Verantwortung („Human in the Loop“)."
+      },
+      {
+        "q": "Wie sollte KI-Nutzung in schriftlichen Arbeiten am besten behandelt werden?",
+        "opts": [
+          "Als Quelle im Literaturverzeichnis angeben und wie ein Lexikon behandeln",
+          "Gar nicht erwähnen, da KI-Texte niemandem gehören",
+          "Den Einsatz transparent dokumentieren (Tool, Datum, Zweck), Inhalte selbst überprüfen und die Verantwortung für das Ergebnis übernehmen",
+          "Nur kennzeichnen, wenn der Text komplett übernommen wird",
+          "Durch Umformulieren die Herkunft verschleiern"
+        ],
+        "c": 2,
+        "e": "KI ist keine verlässliche Quelle im klassischen Sinne, sondern ein Werkzeug. Wer sie nutzt, dokumentiert das transparent nach den Vorgaben der Schule, prüft die Inhalte und bleibt für den Text verantwortlich."
+      }
+    ],
+    "open": [
+      {
+        "q": "Erläutere den Begriff „Halluzination“ bei Sprachmodellen und erkläre, warum das Problem technisch bedingt ist.",
+        "a": "Als Halluzination bezeichnet man erfundene, aber plausibel klingende Aussagen (z. B. nicht existierende Quellen, falsche Zitate oder Zahlen). Sprachmodelle sind darauf optimiert, statistisch wahrscheinliche Wortfolgen zu erzeugen, nicht Wahrheit zu prüfen. Bei Wissenslücken füllen sie mit Plausiblem auf. Verfahren wie Quellenanbindung (Retrieval-Augmented Generation) können das Risiko senken, aber nicht ausschließen."
+      },
+      {
+        "q": "Beschreibe, warum Bildung in der EU-KI-Verordnung als Hochrisiko-Bereich gilt, und nenne zwei Beispiele für betroffene Anwendungen.",
+        "a": "Entscheidungen in der Bildung beeinflussen Bildungs- und Berufswege und damit Grundrechte wie Chancengleichheit und Nichtdiskriminierung; Lernende stehen zudem in einem Abhängigkeitsverhältnis. Beispiele aus Anhang III: Systeme für Zugang oder Zuteilung zu Bildungseinrichtungen, Bewertung von Lernergebnissen, Einschätzung des Bildungsniveaus, Überwachung bei Prüfungen (Proctoring). Vorgesehen sind u. a. Risikomanagement, Dokumentation und menschliche Aufsicht."
+      },
+      {
+        "q": "Erkläre das Prinzip „Human in the Loop“ und warum es bei der Notengebung wichtig ist.",
+        "a": "Der Mensch prüft KI-Vorschläge, kann eingreifen und trägt die Endverantwortung. Bei Noten ist das wichtig, weil KI fehlerhaft oder verzerrt sein kann, ihre Bewertung oft nicht nachvollziehbar ist und Art. 22 DSGVO rein automatisierte Entscheidungen mit erheblicher Wirkung grundsätzlich einschränkt. Zudem gehören pädagogische Bewertung und Begründung in die Verantwortung der Lehrkraft."
+      },
+      {
+        "q": "Diskutiere Chancen und Risiken von KI-gestützten Feedback- und Bewertungssystemen für Lehrkräfte (jeweils mindestens zwei).",
+        "a": "Chancen: Zeitersparnis, schnelleres und individuelleres Feedback, Differenzierung, Hinweise auf typische Fehler. Risiken: fehlerhafte oder halluzinierte Rückmeldungen, Bias (z. B. Benachteiligung sprachlicher Varianten), Datenschutzprobleme, Automation Bias, mangelnde Transparenz der Bewertungskriterien und die Gefahr, dass pädagogische Beziehung und Urteilskraft in den Hintergrund treten."
+      },
+      {
+        "q": "Nenne mindestens drei Ansätze, wie Prüfungsformate gestaltet werden können, damit Kompetenzen auch im Zeitalter generativer KI überprüfbar bleiben.",
+        "a": "Z. B. mündliche Prüfungen oder Fachgespräche zur eigenen Arbeit, Präsenzarbeiten ohne unerlaubte Hilfsmittel, Prozessdokumentation (Portfolio, Zwischenstände, Lerntagebuch), Aufgaben mit Bezug zum konkreten Unterricht oder zu eigenen Daten, Aufgaben, bei denen KI-Ausgaben kritisch bewertet werden müssen, sowie klare Regeln, wo KI erlaubt, eingeschränkt oder verboten ist."
+      },
+      {
+        "q": "Erläutere zwei datenschutzrechtliche Risiken beim Einsatz kommerzieller KI-Dienste im Unterricht.",
+        "a": "Z. B.: 1) Verarbeitung personenbezogener Daten ohne Rechtsgrundlage oder ohne geeigneten Vertrag mit dem Anbieter (Auftragsverarbeitung). 2) Übermittlung von Daten in Drittländer ohne ausreichende Garantien. 3) Nutzung von Eingaben zum Training der Modelle. 4) Verarbeitung besonders sensibler Daten (z. B. Gesundheitsdaten). 5) Fehlende wirksame Einwilligung bei Minderjährigen. 6) Profilbildung über Lernende."
+      },
+      {
+        "q": "Erkläre, was algorithmische Verzerrung (Bias) ist, woher sie kommt, und nenne ein Beispiel aus dem Bildungskontext.",
+        "a": "Bias bezeichnet systematische Verzerrungen, die bestimmte Personen oder Gruppen benachteiligen. Ursachen sind unausgewogene oder historisch verzerrte Trainingsdaten, Designentscheidungen und Bewertungsverfahren. Beispiel: Ein Bewertungssystem, das Texte von Nicht-Muttersprachlern schlechter einstuft, oder ein Bildgenerator, der Berufe stereotyp darstellt."
+      },
+      {
+        "q": "Warum sind KI-Detektoren problematisch, und wie sollte eine Schule bei Täuschungsverdacht vorgehen?",
+        "a": "Detektoren liefern nur Wahrscheinlichkeiten, machen falsch-positive und falsch-negative Fehler, können bestimmte Gruppen benachteiligen und sind leicht zu umgehen. Ein Verdacht sollte nie allein darauf gestützt werden. Sinnvoll: vorab transparente Regeln, Fachgespräch zur Arbeit, Einblick in Entstehungsprozess und Versionen, Vergleich mit früheren Leistungen, Anhörung der Betroffenen und ein Vorgehen nach schulrechtlichen Vorgaben."
+      },
+      {
+        "q": "Ein Schüler erstellt mit KI ein manipuliertes Bild einer Mitschülerin und verbreitet es. Nenne rechtliche und ethische Probleme.",
+        "a": "Rechtlich: Verletzung des Rechts am eigenen Bild (§ 22 KUG) und des allgemeinen Persönlichkeitsrechts, Datenschutzverstöße und je nach Inhalt auch Straftatbestände (z. B. Beleidigung oder Verletzung des höchstpersönlichen Lebensbereichs); zudem schulische Ordnungsmaßnahmen. Ethisch: Missachtung der Würde und Einwilligung, Bloßstellung und Cybermobbing, Vertrauensverlust; die Weiterverbreitung vergrößert den Schaden."
+      },
+      {
+        "q": "Beschreibe, wie du KI-Ergebnisse quellenkritisch überprüfst (z. B. mit „lateralem Lesen“).",
+        "a": "KI ist keine Quelle, sondern ein Werkzeug. Ich prüfe Aussagen, indem ich unabhängige, seriöse Quellen daneben lege (laterales Lesen), Primärquellen suche, genannte Quellen auf Existenz und Inhalt prüfe, Aktualität und Wissensstichtag des Modells beachte und ggf. mehrere Perspektiven vergleiche. Die Nutzung dokumentiere ich (Tool, Datum, Zweck)."
+      }
+    ],
+    "tf": [
+      {
+        "s": "Nach der EU-KI-Verordnung ist Emotionserkennung in Bildungseinrichtungen grundsätzlich verboten, mit Ausnahmen für medizinische oder Sicherheitszwecke.",
+        "c": true,
+        "e": "Richtig: Art. 5 der KI-Verordnung verbietet seit dem 2. Februar 2025 die <strong>Emotionserkennung</strong> in Bildungseinrichtungen und am Arbeitsplatz, mit eng begrenzten Ausnahmen."
+      },
+      {
+        "s": "Ein KI-Detektor kann zweifelsfrei beweisen, dass ein Text von einer KI stammt.",
+        "c": false,
+        "e": "Falsch: Detektoren liefern nur <strong>Wahrscheinlichkeiten</strong> und machen Fehler – auch falsch-positive."
+      },
+      {
+        "s": "Rein KI-generierte Bilder genießen nach deutschem Recht automatisch urheberrechtlichen Schutz wie Werke eines Menschen.",
+        "c": false,
+        "e": "Falsch: Geschützt sind nur <strong>persönliche geistige Schöpfungen</strong> von Menschen (§ 2 Abs. 2 UrhG); rein maschinell erzeugte Ergebnisse sind in der Regel nicht geschützt."
+      },
+      {
+        "s": "Nach Art. 22 DSGVO dürfen erhebliche Entscheidungen grundsätzlich nicht allein auf automatisierter Verarbeitung beruhen (Ausnahmen sind möglich).",
+        "c": true,
+        "e": "Richtig: Bei Entscheidungen mit erheblicher Wirkung ist grundsätzlich eine <strong>menschliche Entscheidung</strong> erforderlich."
+      },
+      {
+        "s": "Wenn ein KI-Anbieter seinen Sitz in den USA hat, spielt die DSGVO für die Schule keine Rolle.",
+        "c": false,
+        "e": "Falsch: Die Schule als Verantwortliche muss die DSGVO einhalten; bei Anbietern in <strong>Drittländern</strong> kommen zusätzliche Anforderungen für die Datenübermittlung hinzu."
+      },
+      {
+        "s": "Mit Retrieval-Augmented Generation (Anbindung an Quellen) lassen sich Halluzinationen verringern, aber nicht vollständig ausschließen.",
+        "c": true,
+        "e": "Richtig: Auch mit Quellenanbindung können Modelle Inhalte <strong>falsch wiedergeben</strong> oder falsch zusammenfassen."
+      },
+      {
+        "s": "Automation Bias bedeutet, dass Menschen Vorschläge von Automatisierungen tendenziell zu unkritisch übernehmen.",
+        "c": true,
+        "e": "Richtig: Übervertrauen in maschinelle Ausgaben ist ein bekanntes Risiko – <strong>eigene Prüfung</strong> bleibt nötig."
+      },
+      {
+        "s": "Da KI-Systeme mathematisch arbeiten, sind ihre Ergebnisse grundsätzlich neutral und frei von Verzerrungen.",
+        "c": false,
+        "e": "Falsch: KI übernimmt <strong>Verzerrungen aus Daten und Design</strong>; Mathematik allein garantiert keine Fairness."
+      },
+      {
+        "s": "Das Erzeugen und Verbreiten eines manipulierten Bildes einer Mitschülerin kann deren Recht am eigenen Bild verletzen.",
+        "c": true,
+        "e": "Richtig: Bildnisse dürfen grundsätzlich nur mit <strong>Einwilligung</strong> verbreitet werden (§ 22 KUG); zusätzlich kommen Persönlichkeitsrecht und ggf. Strafrecht in Betracht."
+      },
+      {
+        "s": "Wer KI-Ergebnisse in Leistungsnachweisen verwendet, ist nicht mehr für deren Richtigkeit verantwortlich.",
+        "c": false,
+        "e": "Falsch: Die <strong>Verantwortung</strong> für Inhalt und Richtigkeit bleibt bei der Person, die den Text einreicht."
+      }
+    ],
+    "cloze": [
+      {
+        "t": "Seit dem 2. Februar 2025 gilt nach Artikel 4 der EU-"
+      },
+      {
+        "b": "fg1",
+        "a": [
+          "KI-Verordnung",
+          "KI-VO",
+          "AI Act"
+        ]
+      },
+      {
+        "t": " für Anbieter und Betreiber von KI-Systemen die Pflicht, die "
+      },
+      {
+        "b": "fg2",
+        "a": [
+          "KI-Kompetenz",
+          "KI-Kompetenzen"
+        ]
+      },
+      {
+        "t": " ihres Personals zu "
+      },
+      {
+        "b": "fg3",
+        "a": [
+          "fördern",
+          "unterstützen",
+          "stärken"
+        ]
+      },
+      {
+        "t": ". Ursprünglich musste diese Kompetenz „sichergestellt“ werden; durch den Digital Omnibus, der seit dem 27. Juli 2026 in Kraft ist, wurde die Pflicht abgeschwächt. Die Verordnung ordnet KI-Anwendungen nach ihrem "
+      },
+      {
+        "b": "fg4",
+        "a": [
+          "Risiko"
+        ]
+      },
+      {
+        "t": ". Systeme, die in der Bildung etwa Lernergebnisse bewerten oder Prüfungen überwachen, gelten als "
+      },
+      {
+        "b": "fg5",
+        "a": [
+          "Hochrisiko",
+          "hochriskant",
+          "Hochrisiko-Systeme"
+        ]
+      },
+      {
+        "t": "; die zugehörigen Pflichten für eigenständige Systeme nach Anhang III gelten nach der Verschiebung erst ab dem 2. Dezember "
+      },
+      {
+        "b": "fg6",
+        "a": [
+          "2027"
+        ]
+      },
+      {
+        "t": ". Verboten ist dagegen bereits seit Februar 2025 grundsätzlich die "
+      },
+      {
+        "b": "fg7",
+        "a": [
+          "Emotionserkennung",
+          "Erkennung von Emotionen"
+        ]
+      },
+      {
+        "t": " in Bildungseinrichtungen, sofern sie nicht medizinischen oder Sicherheitszwecken dient. Neben der KI-Verordnung ist die "
+      },
+      {
+        "b": "fg8",
+        "a": [
+          "DSGVO",
+          "Datenschutz-Grundverordnung"
+        ]
+      },
+      {
+        "t": " zentral: Wer Namen, Noten oder Fotos von Schülerinnen und Schülern in einen öffentlichen Chatbot eingibt, verarbeitet "
+      },
+      {
+        "b": "fg9",
+        "a": [
+          "personenbezogene",
+          "persönliche"
+        ]
+      },
+      {
+        "t": " Daten und braucht dafür eine "
+      },
+      {
+        "b": "fg10",
+        "a": [
+          "Rechtsgrundlage"
+        ]
+      },
+      {
+        "t": ". Besondere Vorsicht ist bei Anbietern außerhalb der EU geboten, weil dann eine Übermittlung in ein "
+      },
+      {
+        "b": "fg11",
+        "a": [
+          "Drittland",
+          "Drittländer"
+        ]
+      },
+      {
+        "t": " vorliegen kann. Nach Artikel 22 der DSGVO dürfen erhebliche Entscheidungen, etwa über Noten oder Versetzung, nicht allein auf einer "
+      },
+      {
+        "b": "fg12",
+        "a": [
+          "automatisierten",
+          "automatischen"
+        ]
+      },
+      {
+        "t": " Verarbeitung beruhen; am Ende muss immer ein Mensch die "
+      },
+      {
+        "b": "fg13",
+        "a": [
+          "Verantwortung"
+        ]
+      },
+      {
+        "t": " tragen. Wer KI-Ergebnisse unkritisch übernimmt, unterliegt dem sogenannten "
+      },
+      {
+        "b": "fg14",
+        "a": [
+          "Automation Bias",
+          "Automatisierungsbias"
+        ]
+      },
+      {
+        "t": ". Ein technisches Kernproblem generativer Modelle sind "
+      },
+      {
+        "b": "fg15",
+        "a": [
+          "Halluzinationen",
+          "Halluzination"
+        ]
+      },
+      {
+        "t": ": Sie erzeugen statistisch plausible, aber teils frei erfundene Aussagen. Auch "
+      },
+      {
+        "b": "fg16",
+        "a": [
+          "Bias",
+          "Verzerrungen",
+          "Vorurteile"
+        ]
+      },
+      {
+        "t": " in den Trainingsdaten können zu diskriminierenden Ergebnissen führen. Sogenannte KI-Detektoren liefern nur Wahrscheinlichkeiten und erzeugen "
+      },
+      {
+        "b": "fg17",
+        "a": [
+          "falsch-positive",
+          "falsch positive",
+          "fehlerhafte"
+        ]
+      },
+      {
+        "t": " Ergebnisse; sie taugen daher nicht als alleiniger Beweis für einen Täuschungsversuch. Urheberrechtlich schützt § 2 Absatz 2 UrhG nur eine persönliche geistige "
+      },
+      {
+        "b": "fg18",
+        "a": [
+          "Schöpfung"
+        ]
+      },
+      {
+        "t": " eines Menschen, rein maschinell erzeugte Ergebnisse sind daher in der Regel nicht geschützt. Verletzt ein KI-generiertes Bild das "
+      },
+      {
+        "b": "fg19",
+        "a": [
+          "Recht am eigenen Bild",
+          "Persönlichkeitsrecht"
+        ]
+      },
+      {
+        "t": " einer Person, drohen rechtliche Folgen. Um Kompetenzen weiterhin aussagekräftig zu prüfen, setzen Schulen zunehmend auf "
+      },
+      {
+        "b": "fg20",
+        "a": [
+          "mündliche",
+          "prozessorientierte"
+        ]
+      },
+      {
+        "t": " Prüfungsformate und dokumentierte Lernprozesse."
+      }
+    ]
+  }
+}

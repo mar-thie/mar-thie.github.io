@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiz editor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EDF0F5; --surface:#FFFFFF; --sunk:#F5F7FA; --line:#D3DAE5; --line-strong:#AEB9CC;
+  --ink:#1B2A41; --muted:#586780;
+  --accent:#2F4BD6; --accent-ink:#FFFFFF; --accent-soft:#E3E8FC;
+  --ok:#17764B; --ok-soft:#DCF2E6; --bad:#B0302C; --bad-soft:#FADFDD;
+  --warn:#7A5200; --warn-soft:#FFEFC7; --warn-dot:#D98E04; --on-solid:#FFFFFF;
+  --toast-link:#B9C5FF;
+  --ui:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#10141D; --surface:#182031; --sunk:#1E2740; --line:#2C3853; --line-strong:#4A5A82;
+    --ink:#E3E8F4; --muted:#98A4BF;
+    --accent:#8DA0FF; --accent-ink:#0F1533; --accent-soft:#26305C;
+    --ok:#5FD39C; --ok-soft:#16382B; --bad:#FF908A; --bad-soft:#40201F;
+    --warn:#F5CB74; --warn-soft:#3B2F10; --warn-dot:#F5B942; --on-solid:#0B1220;
+    --toast-link:#2F4BD6;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#10141D; --surface:#182031; --sunk:#1E2740; --line:#2C3853; --line-strong:#4A5A82;
+  --ink:#E3E8F4; --muted:#98A4BF;
+  --accent:#8DA0FF; --accent-ink:#0F1533; --accent-soft:#26305C;
+  --ok:#5FD39C; --ok-soft:#16382B; --bad:#FF908A; --bad-soft:#40201F;
+  --warn:#F5CB74; --warn-soft:#3B2F10; --warn-dot:#F5B942; --on-solid:#0B1220;
+  --toast-link:#2F4BD6;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--ui)}
+[hidden]{display:none!important}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:6px 12px}
+button:hover:not(:disabled){border-color:var(--accent)}
+button:disabled{cursor:default;opacity:.45}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+button.primary:hover:not(:disabled){filter:brightness(1.08)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;padding:10px 20px;background:var(--surface);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;flex:1 1 320px;min-width:0}
+h1{font:600 17px/1.2 var(--ui);margin:0;white-space:nowrap}
+#fname{width:150px;min-width:0;border:1px solid transparent;border-radius:6px;padding:4px 8px;background:transparent;font:13px var(--mono);color:var(--muted)}
+#fname:hover,#fname:focus{border-color:var(--line-strong);background:var(--surface)}
+.pill{font-size:12px;padding:2px 9px;border-radius:99px;background:var(--sunk);color:var(--muted);white-space:nowrap}
+.pill.on{background:var(--accent-soft);color:var(--ink)}
+.modes{display:inline-flex;border:1px solid var(--line-strong);border-radius:6px;overflow:hidden}
+.modes button{border:0;border-radius:0;background:transparent;padding:5px 16px}
+.modes button+button{border-left:1px solid var(--line-strong)}
+.modes button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);font-weight:600}
+.acts{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.sep{width:1px;height:22px;background:var(--line)}
+
+/* layout */
+.shell{display:grid;grid-template-columns:240px minmax(0,1fr);gap:28px;max-width:1160px;margin:0 auto;padding:24px 20px 96px}
+.shell.json-mode{grid-template-columns:minmax(0,1fr)}
+.shell.json-mode #rail{display:none}
+#rail{position:sticky;top:84px;align-self:start;max-height:calc(100vh - 100px);overflow:auto}
+.rail-head h2{font:600 13px var(--ui);color:var(--muted);margin:0 0 8px}
+.levels{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.level{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;text-align:left;border:0;border-left:3px solid transparent;border-radius:0 6px 6px 0;background:transparent;padding:8px 10px}
+.level:hover:not(:disabled){background:var(--sunk)}
+.level.on{background:var(--accent-soft);border-left-color:var(--accent);font-weight:600}
+.lname{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lmeta{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;font-weight:400;font-variant-numeric:tabular-nums}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--warn-dot);flex:none}
+.rail-foot{margin-top:22px;font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.rail-foot p{margin:0}
+.linkish{border:0;background:none;padding:0;color:var(--accent);text-decoration:underline;font-size:inherit}
+.linkish:hover:not(:disabled){border:0}
+
+/* level header + tabs */
+.level-title{font:600 24px/1.2 var(--ui);margin:0 0 10px}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:16px;overflow-x:auto}
+.tab{border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;padding:8px 12px;margin-bottom:-1px;display:inline-flex;gap:8px;align-items:center;white-space:nowrap}
+.tab:hover:not(:disabled){border-color:transparent;border-bottom-color:var(--line-strong)}
+.tab.on{border-bottom-color:var(--accent);font-weight:600}
+.count{font-size:12.5px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.toolbar{display:flex;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.search{flex:0 1 300px;min-width:0;border:1px solid var(--line-strong);border-radius:6px;padding:6px 10px;background:var(--surface)}
+
+/* cards */
+.list{display:flex;flex-direction:column;gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 16px 14px}
+.card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px}
+.idx{font:600 13px var(--mono);color:var(--muted)}
+.tools{display:flex;gap:2px;flex:none}
+.tool{border:0;background:transparent;color:var(--muted);padding:3px 8px;border-radius:5px;font-size:13px}
+.tool:hover:not(:disabled){background:var(--sunk);color:var(--ink);border:0}
+.field{display:block;margin:10px 0 0}
+.lbl{display:block;font-size:12.5px;font-weight:500;color:var(--muted);margin-bottom:4px}
+.lbl-row{display:flex;justify-content:space-between;align-items:end;margin-bottom:4px}
+.lbl-row .lbl{margin:0}
+textarea.auto,.opt input{width:100%;border:1px solid var(--line-strong);border-radius:6px;padding:7px 10px;background:var(--surface);line-height:1.5}
+textarea.auto{resize:none;overflow:hidden;display:block}
+textarea.auto:focus,.opt input:focus{border-color:var(--accent);outline-offset:0}
+.serif{font-family:var(--serif);font-size:16.5px}
+
+.opts{display:flex;flex-direction:column;gap:6px}
+.opt{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:8px;align-items:center}
+.mark{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line-strong);background:var(--surface);font:600 13px var(--ui);padding:0;color:var(--muted)}
+.mark:hover:not(:disabled){border-color:var(--ok);color:var(--ok)}
+.opt.correct .mark{background:var(--ok);border-color:var(--ok);color:var(--on-solid)}
+.opt.correct input{border-color:var(--ok);background:var(--ok-soft)}
+.opt-add{margin-top:8px}
+
+.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:6px;overflow:hidden}
+.seg button{border:0;border-radius:0;background:var(--surface);padding:6px 20px;font-weight:500}
+.seg button+button{border-left:1px solid var(--line-strong)}
+.seg button.on.t{background:var(--ok);color:var(--on-solid)}
+.seg button.on.f{background:var(--bad);color:var(--on-solid)}
+
+.fmt{display:flex;gap:4px}
+.fmtbtn{width:26px;height:24px;padding:0;border:1px solid var(--line-strong);border-radius:4px;background:var(--surface);font-size:13px;line-height:1}
+.preview{margin-top:6px;padding:8px 12px;border-left:3px solid var(--line-strong);background:var(--sunk);border-radius:0 6px 6px 0;font:16px/1.55 var(--serif)}
+
+.issues{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:4px}
+.issues:empty{display:none}
+.issues li{font-size:13px;border-radius:6px;padding:4px 10px}
+.issues .warn{background:var(--warn-soft);color:var(--warn)}
+.issues .hint{color:var(--muted);padding-left:0}
+
+/* cloze */
+.intro{color:var(--muted);margin:0 0 6px;max-width:68ch}
+.cloze-preview{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;font:18px/1.9 var(--serif);white-space:pre-wrap;overflow-wrap:anywhere}
+.cloze-preview .none{color:var(--muted);font-family:var(--ui);font-size:14px}
+.hole{background:var(--ok-soft);color:var(--ok);border-bottom:2px solid var(--ok);padding:1px 6px;border-radius:3px;font:500 .8em var(--ui);white-space:normal}
+.segs{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.seg-row{display:grid;grid-template-columns:68px minmax(0,1fr) auto;gap:10px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.seg-row.blank{border-left:3px solid var(--ok)}
+.kind{font-size:12.5px;font-weight:600;color:var(--muted);padding-top:8px}
+.seg-row.blank .kind{color:var(--ok)}
+.seg-body{display:flex;flex-direction:column;gap:6px;align-items:flex-start;min-width:0}
+.seg-body textarea{width:100%}
+.blank-body{display:flex;flex-wrap:wrap;gap:8px 16px;width:100%;align-items:flex-start}
+.blank-body .col{display:flex;flex-direction:column}
+.chips{display:flex;flex-wrap:wrap;gap:4px;align-items:center;border:1px solid var(--line-strong);border-radius:6px;padding:4px 6px;min-height:36px;background:var(--surface);cursor:text}
+.chips:focus-within{border-color:var(--accent)}
+.chip{display:inline-flex;align-items:center;gap:2px;background:var(--accent-soft);border-radius:4px;padding:1px 2px 1px 8px;font-family:var(--serif);font-size:15px}
+.chip button{border:0;background:transparent;padding:0 6px;color:var(--muted);font-size:16px;line-height:1.3}
+.chip button:hover:not(:disabled){color:var(--bad);border:0}
+.chipin{flex:1 1 140px;min-width:100px;border:0;outline:0;background:transparent;padding:3px 4px;font-size:14px}
+.mini{border:0;background:none;padding:0;color:var(--accent);font-size:13px;text-decoration:underline}
+.mini:hover:not(:disabled){border:0}
+.seg-add{display:flex;gap:8px;margin-top:12px}
+
+/* json view */
+.jbar{display:flex;gap:10px;align-items:center;margin:0 0 10px;flex-wrap:wrap}
+.jstatus{margin:0;flex:1 1 240px;font-size:13.5px}
+.jstatus.ok{color:var(--ok)} .jstatus.bad{color:var(--bad)}
+.json{display:block;width:100%;min-height:64vh;font:13.5px/1.55 var(--mono);white-space:pre;overflow:auto;resize:vertical;border:1px solid var(--line-strong);border-radius:10px;padding:14px;background:var(--surface);tab-size:2}
+
+.empty{border:1.5px dashed var(--line-strong);border-radius:10px;padding:32px 20px;text-align:center;color:var(--muted)}
+.empty p{margin:0 0 10px}
+.empty .empty-t{color:var(--ink);font-weight:600;margin-bottom:4px}
+
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:14px;align-items:center;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:8px;max-width:calc(100vw - 32px);font-size:14px;z-index:50}
+#toast .linkish{color:var(--toast-link);font-weight:600}
+
+@media (max-width:820px){
+  .top{padding:10px 14px}
+  .shell{grid-template-columns:minmax(0,1fr);gap:16px;padding:16px 14px 96px}
+  #rail{position:static;max-height:none}
+  .levels{flex-direction:row;overflow-x:auto;gap:6px}
+  .level{width:auto;white-space:nowrap;border-left:0;border-bottom:3px solid transparent;border-radius:6px 6px 0 0}
+  .level.on{border-bottom-color:var(--accent)}
+  .rail-foot{display:none}
+  .seg-row{grid-template-columns:minmax(0,1fr) auto}
+  .kind{grid-column:1/-1;padding:0}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <h1>Quiz editor</h1>
+    <input id="fname" value="quiz.json" aria-label="File name used for the download" spellcheck="false">
+    <span id="dirty" class="pill"></span>
+  </div>
+  <div class="modes" role="group" aria-label="View">
+    <button type="button" id="m-form" aria-pressed="true">Form</button>
+    <button type="button" id="m-json" aria-pressed="false">JSON</button>
+  </div>
+  <div class="acts">
+    <button type="button" id="undo">Undo</button>
+    <button type="button" id="redo">Redo</button>
+    <span class="sep" aria-hidden="true"></span>
+    <button type="button" id="import">Import</button>
+    <button type="button" id="copy">Copy JSON</button>
+    <button type="button" id="download" class="primary">Download</button>
+  </div>
+</header>
+<div class="shell" id="shell">
+  <nav id="rail" aria-label="Levels"></nav>
+  <main id="main"></main>
+</div>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+<input type="file" id="file" accept=".json,application/json" hidden>
+
+<script type="application/json" id="seed">{
+  "anfaenger": {
+    "sc": [
+      {
+        "q": "Ab wie vielen wahlberechtigten Arbeitnehmern kann ein Betriebsrat gegründet werden?",
+        "opts": [
+          "Ab 3 wahlberechtigten Arbeitnehmern",
+          "Ab 5 wahlberechtigten Arbeitnehmern",
+          "Ab 10 wahlberechtigten Arbeitnehmern",
+          "Ab 20 wahlberechtigten Arbeitnehmern"
+        ],
+        "c": 1,
+        "e": "Ein Betriebsrat kann in Betrieben mit mindestens 5 wahlberechtigten Arbeitnehmern gegründet werden, von denen 3 wählbar sein müssen."
+      },
+      {
+        "q": "Ab welchem Alter ist ein Arbeitnehmer wahlberechtigt für den Betriebsrat?",
+        "opts": [
+          "Ab 14 Jahren",
+          "Ab 16 Jahren",
+          "Ab 18 Jahren",
+          "Ab 21 Jahren"
+        ],
+        "c": 1,
+        "e": "Seit dem Betriebsrätemodernisierungsgesetz (2021) sind Arbeitnehmer bereits mit 16 Jahren wahlberechtigt (§ 7 BetrVG) – zuvor lag die Grenze bei 18 Jahren."
+      }
+    ],
+    "open": [
+      {
+        "q": "Was regelt das Betriebsverfassungsgesetz (BetrVG) allgemein?",
+        "a": "Es regelt die Rechte und Pflichten von Arbeitgebern und Arbeitnehmern (bzw. deren gewählter Vertretung, dem Betriebsrat) im Betrieb – insbesondere die Mitwirkungs- und Mitbestimmungsrechte der Arbeitnehmer."
+      },
+      {
+        "q": "Was ist ein Betriebsrat?",
+        "a": "Eine von den Arbeitnehmern gewählte Interessenvertretung, die die Belange aller Beschäftigten des Betriebs gegenüber dem Arbeitgeber vertritt."
+      }
+    ],
+    "tf": [
+      {
+        "s": "Ein Betriebsrat kann in jedem Betrieb ab 3 Arbeitnehmern gegründet werden.",
+        "c": false,
+        "e": "Falsch: Ein Betriebsrat kann erst ab mindestens <strong>5 wahlberechtigten Arbeitnehmern<\/strong> gegründet werden."
+      },
+      {
+        "s": "Betriebsratsmitglieder werden von den Arbeitnehmern gewählt, nicht vom Arbeitgeber bestimmt.",
+        "c": true,
+        "e": "Richtig: Der Betriebsrat wird durch eine <strong>Wahl<\/strong> der Belegschaft bestimmt."
+      }
+    ],
+    "cloze": [
+      {
+        "t": "Der Betriebsrat wird von den "
+      },
+      {
+        "b": "af1",
+        "a": [
+          "Arbeitnehmern",
+          "Beschäftigten"
+        ]
+      },
+      {
+        "t": " gewählt und vertritt deren Interessen gegenüber dem "
+      }
+    ]
+  },
+  "fortgeschritten": {
+    "sc": [
+      {
+        "q": "Wie viele Betriebsratsmitglieder hat nach § 9 BetrVG ein Betrieb mit 51 bis 100 wahlberechtigten Arbeitnehmern?",
+        "opts": [
+          "1",
+          "3",
+          "5",
+          "7",
+          "9"
+        ],
+        "c": 2,
+        "e": "Nach der Staffelung des § 9 BetrVG hat ein Betrieb mit 51–100 wahlberechtigten Arbeitnehmern 5 Betriebsratsmitglieder."
+      },
+      {
+        "q": "Ab welcher Betriebsgröße muss laut § 106 BetrVG ein Wirtschaftsausschuss gebildet werden?",
+        "opts": [
+          "In jedem Betrieb mit Betriebsrat",
+          "In der Regel bei mehr als 100 ständig beschäftigten Arbeitnehmern",
+          "Erst ab 500 Arbeitnehmern",
+          "Nur in Aktiengesellschaften",
+          "Ab 5 Arbeitnehmern"
+        ],
+        "c": 1,
+        "e": "Ein Wirtschaftsausschuss ist in Unternehmen mit in der Regel mehr als 100 ständig beschäftigten Arbeitnehmern zu bilden (§ 106 BetrVG)."
+      }
+    ],
+    "open": [
+      {
+        "q": "Nenne die wichtigsten Schritte zur Gründung eines Betriebsrats.",
+        "a": "1) Wahlberechtigte Arbeitnehmer oder eine Gewerkschaft laden zu einer Wahlversammlung ein. 2) Ein Wahlvorstand wird bestellt (mind. 3 wahlberechtigte Arbeitnehmer). 3) Der Wahlvorstand ermittelt die Zahl der wahlberechtigten/wählbaren Arbeitnehmer und erstellt die Wählerliste. 4) Der Wahlvorstand erlässt das Wahlausschreiben mit den Fristen. 5) Wahlvorschläge (Vorschlagslisten) werden eingereicht, ggf. mit Stützunterschriften. 6) Die geheime und unmittelbare Wahl wird durchgeführt. 7) Das Wahlergebnis wird ausgezählt, bekanntgegeben, und der neue Betriebsrat konstituiert sich."
+      },
+      {
+        "q": "Erläutere, was „geheim“ und „unmittelbar“ bei der Betriebsratswahl bedeuten.",
+        "a": "Geheim bedeutet, dass niemand nachvollziehen kann, wie eine bestimmte Person gewählt hat (verdeckte Stimmabgabe, z. B. per Wahlkabine und verschlossenem Umschlag). Unmittelbar bedeutet, dass die Arbeitnehmer die Betriebsratsmitglieder direkt selbst wählen, ohne Zwischenschritt über Wahlmänner oder Delegierte."
+      }
+    ],
+    "tf": [
+      {
+        "s": "Ein Wirtschaftsausschuss muss in jedem Betrieb mit Betriebsrat gebildet werden.",
+        "c": false,
+        "e": "Falsch: Ein <strong>Wirtschaftsausschuss<\/strong> ist erst in Unternehmen mit in der Regel mehr als 100 ständig beschäftigten Arbeitnehmern zu bilden (§ 106 BetrVG)."
+      },
+      {
+        "s": "Der Spruch der Einigungsstelle ist in mitbestimmungspflichtigen Angelegenheiten in der Regel verbindlich.",
+        "c": true,
+        "e": "Richtig: Der Spruch der <strong>Einigungsstelle<\/strong> ersetzt dann die Einigung zwischen Arbeitgeber und Betriebsrat."
+      }
+    ],
+    "cloze": [
+      {
+        "t": "Ab in der Regel mehr als 100 Beschäftigten muss ein "
+      },
+      {
+        "b": "fg1",
+        "a": [
+          "Wirtschaftsausschuss"
+        ]
+      },
+      {
+        "t": " gebildet werden, der wirtschaftliche Angelegenheiten mit dem Unternehmer berät. Können sich Arbeitgeber und Betriebsrat bei einer mitbestimmungspflichtigen Frage nicht einigen, kann die "
+      },
+      {
+        "b": "fg2",
+        "a": [
+          "Einigungsstelle"
+        ]
+      },
+      {
+        "t": " angerufen werden. Bei einer größeren Betriebsänderung hat der Betriebsrat Anspruch auf einen "
+      },
+      {
+        "b": "fg3",
+        "a": [
+          "Interessenausgleich"
+        ]
+      }
+    ]
+  }
+}</script>
+<script>
+(function(){
+'use strict';
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const clone = o => JSON.parse(JSON.stringify(o));
+const str = d => JSON.stringify(d, null, 2);
+const isObj = v => v !== null && typeof v === 'object' && !Array.isArray(v);
+const letter = j => String.fromCharCode(65 + j);
+const isEmpty = v => typeof v !== 'string' || !v.trim();
+const esc = s => String(s).replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const safeHtml = s => esc(s).replace(/&lt;(\/?)(strong|em|b|i|br)\s*\/?&gt;/gi, (m,c,t) => '<' + c + t.toLowerCase() + '>');
+
+function h(tag, props, ...kids){
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(props || {})){
+    if (v == null || v === false) continue;
+    if (k === 'class') el.className = v;
+    else if (k === 'dataset') Object.assign(el.dataset, v);
+    else if (k.startsWith('on')) el.addEventListener(k.slice(2), v);
+    else if (k in el) el[k] = v;
+    else el.setAttribute(k, v);
+  }
+  for (const kid of kids.flat(Infinity)){
+    if (kid == null || kid === false) continue;
+    el.append(kid.nodeType ? kid : document.createTextNode(String(kid)));
+  }
+  return el;
+}
+function autosize(el){ el.style.height = 'auto'; el.style.height = (el.scrollHeight + 2) + 'px'; }
+
+/* ---------- state ---------- */
+const seed = JSON.parse($('#seed').textContent);
+const SEED_STR = str(seed);
+const KEY = 'quiz-editor-draft-v1';
+const LEVELS = ['anfaenger', 'fortgeschritten'];
+const TYPES = [
+  {key:'sc',    tab:'Single choice',  add:'Add question'},
+  {key:'open',  tab:'Open questions', add:'Add question'},
+  {key:'tf',    tab:'True / false',   add:'Add statement'},
+  {key:'cloze', tab:'Cloze'}
+];
+const NEW = {
+  sc:   () => ({q:'', opts:['','','',''], c:0, e:''}),
+  open: () => ({q:'', a:''}),
+  tf:   () => ({s:'', c:true, e:''})
+};
+
+let data, snap;
+let sel = {level:null, type:'sc'};
+let mode = 'form', filter = '';
+let undoStack = [], redoStack = [];
+let timer = null, pendingFocus = null;
+let jsonState = {valid:true, changed:false, text:''};
+
+/* ---------- validation ---------- */
+function validateShape(p){
+  if (!isObj(p)) return 'The top level must be an object with the levels "anfaenger" and "fortgeschritten".';
+  for (const k of Object.keys(p)) if (!LEVELS.includes(k)) return 'Unknown level "' + k + '". Only "anfaenger" and "fortgeschritten" are supported.';
+  for (const [k, v] of Object.entries(p)) if (!isObj(v)) return 'Level "' + k + '" must be an object.';
+  return null;
+}
+function normalize(p){
+  const out = {};
+  for (const k of LEVELS) out[k] = isObj(p[k]) ? p[k] : {sc:[], open:[], tf:[], cloze:[]};
+  renumberBlanks(out);
+  return out;
+}
+function issuesFor(T, raw){
+  const it = isObj(raw) ? raw : {};
+  const out = [];
+  const w = m => out.push({k:'warn', m}), hint = m => out.push({k:'hint', m});
+  if (T === 'sc'){
+    if (isEmpty(it.q)) w('The question is empty.');
+    const opts = Array.isArray(it.opts) ? it.opts : [];
+    if (opts.length < 2) w('Add at least two options.');
+    if (opts.some(isEmpty)) w('An option is empty.');
+    const seen = new Set();
+    for (const o of opts){ const k = String(o).trim().toLowerCase(); if (k && seen.has(k)){ w('Two options are identical.'); break; } seen.add(k); }
+    if (!(Number.isInteger(it.c) && it.c >= 0 && it.c < opts.length)) w('Mark which option is correct.');
+    if (isEmpty(it.e)) hint('No explanation yet.');
+  } else if (T === 'tf'){
+    if (isEmpty(it.s)) w('The statement is empty.');
+    if (typeof it.c !== 'boolean') w('Choose true or false.');
+    if (isEmpty(it.e)) hint('No explanation yet.');
+    else {
+      if (it.c === true && /^\s*(<[^>]+>)*\s*falsch/i.test(it.e)) w('The explanation starts with “Falsch”, but the statement is marked true.');
+      if (it.c === false && /^\s*(<[^>]+>)*\s*richtig/i.test(it.e)) w('The explanation starts with “Richtig”, but the statement is marked false.');
+      for (const t of ['strong','em','b','i']){
+        const o = (it.e.match(new RegExp('<' + t + '>', 'gi')) || []).length;
+        const c = (it.e.match(new RegExp('</' + t + '>', 'gi')) || []).length;
+        if (o !== c) w('Unbalanced <' + t + '> tags in the explanation.');
+      }
+    }
+  } else if (T === 'open'){
+    if (isEmpty(it.q)) w('The question is empty.');
+    if (isEmpty(it.a)) w('The model answer is empty.');
+  }
+  return out;
+}
+function clozeIssues(segs){
+  const out = [];
+  const w = m => out.push({k:'warn', m}), hint = m => out.push({k:'hint', m});
+  const S = segs.filter(isObj);
+  const blanks = S.filter(s => s.b != null);
+  if (!segs.length) hint('Nothing here yet. Add some text, then a blank.');
+  else if (!blanks.length) w('There are no blanks yet — a cloze needs at least one.');
+  blanks.forEach((s, n) => {
+    const ans = Array.isArray(s.a) ? s.a.filter(x => !isEmpty(x)) : [];
+    if (!ans.length) w('Blank ' + (n + 1) + ' has no accepted answer.');
+  });
+  const last = S[S.length - 1];
+  if (last && last.b == null && !/[.!?:;)"“”]\s*$/.test(String(last.t == null ? '' : last.t)))
+    hint('The passage ends mid-sentence. Finish the sentence or add a final blank.');
+  return out;
+}
+const typeItems = (lvl, T) => (isObj(lvl) && Array.isArray(lvl[T])) ? lvl[T] : [];
+const typeCount = (lvl, T) => { const a = typeItems(lvl, T); return T === 'cloze' ? a.filter(s => isObj(s) && s.b != null).length : a.length; };
+function typeWarns(k, T){
+  const a = typeItems(data[k], T);
+  if (T === 'cloze') return a.length ? clozeIssues(a).filter(x => x.k === 'warn').length : 0;
+  return a.reduce((n, it) => n + issuesFor(T, it).filter(x => x.k === 'warn').length, 0);
+}
+const levelWarns = k => TYPES.reduce((n, t) => n + typeWarns(k, t.key), 0);
+const levelQuestions = k => ['sc','open','tf'].reduce((n, t) => n + typeItems(data[k], t).length, 0);
+
+/* ---------- history ---------- */
+function save(){ try { localStorage.setItem(KEY, str(data)); } catch(e){} }
+function commit(){
+  clearTimeout(timer); timer = null;
+  renumberBlanks(data);
+  const cur = str(data);
+  if (cur === snap) { refreshChrome(); return; }
+  undoStack.push(snap); if (undoStack.length > 200) undoStack.shift();
+  redoStack = []; snap = cur; save(); refreshChrome();
+}
+function flush(){ if (timer) commit(); }
+function touch(){ refreshMeta(); clearTimeout(timer); timer = setTimeout(commit, 500); }
+function fixSel(){ const ks = Object.keys(data); if (!ks.includes(sel.level)) sel.level = ks.length ? ks[0] : null; }
+function undo(){
+  flush(); if (!undoStack.length) return;
+  redoStack.push(snap); snap = undoStack.pop(); data = JSON.parse(snap);
+  save(); fixSel(); renderAll();
+}
+function redo(){
+  flush(); if (!redoStack.length) return;
+  undoStack.push(snap); snap = redoStack.pop(); data = JSON.parse(snap);
+  save(); fixSel(); renderAll();
+}
+function applyNew(p){ flush(); data = normalize(p); commit(); fixSel(); renderAll(); }
+function edit(fn, fk){ fn(); commit(); pendingFocus = fk || null; renderAll(); }
+
+/* ---------- toast ---------- */
+let toastTimer;
+function toast(msg, o){
+  o = o || {};
+  const t = $('#toast');
+  t.replaceChildren(h('span', {}, msg), o.undo ? h('button', {type:'button', class:'linkish', onclick(){ undo(); t.hidden = true; }}, 'Undo') : null);
+  t.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.hidden = true; }, o.undo ? 6500 : 3800);
+}
+
+/* ---------- rendering: chrome + rail ---------- */
+function refreshChrome(){
+  $('#undo').disabled = !undoStack.length;
+  $('#redo').disabled = !redoStack.length;
+  const dirty = str(data) !== SEED_STR;
+  const d = $('#dirty');
+  d.textContent = dirty ? 'Edited' : 'Matches the original';
+  d.classList.toggle('on', dirty);
+  $('#m-form').setAttribute('aria-pressed', String(mode === 'form'));
+  $('#m-json').setAttribute('aria-pressed', String(mode === 'json'));
+}
+function refreshMeta(){
+  if (mode !== 'form') { refreshChrome(); return; }
+  renderRail(); renderTabs(); updateIssues(); refreshChrome();
+}
+function renderRail(){
+  const keys = Object.keys(data);
+  let q = 0, w = 0;
+  keys.forEach(k => { q += levelQuestions(k); w += levelWarns(k); });
+  $('#rail').replaceChildren(
+    h('div', {class:'rail-head'}, h('h2', {}, 'Levels')),
+    h('ul', {class:'levels'}, keys.map(k => {
+      const n = levelQuestions(k), lw = levelWarns(k);
+      return h('li', {}, h('button', {type:'button', class:'level' + (k === sel.level ? ' on' : ''), 'aria-current': k === sel.level ? 'true' : null,
+        onclick(){ flush(); sel.level = k; filter = ''; renderAll(); }},
+        h('span', {class:'lname'}, k),
+        h('span', {class:'lmeta'}, lw ? h('span', {class:'dot', title: lw + ' to check'}) : null, String(n))));
+    })),
+    h('div', {class:'rail-foot'},
+      h('p', {}, q + ' questions · ' + (w ? w + ' to check' : 'nothing to check')),
+      h('button', {type:'button', class:'linkish', onclick(){ applyNew(clone(seed)); toast('Reset to the original file.', {undo:true}); }}, 'Reset to original file'))
+  );
+}
+function renderTabs(){
+  const t = $('#tabs'); if (!t || sel.level == null) return;
+  const lvl = data[sel.level];
+  t.replaceChildren(...TYPES.map(T => {
+    const n = typeCount(lvl, T.key), w = typeWarns(sel.level, T.key);
+    return h('button', {type:'button', class:'tab' + (sel.type === T.key ? ' on' : ''), role:'tab', 'aria-selected': String(sel.type === T.key),
+      onclick(){ flush(); sel.type = T.key; filter = ''; renderAll(); }},
+      T.tab, h('span', {class:'count', title: T.key === 'cloze' ? 'Number of blanks' : ''}, String(n)), w ? h('span', {class:'dot', title: w + ' to check'}) : null);
+  }));
+}
+
+/* ---------- blank IDs ---------- */
+/* IDs are never typed by hand: they always follow the order of the blanks in the passage (af1, af2, ... / fg1, fg2, ...) */
+const ID_PREFIX = {anfaenger:'af', fortgeschritten:'fg'};
+function renumberBlanks(p){
+  for (const k of LEVELS){
+    const segs = isObj(p[k]) ? p[k].cloze : null;
+    if (!Array.isArray(segs)) continue;
+    let n = 0;
+    for (const s of segs) if (isObj(s) && s.b != null) s.b = ID_PREFIX[k] + (++n);
+  }
+}
+
+/* ---------- rendering: main ---------- */
+function renderAll(){
+  const y = window.scrollY;
+  $('#shell').classList.toggle('json-mode', mode === 'json');
+  renderRail(); renderMain(); refreshChrome();
+  document.querySelectorAll('textarea.auto').forEach(autosize);
+  if (pendingFocus){
+    const el = document.querySelector('[data-fk="' + pendingFocus + '"]');
+    if (el){ el.focus(); if (el.dataset.sel && el.select) el.select(); }
+    pendingFocus = null;
+  } else window.scrollTo(0, y);
+}
+function emptyState(title, body, btn){
+  return h('div', {class:'empty'}, h('p', {class:'empty-t'}, title), body ? h('p', {}, body) : null, btn || null);
+}
+function renderMain(){
+  const main = $('#main');
+  if (mode === 'json'){ renderJson(main); return; }
+  main.replaceChildren(
+    h('h2', {class:'level-title'}, sel.level),
+    h('div', {class:'tabs', id:'tabs', role:'tablist'}),
+    h('div', {class:'toolbar', id:'toolbar'}),
+    h('div', {class:'list', id:'list'})
+  );
+  renderTabs(); renderToolbar(); renderList();
+}
+function renderToolbar(){
+  const bar = $('#toolbar');
+  if (sel.type === 'cloze'){ bar.replaceChildren(); bar.hidden = true; return; }
+  bar.hidden = false;
+  const T = TYPES.find(t => t.key === sel.type);
+  bar.replaceChildren(
+    h('input', {type:'search', class:'search', placeholder:'Filter this list', value:filter, 'aria-label':'Filter this list',
+      oninput(e){ filter = e.target.value; renderList(); }}),
+    h('button', {type:'button', class:'primary', onclick: () => addItem(sel.type)}, T.add));
+}
+function listOf(T, create){
+  const l = data[sel.level];
+  if (l[T] === undefined && create) l[T] = [];
+  return l[T];
+}
+function renderList(){
+  const list = $('#list'), T = sel.type, lvl = data[sel.level];
+  if (T === 'cloze'){
+    list.replaceChildren(clozePanel());
+    updateClozePreview(); updateIssues();
+    document.querySelectorAll('textarea.auto').forEach(autosize);
+    return;
+  }
+  const arr = lvl[T];
+  if (arr !== undefined && !Array.isArray(arr)){
+    list.replaceChildren(emptyState('This section is not a list.', 'Fix it in JSON view.')); return;
+  }
+  if (!arr || !arr.length){
+    const name = TYPES.find(t => t.key === T).tab.toLowerCase();
+    list.replaceChildren(emptyState('No ' + name + ' in this level yet.', null,
+      h('button', {type:'button', class:'primary', onclick: () => addItem(T)}, TYPES.find(t => t.key === T).add)));
+    return;
+  }
+  const f = filter.trim().toLowerCase();
+  const cards = [];
+  arr.forEach((it, i) => { if (!f || JSON.stringify(it).toLowerCase().includes(f)) cards.push(card(T, it, i, arr)); });
+  list.replaceChildren(...(cards.length ? cards : [emptyState('Nothing matches “' + filter + '”.')]));
+  document.querySelectorAll('textarea.auto').forEach(autosize);
+}
+const issueLis = list => list.map(x => h('li', {class:x.k}, x.m));
+function updateIssues(){
+  if (mode !== 'form' || sel.level == null) return;
+  const lvl = data[sel.level]; if (!isObj(lvl)) return;
+  if (sel.type === 'cloze'){
+    updateClozePreview();
+    const ul = $('#cloze-issues');
+    if (ul && Array.isArray(lvl.cloze)) ul.replaceChildren(...issueLis(clozeIssues(lvl.cloze)));
+    return;
+  }
+  const a = lvl[sel.type]; if (!Array.isArray(a)) return;
+  document.querySelectorAll('#list .card').forEach(c => {
+    c.querySelector('.issues').replaceChildren(...issueLis(issuesFor(sel.type, a[+c.dataset.i])));
+  });
+}
+
+/* ---------- list items ---------- */
+const itemFk = (T, i) => T + '-' + i + '-' + (T === 'tf' ? 's' : 'q');
+function addItem(T){
+  const a = listOf(T, true);
+  if (!Array.isArray(a)){ toast('This section is not a list — fix it in JSON view.'); return; }
+  filter = ''; a.push(NEW[T]()); commit();
+  pendingFocus = itemFk(T, a.length - 1); renderAll();
+}
+function moveIn(arr, i, d){
+  const j = i + d; if (j < 0 || j >= arr.length) return;
+  [arr[i], arr[j]] = [arr[j], arr[i]]; commit(); renderAll();
+}
+function tool(label, title, fn, disabled){
+  return h('button', {type:'button', class:'tool', title, 'aria-label':title, disabled: disabled ? true : null, onclick: fn}, label);
+}
+function card(T, it, i, arr){
+  if (!isObj(it)) return h('article', {class:'card'}, h('p', {}, 'This entry isn’t an object. Fix it in JSON view.'));
+  const body = T === 'sc' ? scBody(it, i) : T === 'tf' ? tfBody(it, i) : openBody(it, i);
+  return h('article', {class:'card', dataset:{i}},
+    h('div', {class:'card-head'},
+      h('span', {class:'idx'}, String(i + 1)),
+      h('div', {class:'tools'},
+        tool('↑', 'Move up', () => moveIn(arr, i, -1), i === 0),
+        tool('↓', 'Move down', () => moveIn(arr, i, 1), i === arr.length - 1),
+        tool('Duplicate', 'Duplicate', () => { arr.splice(i + 1, 0, clone(it)); commit(); pendingFocus = itemFk(T, i + 1); renderAll(); }),
+        tool('Delete', 'Delete', () => { arr.splice(i, 1); commit(); renderAll(); toast('Deleted item ' + (i + 1) + '.', {undo:true}); }))),
+    body,
+    h('ul', {class:'issues'}, ...issueLis(issuesFor(T, it))));
+}
+function ta(obj, key, o){
+  o = o || {};
+  const v = obj[key];
+  const el = h('textarea', {class:'auto' + (o.serif ? ' serif' : ''), rows:o.rows || 1, placeholder:o.placeholder, spellcheck:true, lang:'de',
+    value: typeof v === 'string' ? v : (v == null ? '' : String(v))});
+  if (o.fk) el.dataset.fk = o.fk;
+  el.addEventListener('input', () => { obj[key] = el.value; autosize(el); touch(); });
+  return el;
+}
+function field(label, control){ return h('div', {class:'field'}, h('span', {class:'lbl'}, label), control); }
+
+function scBody(it, i){
+  const K = 'sc-' + i;
+  if (!Array.isArray(it.opts)) it.opts = [];
+  const opts = it.opts;
+  const rows = opts.map((o, j) => h('div', {class:'opt' + (it.c === j ? ' correct' : '')},
+    h('button', {type:'button', class:'mark', role:'radio', 'aria-checked':String(it.c === j), title:'Mark as the correct answer',
+      'aria-label':'Option ' + letter(j) + (it.c === j ? ' (correct)' : ': mark as correct'),
+      onclick(){ edit(() => { it.c = j; }); }}, it.c === j ? '✓' : letter(j)),
+    h('input', {type:'text', class:'serif', value:String(o), placeholder:'Option ' + letter(j), lang:'de', spellcheck:true, dataset:{fk:K + '-o' + j},
+      oninput(e){ opts[j] = e.target.value; touch(); },
+      onkeydown(e){
+        if (e.key !== 'Enter') return;
+        e.preventDefault();
+        if (j === opts.length - 1) addOpt(it, K);
+        else { const nx = document.querySelector('[data-fk="' + K + '-o' + (j + 1) + '"]'); if (nx) nx.focus(); }
+      }}),
+    tool('Remove', 'Remove option ' + letter(j), () => {
+      edit(() => { opts.splice(j, 1); if (it.c === j) it.c = null; else if (Number.isInteger(it.c) && it.c > j) it.c--; });
+    }, opts.length <= 2)));
+  return [
+    field('Question', ta(it, 'q', {serif:true, fk:K + '-q', placeholder:'Write the question'})),
+    h('div', {class:'field'},
+      h('span', {class:'lbl'}, 'Options — click the letter of the correct one'),
+      h('div', {class:'opts', role:'radiogroup', 'aria-label':'Options'}, rows),
+      h('button', {type:'button', class:'opt-add', onclick: () => addOpt(it, K)}, 'Add option')),
+    explField(it, K)
+  ];
+}
+function addOpt(it, K){ edit(() => { it.opts.push(''); }, K + '-o' + it.opts.length); }
+function tfBody(it, i){
+  const K = 'tf-' + i;
+  const seg = (label, val, cls) => h('button', {type:'button', class:(it.c === val ? 'on ' : '') + cls, role:'radio', 'aria-checked':String(it.c === val),
+    onclick(){ edit(() => { it.c = val; }); }}, label);
+  return [
+    field('Statement', ta(it, 's', {serif:true, fk:K + '-s', placeholder:'Write a statement that is either true or false'})),
+    h('div', {class:'field'}, h('span', {class:'lbl'}, 'The statement is'),
+      h('div', {class:'seg', role:'radiogroup', 'aria-label':'The statement is'}, seg('True', true, 't'), seg('False', false, 'f'))),
+    explField(it, K)
+  ];
+}
+function openBody(it, i){
+  const K = 'open-' + i;
+  return [
+    field('Question', ta(it, 'q', {serif:true, fk:K + '-q', placeholder:'Write the question'})),
+    field('Model answer', ta(it, 'a', {serif:true, rows:3, placeholder:'What a good answer contains'}))
+  ];
+}
+function wrapSel(t, open, close){
+  t.focus();
+  const s = t.selectionStart, e = t.selectionEnd;
+  if (s === e){ t.setRangeText(open + close, s, e, 'end'); t.selectionStart = t.selectionEnd = s + open.length; }
+  else t.setRangeText(open + t.value.slice(s, e) + close, s, e, 'select');
+  t.dispatchEvent(new Event('input'));
+}
+function explField(it, K){
+  const t = ta(it, 'e', {serif:true, fk:K + '-e', rows:2, placeholder:'Why is this correct? Simple HTML such as <strong> works.'});
+  const prev = h('div', {class:'preview', 'aria-label':'Explanation preview'});
+  const upd = () => { const v = typeof it.e === 'string' ? it.e : ''; prev.hidden = !/<[a-z\/]/i.test(v); prev.innerHTML = safeHtml(v); };
+  t.addEventListener('input', upd); upd();
+  const fmt = (label, title, o, c, style) => h('button', {type:'button', class:'fmtbtn', title, 'aria-label':title, style,
+    onmousedown(e){ e.preventDefault(); }, onclick(){ wrapSel(t, o, c); }}, label);
+  return h('div', {class:'field'},
+    h('div', {class:'lbl-row'}, h('span', {class:'lbl'}, 'Explanation'),
+      h('div', {class:'fmt'}, fmt('B', 'Bold selection (<strong>)', '<strong>', '</strong>', 'font-weight:700'), fmt('I', 'Italic selection (<em>)', '<em>', '</em>', 'font-style:italic'))),
+    t, prev);
+}
+
+/* ---------- cloze ---------- */
+function updateClozePreview(){
+  const p = $('#cloze-preview'); if (!p) return;
+  const segs = data[sel.level] && data[sel.level].cloze; if (!Array.isArray(segs)) return;
+  const parts = segs.map(s => {
+    if (!isObj(s)) return '';
+    if (s.b != null){
+      const a = Array.isArray(s.a) ? s.a : [];
+      return h('span', {class:'hole', title: a.length ? 'Accepted: ' + a.join(', ') : 'No answer yet'}, a.length ? String(a[0]) : '…');
+    }
+    return document.createTextNode(s.t == null ? '' : String(s.t));
+  });
+  p.replaceChildren(...(segs.length ? parts : [h('span', {class:'none'}, 'The passage will appear here.')]));
+}
+function clozePanel(){
+  const lvl = data[sel.level];
+  if (lvl.cloze === undefined)
+    return emptyState('This level has no cloze exercise.', 'A cloze is one passage with gaps for learners to fill in.',
+      h('button', {type:'button', class:'primary', onclick: () => edit(() => { lvl.cloze = [{t:''}]; }, 'cz-0')}, 'Create cloze'));
+  if (!Array.isArray(lvl.cloze)) return emptyState('The cloze isn’t a list of segments.', 'Fix it in JSON view.');
+  const segs = lvl.cloze;
+  return h('div', {class:'cloze'},
+    h('p', {class:'intro'}, 'A cloze is one passage, written as text segments and blanks in reading order. Text keeps its leading and trailing spaces exactly as typed.'),
+    h('div', {class:'field'}, h('span', {class:'lbl'}, 'Preview'), h('div', {class:'cloze-preview', id:'cloze-preview'})),
+    h('ul', {class:'issues', id:'cloze-issues'}),
+    h('div', {class:'segs'}, segs.map((s, i) => segRow(segs, s, i))),
+    h('div', {class:'seg-add'},
+      h('button', {type:'button', onclick: () => addSeg('t')}, 'Add text'),
+      h('button', {type:'button', onclick: () => addSeg('b')}, 'Add blank')));
+}
+function addSeg(kind){
+  const segs = data[sel.level].cloze;
+  segs.push(kind === 't' ? {t:''} : {b:'', a:[]});
+  commit(); pendingFocus = 'cz-' + (segs.length - 1); renderAll();
+}
+function makeBlank(segs, i, t){
+  const s = segs[i], v = typeof s.t === 'string' ? s.t : '';
+  const a = t.selectionStart, b = t.selectionEnd;
+  const raw = v.slice(a, b);
+  if (a === b || !raw.trim()){ toast('Select the word to hide in the text first.'); return; }
+  const start = a + raw.match(/^\s*/)[0].length, end = b - raw.match(/\s*$/)[0].length;
+  const before = v.slice(0, start), after = v.slice(end), word = v.slice(start, end);
+  const repl = [];
+  if (before) repl.push({t:before});
+  repl.push({b:'', a:[word]});
+  if (after) repl.push({t:after});
+  segs.splice(i, 1, ...repl); commit(); renderAll();
+}
+function chips(s, fk){
+  if (!Array.isArray(s.a)) s.a = [];
+  const box = h('div', {class:'chips'});
+  const input = h('input', {type:'text', class:'chipin', placeholder:'Type an answer, press Enter', 'aria-label':'Add an accepted answer', lang:'de', dataset:{fk}});
+  const draw = () => {
+    box.replaceChildren(...s.a.map((a, k) => h('span', {class:'chip'}, String(a),
+      h('button', {type:'button', 'aria-label':'Remove ' + a, onclick(){ s.a.splice(k, 1); draw(); touch(); }}, '×'))), input);
+  };
+  const add = () => {
+    const v = input.value.trim(); if (!v) return false;
+    s.a.push(v); input.value = ''; draw(); touch(); return true;
+  };
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ','){ e.preventDefault(); if (add()) input.focus(); }
+    else if (e.key === 'Backspace' && !input.value && s.a.length){ s.a.pop(); draw(); touch(); input.focus(); }
+  });
+  input.addEventListener('blur', add);
+  box.addEventListener('click', e => { if (e.target === box) input.focus(); });
+  draw();
+  return box;
+}
+function segRow(segs, s, i){
+  if (!isObj(s)) return h('div', {class:'seg-row'}, h('span', {class:'kind'}, 'Unknown'), h('p', {}, 'This segment isn’t an object. Fix it in JSON view.'));
+  const n = segs.length;
+  const tools = h('div', {class:'tools'},
+    tool('↑', 'Move up', () => moveIn(segs, i, -1), i === 0),
+    tool('↓', 'Move down', () => moveIn(segs, i, 1), i === n - 1),
+    tool('Delete', 'Delete segment', () => { segs.splice(i, 1); commit(); renderAll(); toast('Segment deleted.', {undo:true}); }));
+  if (s.b != null){
+    const num = segs.slice(0, i + 1).filter(x => isObj(x) && x.b != null).length;
+    return h('div', {class:'seg-row blank'},
+      h('span', {class:'kind'}, 'Blank ' + num),
+      h('div', {class:'seg-body'},
+        h('div', {class:'blank-body'},
+          h('div', {class:'col', style:'flex:1 1 260px;min-width:0'}, h('span', {class:'lbl'}, 'Accepted answers'), chips(s, 'cz-' + i)))),
+      tools);
+  }
+  const t = ta(s, 't', {serif:true, fk:'cz-' + i, placeholder:'Text before, between or after blanks'});
+  return h('div', {class:'seg-row text'},
+    h('span', {class:'kind'}, 'Text'),
+    h('div', {class:'seg-body'}, t,
+      h('button', {type:'button', class:'mini', title:'Select a word above, then click', onclick: () => makeBlank(segs, i, t)}, 'Turn selection into a blank')),
+    tools);
+}
+
+/* ---------- JSON view ---------- */
+function renderJson(main){
+  const original = str(data);
+  const t = h('textarea', {class:'json', spellcheck:false, wrap:'off', 'aria-label':'JSON source', value:original});
+  const status = h('p', {class:'jstatus', role:'status'});
+  const apply = h('button', {type:'button', class:'primary', disabled:true}, 'Apply changes');
+  const revert = h('button', {type:'button', disabled:true}, 'Revert');
+  const check = () => {
+    const changed = t.value !== original;
+    let ok = true;
+    try {
+      const p = JSON.parse(t.value);
+      const err = validateShape(p); if (err) throw new Error(err);
+      status.textContent = changed ? 'Valid JSON. Apply it to use these changes.' : 'In sync with the form view.';
+      status.className = 'jstatus ok';
+    } catch (e){ ok = false; status.textContent = e.message; status.className = 'jstatus bad'; }
+    jsonState = {valid:ok, changed, text:t.value};
+    apply.disabled = !(ok && changed); revert.disabled = !changed;
+  };
+  t.addEventListener('input', check);
+  apply.addEventListener('click', () => { applyNew(JSON.parse(t.value)); toast('JSON applied.', {undo:true}); });
+  revert.addEventListener('click', () => { t.value = original; check(); });
+  main.replaceChildren(h('div', {class:'jbar'}, apply, revert, status), t);
+  check();
+}
+function setMode(m){
+  if (m === mode) return;
+  flush();
+  if (mode === 'json' && jsonState.changed){
+    if (!jsonState.valid){ toast('Fix the JSON errors or revert before leaving JSON view.'); return; }
+    applyNew(JSON.parse(jsonState.text));
+  }
+  mode = m; renderAll();
+}
+
+/* ---------- import / export ---------- */
+function importText(text, name){
+  let p;
+  try { p = JSON.parse(text); } catch (e){ toast('That file isn’t valid JSON: ' + e.message); return; }
+  const err = validateShape(p); if (err){ toast(err); return; }
+  if (name) $('#fname').value = name;
+  applyNew(p); toast('Loaded ' + (name || 'JSON') + '.', {undo:true});
+}
+function fileName(){
+  let v = $('#fname').value.trim() || 'quiz.json';
+  if (!/\.json$/i.test(v)) v += '.json';
+  return v;
+}
+async function download(){
+  flush();
+  const text = str(data), name = fileName();
+  let dl = null;
+  try { dl = window.claude && window.claude.use ? await window.claude.use('downloads') : null; } catch (e){ dl = null; }
+  if (dl){
+    try { await dl.save({filename:name, data:text}); toast('Saved ' + name + '.'); }
+    catch (e){
+      if (e && e.code === 'declined') toast('Download cancelled.');
+      else toast('Couldn’t save the file (' + ((e && e.message) || 'unknown error') + '). Use Copy JSON instead.');
+    }
+    return;
+  }
+  try {
+    const url = URL.createObjectURL(new Blob([text], {type:'application/json'}));
+    const a = h('a', {href:url, download:name}); document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  } catch (e){ toast('Downloads aren’t available here. Use Copy JSON instead.'); }
+}
+async function copyJson(){
+  flush();
+  const text = str(data);
+  try { await navigator.clipboard.writeText(text); toast('JSON copied to the clipboard.'); return; } catch (e){}
+  try {
+    const t = h('textarea', {value:text, style:'position:fixed;opacity:0;top:0'});
+    document.body.append(t); t.select();
+    const ok = document.execCommand('copy'); t.remove();
+    toast(ok ? 'JSON copied to the clipboard.' : 'Copy was blocked. Select the text in JSON view instead.');
+  } catch (e){ toast('Copy was blocked. Select the text in JSON view instead.'); }
+}
+
+/* ---------- boot ---------- */
+function init(){
+  let restored = false; data = null;
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw){ const p = JSON.parse(raw); if (!validateShape(p)){ data = normalize(p); restored = str(data) !== SEED_STR; } }
+  } catch (e){}
+  if (!data) data = clone(seed);
+  snap = str(data); fixSel();
+
+  $('#m-form').addEventListener('click', () => setMode('form'));
+  $('#m-json').addEventListener('click', () => setMode('json'));
+  $('#undo').addEventListener('click', undo);
+  $('#redo').addEventListener('click', redo);
+  $('#import').addEventListener('click', () => $('#file').click());
+  $('#copy').addEventListener('click', copyJson);
+  $('#download').addEventListener('click', download);
+  $('#file').addEventListener('change', e => {
+    const f = e.target.files[0]; if (!f) return;
+    f.text().then(t => importText(t, f.name)); e.target.value = '';
+  });
+  window.addEventListener('dragover', e => e.preventDefault());
+  window.addEventListener('drop', e => {
+    e.preventDefault();
+    const f = e.dataTransfer && e.dataTransfer.files[0];
+    if (f) f.text().then(t => importText(t, f.name));
+  });
+  window.addEventListener('keydown', e => {
+    if (!(e.metaKey || e.ctrlKey)) return;
+    const tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'textarea' || tag === 'input') return;
+    const k = e.key.toLowerCase();
+    if (k === 'z' && !e.shiftKey){ e.preventDefault(); undo(); }
+    else if (k === 'y' || (k === 'z' && e.shiftKey)){ e.preventDefault(); redo(); }
+  });
+
+  renderAll();
+  if (restored) toast('Restored your last unsaved draft. “Reset to original file” starts over.');
+}
+init();
+})();
+</script>
+</body>
+</html>

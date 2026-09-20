@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prüfungssimulator Mitbestimmung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --bg:#F2F5FA; --surface:#FFFFFF; --surface-alt:#E8EEF6;
+    --ink:#172234; --ink-soft:#51617A; --border:#D7E0EC;
+    --blue:#1F4E86; --blue-deep:#123863; --blue-soft:#DEEAF7;
+    --yellow:#D99A1F; --yellow-ink:#7A5310; --yellow-soft:#FBF1DC;
+    --green:#26794F; --green-soft:#E1F3E7;
+    --red:#B94B3C; --red-soft:#F8E4E0;
+    --purple:#6B4FA0; --purple-soft:#EAE3F5;
+    --shadow: 0 1px 2px rgba(23,34,52,.06), 0 8px 24px rgba(23,34,52,.06);
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0E1520; --surface:#16202D; --surface-alt:#1C2836;
+      --ink:#E8EEF7; --ink-soft:#9CADC4; --border:#2A3A4C;
+      --blue:#6FA8E0; --blue-deep:#9DC5EE; --blue-soft:#1C2E42;
+      --yellow:#E8B84E; --yellow-ink:#F3D89A; --yellow-soft:#332912;
+      --green:#55C084; --green-soft:#153826;
+      --red:#E38271; --red-soft:#3A211D;
+      --purple:#B39DDB; --purple-soft:#2A2340;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0E1520; --surface:#16202D; --surface-alt:#1C2836;
+    --ink:#E8EEF7; --ink-soft:#9CADC4; --border:#2A3A4C;
+    --blue:#6FA8E0; --blue-deep:#9DC5EE; --blue-soft:#1C2E42;
+    --yellow:#E8B84E; --yellow-ink:#F3D89A; --yellow-soft:#332912;
+    --green:#55C084; --green-soft:#153826;
+    --red:#E38271; --red-soft:#3A211D;
+    --purple:#B39DDB; --purple-soft:#2A2340;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:'Source Sans 3', ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3,.display{ font-family:'Archivo', ui-sans-serif, system-ui, sans-serif; text-wrap:balance; letter-spacing:-0.01em; }
+  .mono{ font-family:'IBM Plex Mono', ui-monospace, monospace; }
+  button, input, select{ font-family:inherit; }
+  button{ touch-action:manipulation; }
+  :focus-visible{ outline: 2.5px solid var(--blue); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce){ *{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+  .wrap{ max-width: 800px; margin: 0 auto; padding: clamp(20px, 4vw, 48px) 16px 60px; min-height: 100vh; }
+
+  .topbar{ display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:6px 16px; margin-bottom: 24px; }
+  .brand{ display:flex; align-items:baseline; gap:10px; min-width:0; }
+  .brand .mark{ font-size:22px; flex:0 0 auto; }
+  .brand-text{ font-weight:800; font-size: clamp(16px, 4.2vw, 19px); color:var(--blue-deep); }
+  .brand-sub{ font-size:13px; color: var(--ink-soft); white-space:nowrap; }
+  .exit-link{ background:none; border:none; color:var(--ink-soft); font-size:13.5px; font-weight:600; cursor:pointer; padding:10px 0; margin:-10px 0; }
+  .exit-link:hover{ color:var(--ink); }
+  @media (max-width:420px){
+    .topbar{ flex-direction:column; align-items:flex-start; }
+  }
+
+  .hero-title{ font-size: clamp(26px, 5vw, 36px); font-weight:800; color:var(--blue-deep); margin:0 0 8px; }
+  .hero-desc{ color:var(--ink-soft); font-size:16px; line-height:1.55; max-width: 58ch; margin: 0 0 30px; }
+  .section-label{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); margin: 0 0 12px; }
+
+  /* ===== Quiz-Auswahl (Dropdown aus mapping.json) ===== */
+  .quiz-block{ margin-bottom:30px; }
+  .select-wrap{ position:relative; }
+  .select-wrap::after{
+    content:""; position:absolute; right:20px; top:50%; width:8px; height:8px; pointer-events:none;
+    border-right:2.5px solid var(--ink-soft); border-bottom:2.5px solid var(--ink-soft);
+    transform: translateY(-70%) rotate(45deg);
+  }
+  .quiz-select{
+    appearance:none; -webkit-appearance:none; width:100%; min-height:50px;
+    background:var(--surface); color:var(--ink); border:1.5px solid var(--border); border-radius:12px;
+    padding:13px 48px 13px 16px; font-weight:700; font-size:15.5px; cursor:pointer;
+    text-overflow:ellipsis; box-shadow: var(--shadow); transition: border-color .15s;
+  }
+  .quiz-select:hover:not(:disabled){ border-color:var(--blue); }
+  .quiz-select:disabled{ opacity:.6; cursor:not-allowed; }
+  .status{ margin:10px 0 0; border-radius:12px; padding:12px 16px; font-size:14px; line-height:1.5; }
+  .status.loading{ background:var(--surface-alt); color:var(--ink-soft); border:1.5px dashed var(--border); }
+  .status.error{ background:var(--red-soft); color:var(--red); border:1.5px solid color-mix(in srgb, var(--red) 35%, var(--border)); font-weight:600; }
+
+  .pill-row{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:30px; }
+  .pill{
+    background:var(--surface); border:1.5px solid var(--border); border-radius:999px; padding:12px 18px; min-height:44px;
+    font-weight:700; font-size:14.5px; cursor:pointer; color:var(--ink); transition: border-color .15s, background .15s, transform .1s;
+    display:flex; align-items:center; gap:7px;
+  }
+  .pill:hover{ transform: translateY(-1px); border-color:var(--blue); }
+  .pill.active{ background:var(--blue-soft); border-color:var(--blue); color:var(--blue-deep); }
+  .pill.active.fort{ background:var(--purple-soft); border-color:var(--purple); color:var(--purple); }
+
+  .mode-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:14px; margin-bottom:12px; }
+  @media (max-width: 620px){ .mode-grid{ grid-template-columns: 1fr; } }
+  .mode-card{
+    background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:18px 20px;
+    text-align:left; cursor:pointer; display:flex; flex-direction:column; gap:8px; width:100%; color:inherit;
+    transition: border-color .15s, box-shadow .15s, transform .1s; box-shadow: var(--shadow);
+  }
+  .mode-card:hover{ transform: translateY(-2px); border-color:var(--blue); }
+  .mode-card:disabled{ opacity:.5; cursor:not-allowed; transform:none; }
+  .mode-card:disabled:hover{ border-color:var(--border); }
+  .mode-icon{ font-size:26px; }
+  .mode-name{ font-weight:700; font-size:16.5px; color:var(--ink); }
+  .mode-desc{ font-size:13.5px; color:var(--ink-soft); line-height:1.45; }
+  .mode-count{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft); margin-top:2px; min-height:1.2em; }
+
+  .btn{ font-weight:700; font-size:15.5px; border-radius:12px; border:none; cursor:pointer; padding: 14px 22px; min-height:48px; transition: transform .08s, filter .15s, background .15s; }
+  .btn:active{ transform: scale(.98); }
+  .btn-primary{ background:var(--blue); color:#fff; width:100%; }
+  .btn-primary:hover{ filter:brightness(1.08); }
+  .btn-primary:disabled{ opacity:.45; cursor:not-allowed; }
+  .btn-ghost{ background:transparent; color:var(--blue-deep); border:1.5px solid var(--border); }
+  .btn-ghost:hover{ background:var(--surface-alt); }
+
+  .quiz-header{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-bottom:18px; gap:10px 12px; }
+  .score-badge{ font-family:'IBM Plex Mono', monospace; font-size:13px; font-weight:600; display:flex; gap:10px; white-space:nowrap; }
+  .score-badge .ok{ color:var(--green); }
+  .score-badge .no{ color:var(--red); }
+  .progress-track{ height:8px; border-radius:999px; background:var(--surface-alt); overflow:hidden; margin-bottom:8px; }
+  .progress-fill{ height:100%; background:var(--blue); border-radius:999px; transition: width .25s ease; }
+  .progress-caption{ display:flex; justify-content:space-between; font-size:12.5px; color:var(--ink-soft); margin-bottom:22px; }
+
+  .card{ background:var(--surface); border:1.5px solid var(--border); border-radius:18px; padding: clamp(18px, 4vw, 34px); box-shadow: var(--shadow); }
+  .card-tags{ display:flex; align-items:center; flex-wrap:wrap; gap:8px 10px; margin-bottom:18px; }
+  .nr-badge{ font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:13px; background:var(--blue-soft); color:var(--blue-deep); border-radius:8px; padding:4px 10px; }
+  .level-tag{ font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); border:1px solid var(--border); border-radius:8px; padding:3.5px 9px; }
+  .level-tag.anfaenger{ color:var(--blue); border-color: color-mix(in srgb, var(--blue) 40%, var(--border)); background:var(--blue-soft); }
+  .level-tag.fortgeschritten{ color:var(--purple); border-color: color-mix(in srgb, var(--purple) 40%, var(--border)); background:var(--purple-soft); }
+  .type-tag{ font-size:12px; font-weight:600; color:var(--ink-soft); }
+
+  .nav-row{ display:flex; gap:10px; margin-top:22px; }
+  .nav-row .btn-ghost{ flex:0 0 auto; }
+  .nav-row .btn-primary{ flex:1; }
+  .end-actions{ display:flex; gap:10px; margin-top:6px; }
+  @media (max-width:380px){
+    .nav-row{ flex-wrap:wrap; }
+    .nav-row .btn-ghost, .nav-row .btn-primary{ flex:1 1 100%; }
+    .end-actions{ flex-wrap:wrap; }
+    .end-actions .btn{ flex:1 1 100%; }
+  }
+
+  [hidden]{ display:none !important; }
+
+  .question-text{ font-family:'Archivo', sans-serif; font-weight:700; font-size: clamp(19px, 3vw, 22px); line-height:1.42; margin:0 0 20px; }
+
+  /* ===== Single-Choice ===== */
+  .opt-list{ display:flex; flex-direction:column; gap:10px; }
+  .opt-btn{
+    text-align:left; border-radius:12px; border:1.5px solid var(--border); background:var(--surface-alt); padding:14px 16px; min-height:44px;
+    font-weight:600; font-size:14.5px; cursor:pointer; display:flex; align-items:flex-start; gap:10px; line-height:1.4; color:var(--ink);
+    transition: background .15s, border-color .15s;
+  }
+  .opt-btn .opt-letter{ font-family:'IBM Plex Mono',monospace; font-weight:700; color:var(--ink-soft); flex:0 0 auto; }
+  .opt-btn:hover{ border-color:var(--blue); }
+  .opt-btn.picked{ border-color:var(--blue); background:var(--blue-soft); }
+  .opt-btn.graded-correct{ background:var(--green-soft); border-color:var(--green); color:var(--green); }
+  .opt-btn.graded-correct .opt-letter{ color:var(--green); }
+  .opt-btn.graded-wrong{ background:var(--red-soft); border-color:var(--red); color:var(--red); }
+  .opt-btn.graded-wrong .opt-letter{ color:var(--red); }
+  .opt-btn:disabled{ cursor:default; }
+  .check-btn{ width:100%; margin-top:16px; }
+  .verdict{ margin-top:18px; border-radius:14px; padding:16px 20px; animation: slideIn .22s ease; }
+  .verdict.ok{ background:var(--green-soft); border:1.5px solid color-mix(in srgb, var(--green) 35%, var(--border)); }
+  .verdict.no{ background:var(--red-soft); border:1.5px solid color-mix(in srgb, var(--red) 35%, var(--border)); }
+  @keyframes slideIn{ from{ opacity:0; transform: translateY(-6px); } to{ opacity:1; transform: translateY(0); } }
+  .verdict-label{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; margin:0 0 8px; }
+  .verdict.ok .verdict-label{ color:var(--green); }
+  .verdict.no .verdict-label{ color:var(--red); }
+  .explain-text{ font-size:14.5px; line-height:1.6; color:var(--ink); margin:0; }
+
+  /* ===== Offene Aufgaben (reveal) ===== */
+  .reveal-zone{ margin-top:4px; }
+  .reveal-btn{
+    width:100%; background:var(--yellow-soft); color:var(--yellow-ink); border:1.5px dashed var(--yellow); border-radius:14px;
+    padding:16px; font-weight:700; font-size:15px; cursor:pointer; transition: background .15s, transform .08s;
+  }
+  .reveal-btn:hover{ background: color-mix(in srgb, var(--yellow-soft) 70%, var(--yellow) 30%); }
+  .answer-panel{ margin-top:16px; background:var(--green-soft); border:1.5px solid color-mix(in srgb, var(--green) 35%, var(--border)); border-radius:14px; padding:18px 20px; animation: slideIn .22s ease; }
+  .answer-label{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--green); margin:0 0 8px; }
+  .answer-text{ font-size:15px; line-height:1.6; color:var(--ink); margin:0; }
+  .grade-row{ margin-top:16px; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  @media (max-width:440px){ .grade-row{ grid-template-columns:1fr; } }
+  .grade-btn{
+    border-radius:12px; border:1.5px solid var(--border); background:var(--surface); padding:13px; min-height:46px; font-weight:700; font-size:14.5px; color:var(--ink);
+    cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; transition: background .15s, border-color .15s; text-align:center; line-height:1.3;
+  }
+  .grade-btn.right.active{ background:var(--green-soft); border-color:var(--green); color:var(--green); }
+  .grade-btn.wrong.active{ background:var(--red-soft); border-color:var(--red); color:var(--red); }
+
+  /* ===== Richtig/Falsch ===== */
+  .statement-text{ font-family:'Archivo', sans-serif; font-weight:700; font-size: clamp(19px, 3vw, 22px); line-height:1.42; margin:0 0 22px; }
+  .tf-row{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  @media (max-width:360px){ .tf-row{ grid-template-columns:1fr; } }
+  .tf-btn{
+    border-radius:12px; border:1.5px solid var(--border); background:var(--surface-alt); padding:16px; min-height:48px; color:var(--ink);
+    font-weight:700; font-size:15.5px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;
+    transition: background .15s, border-color .15s, transform .08s;
+  }
+  .tf-btn:active{ transform:scale(.98); }
+  .tf-btn.graded-correct{ background:var(--green-soft); border-color:var(--green); color:var(--green); }
+  .tf-btn.graded-incorrect{ background:var(--red-soft); border-color:var(--red); color:var(--red); }
+  .tf-btn:disabled{ cursor:default; }
+
+  /* ===== Lückentext ===== */
+  .cloze-block{ font-size:16.5px; line-height:2.3; margin-bottom:22px; }
+  .blank-input{
+    font-family:'IBM Plex Mono', monospace; font-size:16px; font-weight:600; text-align:center;
+    border:none; border-bottom:2.5px solid var(--blue); background:var(--blue-soft); color:var(--ink);
+    border-radius:6px 6px 0 0; padding:4px 6px; width:9ch; min-width:9ch; max-width:22ch; margin: 2px; vertical-align:middle;
+  }
+  .blank-input.correct{ border-color:var(--green); background:var(--green-soft); }
+  .blank-input.incorrect{ border-color:var(--red); background:var(--red-soft); }
+  .blank-answer{ font-size:12px; font-family:'IBM Plex Mono',monospace; color:var(--green); font-weight:600; }
+  .wordbank{
+    background:var(--surface-alt); border:1.5px dashed var(--border); border-radius:12px; padding:14px 16px; margin-bottom:18px;
+    font-size:14px; line-height:1.9; color:var(--ink-soft);
+  }
+  .wordbank .wb-word{
+    display:inline-block; background:var(--surface); border:1px solid var(--border); border-radius:999px;
+    padding:2px 10px; margin:2px 3px; font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--ink);
+  }
+  .cloze-result{ margin-top:18px; text-align:center; font-weight:700; font-size:15px; color:var(--blue-deep); }
+
+  .result-ring{ width:132px; height:132px; margin: 6px auto 18px; position:relative; }
+  .result-ring svg{ transform: rotate(-90deg); }
+  .result-pct{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; }
+  .result-pct .num{ font-family:'Archivo', sans-serif; font-weight:800; font-size:28px; color:var(--blue-deep); }
+  .result-pct .cap{ font-size:11px; color:var(--ink-soft); font-family:'IBM Plex Mono', monospace; }
+  .result-title{ text-align:center; font-size:22px; margin: 0 0 6px; }
+  .result-sub{ text-align:center; color:var(--ink-soft); font-size:14.5px; margin:0 0 26px; }
+
+  .miss-section{ margin-top:8px; margin-bottom:22px; }
+  .miss-item{ background:var(--surface); border:1.5px solid var(--border); border-radius:12px; padding:12px 14px; margin-bottom:8px; font-size:13.5px; }
+  .miss-item .miss-q{ font-weight:700; margin:0 0 4px; }
+  .miss-item .miss-a{ color:var(--ink-soft); margin:0; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ================= START ================= -->
+  <section id="screen-start">
+    <div class="topbar">
+      <div class="brand">
+        <span class="mark">📝</span>
+        <span class="brand-text">Prüfungssimulator Mitbestimmung</span>
+      </div>
+      <span class="brand-sub mono">WBL · 3. Lehrjahr</span>
+    </div>
+
+    <h1 class="hero-title">Fit für die Klassenarbeit</h1>
+    <p class="hero-desc">Übe im Format der echten Klassenarbeit: Single-Choice, offene Aufgaben, Richtig/Falsch und Lückentext. Wähle zuerst dein Quiz und Niveau, dann eine Übungsform.</p>
+
+    <div class="quiz-block">
+      <label class="section-label" for="quiz-select" style="display:block;">Quiz</label>
+      <div class="select-wrap">
+        <select class="quiz-select" id="quiz-select" disabled>
+          <option>Quizliste wird geladen …</option>
+        </select>
+      </div>
+      <div class="status loading" id="load-status" role="status" aria-live="polite" hidden></div>
+    </div>
+
+    <p class="section-label">Anforderungsniveau</p>
+    <div class="pill-row" id="level-row">
+      <button class="pill" data-level="anfaenger">🔵 Anfänger</button>
+      <button class="pill" data-level="fortgeschritten">🟣 Fortgeschritten</button>
+      <button class="pill active" data-level="gemischt">🔀 Gemischt</button>
+    </div>
+
+    <p class="section-label">Übungsform wählen</p>
+    <div class="mode-grid">
+      <button class="mode-card" data-mode="sc" disabled>
+        <span class="mode-icon">☑️</span>
+        <span class="mode-name">Single-Choice-Quiz</span>
+        <span class="mode-desc">Wie im echten Prüfungsteil: eine richtige Antwort aus mehreren Optionen wählen.</span>
+        <span class="mode-count mono" id="count-sc"></span>
+      </button>
+      <button class="mode-card" data-mode="open" disabled>
+        <span class="mode-icon">✏️</span>
+        <span class="mode-name">Offene Aufgaben</span>
+        <span class="mode-desc">Frage frei beantworten, dann Musterlösung aufdecken und selbst bewerten.</span>
+        <span class="mode-count mono" id="count-open"></span>
+      </button>
+      <button class="mode-card" data-mode="tf" disabled>
+        <span class="mode-icon">✓✗</span>
+        <span class="mode-name">Richtig oder Falsch</span>
+        <span class="mode-desc">Aussagen bewerten und direkt die Begründung lesen.</span>
+        <span class="mode-count mono" id="count-tf"></span>
+      </button>
+      <button class="mode-card" data-mode="cloze" disabled>
+        <span class="mode-icon">📝</span>
+        <span class="mode-name">Lückentext</span>
+        <span class="mode-desc">Zusammenfassenden Fließtext mit Fachbegriffen vervollständigen.</span>
+        <span class="mode-count mono" id="count-cloze"></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ================= QUIZ (SC + OPEN + TF, unified linear flow) ================= -->
+  <section id="screen-quiz" hidden>
+    <div class="quiz-header">
+      <button class="exit-link" data-exit>← Zur Auswahl</button>
+      <span class="score-badge mono"><span class="ok">✓ <span id="q-ok">0</span></span><span class="no">✗ <span id="q-no">0</span></span></span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="q-progress" style="width:0%"></div></div>
+    <div class="progress-caption"><span id="q-caption-left">Aufgabe 1 von 20</span><span id="q-caption-right" class="mono"></span></div>
+    <div class="card">
+      <div class="card-tags">
+        <span class="nr-badge" id="q-nr">Nr. 1</span>
+        <span class="level-tag" id="q-level">Anfänger</span>
+        <span class="type-tag mono" id="q-type">Single-Choice</span>
+      </div>
+      <p class="question-text" id="q-text" hidden></p>
+      <p class="statement-text" id="q-statement" hidden></p>
+
+      <!-- Single-Choice -->
+      <div id="sc-block">
+        <div class="opt-list" id="sc-opts"></div>
+        <button class="btn btn-primary check-btn" id="sc-check" disabled>Prüfen</button>
+        <div class="verdict" id="sc-verdict" hidden>
+          <p class="verdict-label" id="sc-verdict-label"></p>
+          <p class="explain-text" id="sc-explain"></p>
+        </div>
+      </div>
+
+      <!-- Offene Aufgabe -->
+      <div id="open-block" hidden>
+        <div class="reveal-zone">
+          <button class="reveal-btn" id="open-reveal">🔒 Musterlösung aufdecken</button>
+          <div class="answer-panel" id="open-answer-panel" hidden>
+            <p class="answer-label">Musterlösung</p>
+            <p class="answer-text" id="open-answer-text"></p>
+            <div class="grade-row">
+              <button class="grade-btn right" id="open-grade-right">✓ Richtig beantwortet</button>
+              <button class="grade-btn wrong" id="open-grade-wrong">✗ Falsch beantwortet</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Richtig/Falsch -->
+      <div id="tf-block" hidden>
+        <div class="tf-row">
+          <button class="tf-btn" id="tf-true">✓ Richtig</button>
+          <button class="tf-btn" id="tf-false">✗ Falsch</button>
+        </div>
+        <div class="verdict" id="tf-verdict" hidden>
+          <p class="verdict-label" id="tf-verdict-label"></p>
+          <p class="explain-text" id="tf-explain"></p>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn btn-ghost" id="q-back">← Zurück</button>
+        <button class="btn btn-primary" id="q-next" disabled>Weiter →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LÜCKENTEXT ================= -->
+  <section id="screen-cloze" hidden>
+    <div class="quiz-header">
+      <button class="exit-link" data-exit>← Zur Auswahl</button>
+      <button class="btn btn-ghost" id="cloze-wb-toggle" style="padding:8px 14px;font-size:13px;">Wortliste anzeigen</button>
+    </div>
+    <div class="card">
+      <div class="card-tags"><span class="level-tag" id="cloze-level">Anfänger</span></div>
+      <div class="wordbank" id="cloze-wordbank" hidden></div>
+      <div class="cloze-block" id="cloze-text"></div>
+      <button class="btn btn-primary" id="cloze-check">Prüfen</button>
+      <p class="cloze-result" id="cloze-result" hidden></p>
+    </div>
+  </section>
+
+  <!-- ================= END ================= -->
+  <section id="screen-end" hidden>
+    <div class="topbar">
+      <div class="brand"><span class="mark">📝</span><span class="brand-text">Prüfungssimulator Mitbestimmung</span></div>
+    </div>
+    <div class="result-ring">
+      <svg width="132" height="132" viewBox="0 0 132 132">
+        <circle cx="66" cy="66" r="56" fill="none" stroke="var(--surface-alt)" stroke-width="12"/>
+        <circle id="result-circle" cx="66" cy="66" r="56" fill="none" stroke="var(--blue)" stroke-width="12" stroke-linecap="round" stroke-dasharray="352" stroke-dashoffset="352"/>
+      </svg>
+      <div class="result-pct"><span class="num" id="result-num">0%</span><span class="cap">RICHTIG</span></div>
+    </div>
+    <h2 class="result-title" id="result-title">Runde abgeschlossen</h2>
+    <p class="result-sub" id="result-sub">0 von 0 richtig beantwortet</p>
+
+    <div id="miss-section" class="miss-section" hidden>
+      <p class="section-label">Das solltest du dir noch einmal ansehen</p>
+      <div id="miss-list"></div>
+    </div>
+
+    <div class="end-actions">
+      <button class="btn btn-ghost" id="retry-missed-btn" style="flex:1;" hidden>Falsche Aufgaben üben</button>
+      <button class="btn btn-primary" id="restart-btn" style="flex:1;">Zur Auswahl</button>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ------------------------------------------------------------------
+     Datenquelle
+     mapping.json liegt im selben Verzeichnis wie diese Seite und hat die Form:
+       [ { "label": "WBL Stufe 3 Betriebsrat", "file": "betriebsrat.json" }, ... ]
+     "file" ist relativ zu dieser Seite (also ebenfalls im selben Verzeichnis,
+     Unterordner wie "quizzes/xyz.json" gehen auch).
+     ------------------------------------------------------------------ */
+  var MAPPING_URL = 'mapping.json';
+
+  var LETTERS = ['A','B','C','D','E'];
+  var LEVELS = ['anfaenger','fortgeschritten'];
+  var LEVEL_LABEL = { anfaenger: 'Anfänger', fortgeschritten: 'Fortgeschritten' };
+
+  var RAW = {};          // aktuell geladene Quizdaten
+  var POOL = [];         // flache Liste aller sc/open/tf-Aufgaben des aktuellen Quiz
+  var byId = {};
+  var MAPPING = [];      // Einträge aus mapping.json
+  var ready = false;     // true, sobald ein Quiz vollständig geladen ist
+  var loadToken = 0;     // schützt vor Race Conditions bei schnellem Wechseln
+
+  function $(id){ return document.getElementById(id); }
+  function showScreen(id){
+    ['screen-start','screen-quiz','screen-cloze','screen-end'].forEach(function(s){ $(s).hidden = (s !== id); });
+  }
+  function shuffleArr(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){ var j = Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+    return a;
+  }
+  function levelsFor(sel){ return sel === 'gemischt' ? LEVELS.slice() : [sel]; }
+  function lvl(level){ return (RAW && RAW[level]) || {}; }
+
+  /* ---- Laden ---- */
+  function fetchJSON(url){
+    return fetch(url, { cache: 'no-cache' }).then(function(res){
+      if (!res.ok) throw new Error('„' + url + '“ konnte nicht geladen werden (HTTP ' + res.status + ').');
+      return res.json().catch(function(){
+        throw new Error('„' + url + '“ enthält kein gültiges JSON.');
+      });
+    }, function(){
+      throw new Error('„' + url + '“ konnte nicht geladen werden. Läuft die Seite über http(s) und nicht direkt als Datei?');
+    });
+  }
+
+  function setStatus(kind, msg){
+    var el = $('load-status');
+    if (!kind){ el.hidden = true; el.textContent = ''; return; }
+    el.className = 'status ' + kind;
+    el.textContent = msg;
+    el.hidden = false;
+  }
+
+  function applyData(data){
+    if (!data || typeof data !== 'object' || !LEVELS.some(function(l){ return data[l]; })){
+      throw new Error('Das Quiz hat ein unerwartetes Format (erwartet: Objekt mit "anfaenger" und/oder "fortgeschritten").');
+    }
+    RAW = data;
+    POOL = []; byId = {};
+    LEVELS.forEach(function(level){
+      var L = lvl(level);
+      (L.sc || []).forEach(function(it, i){
+        POOL.push({ id: level+'-sc-'+i, level: level, kind:'sc', q: it.q, opts: it.opts, c: it.c, e: it.e });
+      });
+      (L.open || []).forEach(function(it, i){
+        POOL.push({ id: level+'-open-'+i, level: level, kind:'open', q: it.q, a: it.a });
+      });
+      (L.tf || []).forEach(function(it, i){
+        POOL.push({ id: level+'-tf-'+i, level: level, kind:'tf', s: it.s, c: it.c, e: it.e });
+      });
+    });
+    POOL.forEach(function(it){ byId[it.id] = it; });
+    // Zustand des vorherigen Quiz verwerfen (IDs wie "anfaenger-sc-0" wiederholen sich zwischen Quizzen)
+    scPicked = {};
+    qState = { order: [], index: 0, ok:0, no:0, done:{} };
+  }
+
+  function loadQuiz(entry){
+    var token = ++loadToken;
+    ready = false;
+    updateCounts();
+    setStatus('loading', '„' + entry.label + '“ wird geladen …');
+    return fetchJSON(entry.file).then(function(data){
+      if (token !== loadToken) return;
+      applyData(data);
+      ready = true;
+      setStatus(null);
+      updateCounts();
+    }).catch(function(err){
+      if (token !== loadToken) return;
+      ready = false;
+      updateCounts();
+      setStatus('error', err.message);
+    });
+  }
+
+  function initMapping(){
+    updateCounts();
+    fetchJSON(MAPPING_URL).then(function(m){
+      var list = Array.isArray(m) ? m : (m && m.quizzes);
+      MAPPING = (Array.isArray(list) ? list : []).filter(function(e){
+        return e && typeof e.label === 'string' && typeof e.file === 'string' && e.label && e.file;
+      });
+      if (MAPPING.length === 0){
+        throw new Error('„' + MAPPING_URL + '“ enthält keine Quizze. Erwartet wird eine Liste mit Einträgen der Form { "label": "…", "file": "…json" }.');
+      }
+      var sel = $('quiz-select');
+      sel.innerHTML = '';
+      MAPPING.forEach(function(e, i){
+        var o = document.createElement('option');
+        o.value = String(i);
+        o.textContent = e.label;
+        sel.appendChild(o);
+      });
+      sel.disabled = false;
+      sel.selectedIndex = 0;
+      return loadQuiz(MAPPING[0]);
+    }).catch(function(err){
+      var sel = $('quiz-select');
+      sel.innerHTML = '<option>Keine Quizze verfügbar</option>';
+      sel.disabled = true;
+      setStatus('error', err.message);
+    });
+  }
+
+  $('quiz-select').addEventListener('change', function(){
+    var entry = MAPPING[parseInt(this.value, 10)];
+    if (entry) loadQuiz(entry);
+  });
+
+  /* ---- start screen ---- */
+  var curLevel = 'gemischt';
+  document.querySelectorAll('#level-row .pill').forEach(function(p){
+    p.addEventListener('click', function(){
+      document.querySelectorAll('#level-row .pill').forEach(function(x){ x.classList.remove('active','fort'); });
+      curLevel = p.getAttribute('data-level');
+      p.classList.add('active');
+      if (curLevel === 'fortgeschritten') p.classList.add('fort');
+      updateCounts();
+    });
+  });
+
+  function poolFor(kind){
+    var levels = levelsFor(curLevel);
+    return POOL.filter(function(it){ return it.kind === kind && levels.indexOf(it.level) > -1; });
+  }
+  function updateCounts(){
+    var levels = levelsFor(curLevel);
+    var blanks = 0;
+    levels.forEach(function(l){ blanks += (lvl(l).cloze || []).filter(function(s){return 'b' in s;}).length; });
+    var counts = {
+      sc:    { n: poolFor('sc').length,   unit: ' Fragen'   },
+      open:  { n: poolFor('open').length, unit: ' Aufgaben' },
+      tf:    { n: poolFor('tf').length,   unit: ' Aussagen' },
+      cloze: { n: blanks,                 unit: ' Lücken'   }
+    };
+    Object.keys(counts).forEach(function(mode){
+      $('count-' + mode).textContent = ready ? counts[mode].n + counts[mode].unit : '';
+      document.querySelector('.mode-card[data-mode="' + mode + '"]').disabled = !ready || counts[mode].n === 0;
+    });
+  }
+
+  document.querySelectorAll('.mode-card').forEach(function(card){
+    card.addEventListener('click', function(){
+      if (!ready) return;
+      var mode = card.getAttribute('data-mode');
+      if (mode === 'cloze') startCloze();
+      else startLinear(mode);
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-exit]'), function(b){
+    b.addEventListener('click', function(){ showScreen('screen-start'); });
+  });
+  $('restart-btn').addEventListener('click', function(){ showScreen('screen-start'); });
+
+  /* ---- linear quiz state (sc / open / tf share this flow) ---- */
+  var qState = { order: [], index: 0, ok:0, no:0, done:{} };
+  var scPicked = {};
+
+  var clozeChecked = false;
+
+  function startLinear(kind){
+    var items = poolFor(kind);
+    if (items.length === 0) return;
+    qState.order = shuffleArr(items.map(function(i){ return i.id; }));
+    qState.index = 0; qState.ok = 0; qState.no = 0; qState.done = {};
+    scPicked = {};
+    $('q-ok').textContent = 0; $('q-no').textContent = 0;
+    showScreen('screen-quiz');
+    renderQ();
+  }
+
+  function renderQ(){
+    var id = qState.order[qState.index];
+    var item = byId[id];
+    $('q-nr').textContent = 'Nr. ' + (qState.index+1);
+    $('q-level').textContent = LEVEL_LABEL[item.level];
+    $('q-level').className = 'level-tag ' + item.level;
+    $('q-type').textContent = item.kind === 'sc' ? 'Single-Choice' : (item.kind === 'open' ? 'Offene Aufgabe' : 'Richtig/Falsch');
+
+    $('q-text').hidden = item.kind === 'tf';
+    $('q-statement').hidden = item.kind !== 'tf';
+    if (item.kind === 'tf'){ $('q-statement').innerHTML = item.s; }
+    else { $('q-text').innerHTML = item.q; }
+
+    $('sc-block').hidden = item.kind !== 'sc';
+    $('open-block').hidden = item.kind !== 'open';
+    $('tf-block').hidden = item.kind !== 'tf';
+
+    var done = qState.done[id];
+    if (item.kind === 'sc') renderSC(item, done);
+    else if (item.kind === 'open') renderOpen(item, done);
+    else renderTF(item, done);
+
+    $('q-back').style.visibility = qState.index === 0 ? 'hidden' : 'visible';
+    $('q-next').disabled = !done;
+    $('q-next').textContent = qState.index === qState.order.length - 1 ? 'Auswertung →' : 'Weiter →';
+
+    var pct = Math.round(qState.index / qState.order.length * 100);
+    $('q-progress').style.width = pct + '%';
+    $('q-caption-left').textContent = 'Aufgabe ' + (qState.index+1) + ' von ' + qState.order.length;
+    $('q-caption-right').textContent = pct + '%';
+  }
+
+  /* -- Single-Choice -- */
+  function renderSC(item, done){
+    var list = $('sc-opts');
+    list.innerHTML = '';
+    var picked = scPicked[item.id];
+    item.opts.forEach(function(optText, i){
+      var b = document.createElement('button');
+      b.className = 'opt-btn';
+      b.innerHTML = '<span class="opt-letter">' + LETTERS[i] + '</span><span>' + optText + '</span>';
+      if (done){
+        b.disabled = true;
+        if (i === item.c) b.classList.add('graded-correct');
+        else if (i === done.pick) b.classList.add('graded-wrong');
+      } else {
+        if (picked === i) b.classList.add('picked');
+        b.addEventListener('click', function(){
+          scPicked[item.id] = i;
+          renderSC(item, null);
+          $('sc-check').disabled = false;
+        });
+      }
+      list.appendChild(b);
+    });
+    $('sc-check').hidden = !!done;
+    $('sc-check').disabled = (picked === undefined);
+    $('sc-verdict').hidden = !done;
+    if (done){
+      var wasRight = done.pick === item.c;
+      var box = $('sc-verdict');
+      box.className = 'verdict ' + (wasRight ? 'ok' : 'no');
+      $('sc-verdict-label').textContent = wasRight ? '✓ Richtig' : '✗ Nicht richtig';
+      $('sc-explain').innerHTML = item.e;
+    }
+  }
+  $('sc-check').addEventListener('click', function(){
+    var id = qState.order[qState.index];
+    var item = byId[id];
+    var pick = scPicked[id];
+    if (pick === undefined || qState.done[id]) return;
+    var wasRight = pick === item.c;
+    qState.done[id] = { pick: pick };
+    if (wasRight) qState.ok++; else qState.no++;
+    $('q-ok').textContent = qState.ok; $('q-no').textContent = qState.no;
+    renderQ();
+  });
+
+  /* -- Offene Aufgabe -- */
+  function renderOpen(item, done){
+    var revealed = done && done.revealed;
+    $('open-reveal').hidden = !!revealed;
+    $('open-answer-panel').hidden = !revealed;
+    $('open-grade-right').className = 'grade-btn right';
+    $('open-grade-wrong').className = 'grade-btn wrong';
+    if (revealed){
+      $('open-answer-text').textContent = item.a;
+      if (done.grade === 'right') $('open-grade-right').classList.add('active');
+      if (done.grade === 'wrong') $('open-grade-wrong').classList.add('active');
+    }
+  }
+  $('open-reveal').addEventListener('click', function(){
+    var id = qState.order[qState.index];
+    qState.done[id] = qState.done[id] || {};
+    qState.done[id].revealed = true;
+    renderQ();
+  });
+  function gradeOpen(kind){
+    var id = qState.order[qState.index];
+    var d = qState.done[id];
+    if (!d || !d.revealed) return;
+    var prev = d.grade;
+    if (prev === kind) return;
+    if (prev === 'right') qState.ok--;
+    if (prev === 'wrong') qState.no--;
+    d.grade = kind;
+    if (kind === 'right') qState.ok++; else qState.no++;
+    $('q-ok').textContent = qState.ok; $('q-no').textContent = qState.no;
+    renderQ();
+  }
+  $('open-grade-right').addEventListener('click', function(){ gradeOpen('right'); });
+  $('open-grade-wrong').addEventListener('click', function(){ gradeOpen('wrong'); });
+
+  /* -- Richtig/Falsch -- */
+  function renderTF(item, done){
+    var trueBtn = $('tf-true'), falseBtn = $('tf-false');
+    trueBtn.className = 'tf-btn'; falseBtn.className = 'tf-btn';
+    trueBtn.disabled = !!done; falseBtn.disabled = !!done;
+    $('tf-verdict').hidden = !done;
+    if (done){
+      var pick = done.pick;
+      if (item.c){ trueBtn.classList.add('graded-correct'); if (!pick) falseBtn.classList.add('graded-wrong'); }
+      else { falseBtn.classList.add('graded-correct'); if (pick) trueBtn.classList.add('graded-wrong'); }
+      var wasRight = (pick === item.c);
+      var box = $('tf-verdict');
+      box.className = 'verdict ' + (wasRight ? 'ok' : 'no');
+      $('tf-verdict-label').textContent = wasRight ? '✓ Richtig' : '✗ Nicht richtig';
+      $('tf-explain').innerHTML = item.e;
+    }
+  }
+  function answerTF(pick){
+    var id = qState.order[qState.index];
+    if (qState.done[id]) return;
+    var item = byId[id];
+    var wasRight = (pick === item.c);
+    qState.done[id] = { pick: pick };
+    if (wasRight) qState.ok++; else qState.no++;
+    $('q-ok').textContent = qState.ok; $('q-no').textContent = qState.no;
+    renderQ();
+  }
+  $('tf-true').addEventListener('click', function(){ answerTF(true); });
+  $('tf-false').addEventListener('click', function(){ answerTF(false); });
+
+  $('q-back').addEventListener('click', function(){ if (qState.index>0){ qState.index--; renderQ(); } });
+  $('q-next').addEventListener('click', function(){
+    if (qState.index < qState.order.length - 1){ qState.index++; renderQ(); }
+    else finishQuiz();
+  });
+
+  function finishQuiz(){
+    var total = qState.order.length;
+    var ok = qState.ok, no = qState.no;
+    var pct = total ? Math.round(ok/total*100) : 0;
+    var circumference = 2*Math.PI*56;
+    $('result-circle').setAttribute('stroke-dasharray', circumference.toFixed(0));
+    $('result-circle').setAttribute('stroke-dashoffset', (circumference*(1-pct/100)).toFixed(0));
+    $('result-circle').setAttribute('stroke', pct>=80 ? 'var(--green)' : (pct>=50 ? 'var(--yellow)' : 'var(--red)'));
+    $('result-num').textContent = pct + '%';
+    $('result-title').textContent = (pct === 100) ? 'Alles richtig! 🎉' : 'Runde abgeschlossen';
+    $('result-sub').textContent = ok + ' von ' + total + ' richtig beantwortet';
+
+    var missedIds = qState.order.filter(function(id){
+      var d = qState.done[id];
+      if (!d) return false;
+      if (d.pick !== undefined) return d.pick !== byId[id].c;
+      return d.grade === 'wrong';
+    });
+
+    if (missedIds.length === 0){
+      $('miss-section').hidden = true;
+      $('retry-missed-btn').hidden = true;
+    } else {
+      $('miss-section').hidden = false;
+      $('retry-missed-btn').hidden = false;
+      var list = $('miss-list');
+      list.innerHTML = '';
+      missedIds.forEach(function(id){
+        var item = byId[id];
+        var div = document.createElement('div');
+        div.className = 'miss-item';
+        var qText = item.kind === 'tf' ? item.s : item.q;
+        var answerText = item.kind === 'sc' ? item.opts[item.c] : (item.kind === 'open' ? item.a : (item.c ? 'Richtig' : 'Falsch'));
+        div.innerHTML = '<p class="miss-q">' + qText + '</p><p class="miss-a">' + answerText + '</p>';
+        list.appendChild(div);
+      });
+      $('retry-missed-btn').onclick = function(){
+        qState.order = shuffleArr(missedIds);
+        qState.index = 0; qState.ok = 0; qState.no = 0;
+        missedIds.forEach(function(id){ delete qState.done[id]; delete scPicked[id]; });
+        $('q-ok').textContent = 0; $('q-no').textContent = 0;
+        showScreen('screen-quiz');
+        renderQ();
+      };
+    }
+    showScreen('screen-end');
+  }
+
+  /* ---- Lückentext ---- */
+  function startCloze(){
+    var levels = levelsFor(curLevel);
+    clozeChecked = false;
+    showScreen('screen-cloze');
+    $('cloze-level').textContent = levels.length > 1 ? 'Gemischt' : LEVEL_LABEL[levels[0]];
+    $('cloze-level').className = 'level-tag ' + (levels.length > 1 ? '' : levels[0]);
+    var segments = [];
+    levels.forEach(function(level, li){
+      if (li > 0) segments.push({ t: ' ' });
+      segments = segments.concat(lvl(level).cloze || []);
+    });
+    renderCloze('cloze-text', segments);
+    $('cloze-result').hidden = true;
+    var allWords = segments.filter(function(s){return 'b' in s;}).map(function(s){ return s.a[0]; });
+    var wb = $('cloze-wordbank');
+    wb.innerHTML = '<strong style="color:var(--ink);">Wortliste: </strong>' + shuffleArr(allWords).map(function(w){
+      return '<span class="wb-word">' + w + '</span>';
+    }).join('');
+    wb.hidden = true;
+    $('cloze-wb-toggle').textContent = 'Wortliste anzeigen';
+    startCloze._segments = segments;
+  }
+  $('cloze-wb-toggle').addEventListener('click', function(){
+    var wb = $('cloze-wordbank');
+    wb.hidden = !wb.hidden;
+    this.textContent = wb.hidden ? 'Wortliste anzeigen' : 'Wortliste verbergen';
+  });
+
+  function renderCloze(containerId, segments){
+    var el = $(containerId);
+    el.innerHTML = '';
+    segments.forEach(function(seg){
+      if (seg.t !== undefined){
+        el.appendChild(document.createTextNode(seg.t));
+      } else {
+        var inp = document.createElement('input');
+        inp.type = 'text';
+        inp.className = 'blank-input';
+        inp.setAttribute('data-blank', seg.b);
+        inp.setAttribute('aria-label', 'Lücke');
+        inp.autocomplete = 'off';
+        inp.addEventListener('input', function(){
+          this.style.width = Math.min(22, Math.max(9, this.value.length + 1)) + 'ch';
+        });
+        el.appendChild(inp);
+      }
+    });
+  }
+
+  $('cloze-check').addEventListener('click', function(){
+
+    if (clozeChecked) return;
+    clozeChecked = true;
+
+    var segments = startCloze._segments || [];
+    var all = segments.filter(function(s){ return 'b' in s; });
+    var correctCount = 0;
+    all.forEach(function(seg){
+      var inp = document.querySelector('.blank-input[data-blank="' + seg.b + '"]');
+      var val = (inp.value || '').trim().toLowerCase();
+      var ok = seg.a.some(function(acc){ return acc.toLowerCase() === val; });
+      inp.classList.remove('correct','incorrect');
+      if (ok){ inp.classList.add('correct'); correctCount++; }
+      else {
+        inp.classList.add('incorrect');
+        var tip = document.createElement('span');
+        tip.className = 'blank-answer';
+        tip.textContent = ' (' + seg.a[0] + ')';
+        inp.insertAdjacentElement('afterend', tip);
+      }
+    });
+    var res = $('cloze-result');
+    res.hidden = false;
+    res.textContent = correctCount + ' von ' + all.length + ' Lücken richtig ausgefüllt';
+  });
+
+  /* ---- Start ---- */
+  initMapping();
+
+})();
+</script>
+</body>
+</html>
