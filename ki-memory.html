@@ -1,0 +1,539 @@
+<title>KI-Memory</title>
+<meta name="description" content="Digitales Memory zu KI- und Digitalisierungs-Fachbegriffen zum selbstständigen Üben auf dem Smartphone.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+  :root {
+    --bg: #14151a;
+    --surface: #1e2027;
+    --surface-2: #262933;
+    --ink: #f2f1ed;
+    --muted: #9a9ca6;
+    --begriff: #f2994a;
+    --begriff-ink: #2a1706;
+    --erklaerung: #a480d9;
+    --erklaerung-ink: #211230;
+    --match: #4cae7d;
+    --line: rgba(242,241,237,0.10);
+    --shadow: rgba(0,0,0,0.35);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Manrope', system-ui, sans-serif;
+    padding-inline: 16px;
+    padding-block: max(20px, env(safe-area-inset-top, 0px)) max(24px, env(safe-area-inset-bottom, 0px));
+    min-height: 100%;
+  }
+
+  h1, h2 { font-family: 'Fraunces', Georgia, serif; text-wrap: balance; margin: 0; }
+
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  .wrap { max-width: 720px; margin-inline: auto; }
+
+  header.top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding-block: 4px 18px;
+    flex-wrap: wrap;
+  }
+
+  header.top h1 { font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 700; }
+  header.top .eyebrow {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--begriff);
+    margin-bottom: 4px;
+  }
+
+  .legend {
+    display: flex;
+    gap: 14px;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .swatch { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+  .swatch.b { background: var(--begriff); }
+  .swatch.e { background: var(--erklaerung); }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px;
+  }
+
+  .setup { display: flex; flex-direction: column; gap: 16px; margin-bottom: 16px; }
+  .setup p { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
+
+  .modes { display: flex; gap: 8px; flex-wrap: wrap; }
+  .mode-btn {
+    flex: 1 1 auto;
+    min-width: 88px;
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    color: var(--ink);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .mode-btn small { display: block; font-weight: 500; color: var(--muted); font-size: 0.72rem; margin-top: 2px; }
+  .mode-btn.active { border-color: var(--begriff); background: color-mix(in srgb, var(--begriff) 18%, var(--surface-2)); }
+  .mode-btn:focus-visible { outline: 2px solid var(--begriff); outline-offset: 2px; }
+
+  .start-btn {
+    border: none;
+    background: var(--begriff);
+    color: var(--begriff-ink);
+    font: inherit;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 14px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  .start-btn:active { transform: translateY(1px); }
+
+  .hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .hud .stat b { color: var(--ink); font-size: 1rem; font-variant-numeric: tabular-nums; }
+  .hud button.ghost {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  @media (min-width: 560px) {
+    .board { grid-template-columns: repeat(6, 1fr); gap: 10px; }
+  }
+
+  .card {
+    aspect-ratio: 3 / 4;
+    perspective: 800px;
+    cursor: pointer;
+  }
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.45s cubic-bezier(.2,.8,.2,1);
+  }
+  .card.flipped .card-inner, .card.matched .card-inner { transform: rotateY(180deg); }
+
+  .face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .face.back {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+  }
+  .face.back::after {
+    content: "KI";
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    opacity: 0.6;
+  }
+
+  .face.front {
+    transform: rotateY(180deg);
+    font-size: 0.72rem;
+    line-height: 1.28;
+    font-weight: 700;
+  }
+  .face.front.begriff { background: var(--begriff); color: var(--begriff-ink); }
+  .face.front.erklaerung { background: var(--erklaerung); color: var(--erklaerung-ink); font-weight: 600; font-size: 0.62rem; }
+
+  .card.matched .face.front { opacity: 0.55; }
+  .card.matched { cursor: default; }
+
+  .card.wrong .card-inner { animation: shake 0.4s; }
+  @keyframes shake {
+    20% { transform: rotateY(180deg) translateX(-4px); }
+    40% { transform: rotateY(180deg) translateX(4px); }
+    60% { transform: rotateY(180deg) translateX(-3px); }
+    80% { transform: rotateY(180deg) translateX(3px); }
+  }
+
+  .done-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,13,0.82);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 10;
+  }
+  .done-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 28px 24px;
+    text-align: center;
+    max-width: 360px;
+    width: 100%;
+  }
+  .done-card h2 { font-size: 1.5rem; margin-bottom: 6px; }
+  .done-card p { color: var(--muted); margin: 10px 0 20px; font-size: 0.92rem; }
+  .done-stats { display: flex; justify-content: center; gap: 24px; margin-bottom: 20px; }
+  .done-stats div b { display: block; font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; font-variant-numeric: tabular-nums; }
+  .done-stats div span { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .best { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--match); margin-top: -8px; margin-bottom: 18px; }
+
+  footer.hint {
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  [hidden] { display: none !important; }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <span class="eyebrow">Politik/Gesellschaftslehre · Digitalisierung &amp; KI</span>
+      <h1>KI-Memory</h1>
+    </div>
+    <div class="legend">
+      <span><i class="swatch b"></i>Begriff</span>
+      <span><i class="swatch e"></i>Erklärung</span>
+    </div>
+  </header>
+
+  <section id="setup" class="panel setup">
+    <p>Finde die passenden Zweier-Paare: ein <b style="color:var(--begriff)">Begriff</b> und die dazugehörige <b style="color:var(--erklaerung)">Erklärung</b>. Wähle, wie viele Paare du üben willst.</p>
+    <div class="modes" id="modes"></div>
+    <button class="start-btn" id="startBtn">Spiel starten</button>
+  </section>
+
+  <section id="game" hidden>
+    <div class="hud">
+      <span class="stat"><b id="pairsFound">0</b> / <span id="pairsTotal">0</span> Paare</span>
+      <span class="stat"><b id="moves">0</b> Versuche</span>
+      <span class="stat"><b id="timer">00:00</b></span>
+      <button class="ghost" id="restartBtn">Neu mischen</button>
+    </div>
+    <div class="board" id="board"></div>
+  </section>
+
+  <footer class="hint">Tippe zwei Karten an. Passen sie zusammen, bleiben sie aufgedeckt. Alle Begriffe stammen aus eurem KI-Memory-Kartensatz.</footer>
+</div>
+
+<div class="done-overlay" id="doneOverlay" hidden>
+  <div class="done-card">
+    <h2>Geschafft! 🎉</h2>
+    <p>Du hast alle Paare gefunden.</p>
+    <div class="done-stats">
+      <div><b id="doneMoves">0</b><span>Versuche</span></div>
+      <div><b id="doneTime">00:00</b><span>Zeit</span></div>
+    </div>
+    <p class="best" id="bestMsg" hidden></p>
+    <button class="start-btn" id="againBtn">Nochmal spielen</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var PAIRS = [
+    ["Künstliche Intelligenz (KI)", "Die Fähigkeit von Maschinen, Aufgaben zu lösen, für die sonst menschliches Denken nötig ist."],
+    ["LLM (Large Language Model)", "Ein großes KI-Sprachmodell, das menschliche Sprache „versteht“ und selbst Texte erzeugen kann."],
+    ["Chatbot", "Eine Software, die per Text oder Sprache automatisch mit Nutzer/-innen kommuniziert."],
+    ["Generative KI", "KI, die selbstständig neue Inhalte wie Texte, Bilder oder Musik erstellt."],
+    ["Prompting", "Das gezielte Formulieren einer Eingabe, mit der man eine KI steuert."],
+    ["KI-Agent", "Ein Programm, das selbstständig plant, entscheidet und mehrere Schritte zur Zielerreichung ausführt."],
+    ["AI-Companion", "Ein KI-Chatbot, der als virtuelle/-r Freund/-in, Therapeut/-in oder Partner/-in genutzt wird."],
+    ["Multimodale KI", "KI, die mehrere Datenarten wie Text, Bild, Audio und Video gleichzeitig verarbeiten kann."],
+    ["KI-Bias", "Eine Verzerrung der KI durch fehlerhafte, einseitige oder unvollständige Trainingsdaten."],
+    ["Algorithmus", "Eine feste Abfolge von Regeln und Schritten, nach denen ein Computer eine Aufgabe löst."],
+    ["Digital", "In Zahlen bzw. Daten gespeichert oder verarbeitet, z. B. elektronisch am Computer."],
+    ["Analog", "Nicht digital – Werte werden stufenlos dargestellt, z. B. mit Zeigern oder auf Papier."],
+    ["Bildschirmzeit", "Die Zeit, die man täglich vor Handy, PC, Konsole oder Tablet verbringt."],
+    ["Eliza-Effekt", "Die Neigung, einem Chatbot menschliche Gefühle oder Verständnis zuzuschreiben, obwohl er nur Muster erkennt."],
+    ["Slop", "Minderwertiger, massenhaft von KI erzeugter Inhalt ohne echten Nutzen oder Qualität."],
+    ["Data-Center", "Ein Gebäude mit vielen Servern, das KI-Systeme betreibt – braucht viel Strom und Kühlung."]
+  ];
+
+  var MODES = [
+    { key: "leicht", label: "6 Paare", sub: "leicht", n: 6 },
+    { key: "mittel", label: "10 Paare", sub: "mittel", n: 10 },
+    { key: "alle", label: "16 Paare", sub: "alle Begriffe", n: 16 }
+  ];
+
+  var els = {
+    modes: document.getElementById("modes"),
+    startBtn: document.getElementById("startBtn"),
+    setup: document.getElementById("setup"),
+    game: document.getElementById("game"),
+    board: document.getElementById("board"),
+    pairsFound: document.getElementById("pairsFound"),
+    pairsTotal: document.getElementById("pairsTotal"),
+    moves: document.getElementById("moves"),
+    timer: document.getElementById("timer"),
+    restartBtn: document.getElementById("restartBtn"),
+    doneOverlay: document.getElementById("doneOverlay"),
+    doneMoves: document.getElementById("doneMoves"),
+    doneTime: document.getElementById("doneTime"),
+    bestMsg: document.getElementById("bestMsg"),
+    againBtn: document.getElementById("againBtn")
+  };
+
+  var state = {
+    mode: "mittel",
+    cards: [],
+    flipped: [],
+    matchedCount: 0,
+    total: 0,
+    moves: 0,
+    startTime: 0,
+    timerId: null,
+    busy: false
+  };
+
+  function safeGet(key) {
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  }
+  function safeSet(key, val) {
+    try { localStorage.setItem(key, val); } catch (e) { /* ignore */ }
+  }
+
+  function renderModes() {
+    els.modes.innerHTML = "";
+    MODES.forEach(function (m) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "mode-btn" + (m.key === state.mode ? " active" : "");
+      btn.innerHTML = m.label + "<small>" + m.sub + "</small>";
+      btn.addEventListener("click", function () {
+        state.mode = m.key;
+        safeSet("kimemory-mode", m.key);
+        renderModes();
+      });
+      els.modes.appendChild(btn);
+    });
+  }
+
+  function shuffle(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+    }
+    return arr;
+  }
+
+  function pad(n) { return n < 10 ? "0" + n : "" + n; }
+
+  function fmtTime(sec) {
+    return pad(Math.floor(sec / 60)) + ":" + pad(sec % 60);
+  }
+
+  function tick() {
+    var sec = Math.floor((Date.now() - state.startTime) / 1000);
+    els.timer.textContent = fmtTime(sec);
+  }
+
+  function buildDeck(n) {
+    var chosen = shuffle(PAIRS.slice()).slice(0, n);
+    var deck = [];
+    chosen.forEach(function (pair, i) {
+      deck.push({ pairId: i, type: "begriff", text: pair[0] });
+      deck.push({ pairId: i, type: "erklaerung", text: pair[1] });
+    });
+    return shuffle(deck);
+  }
+
+  function startGame() {
+    var mode = MODES.filter(function (m) { return m.key === state.mode; })[0] || MODES[1];
+    state.cards = buildDeck(mode.n);
+    state.flipped = [];
+    state.matchedCount = 0;
+    state.total = mode.n;
+    state.moves = 0;
+    state.busy = false;
+    state.startTime = Date.now();
+
+    els.setup.hidden = true;
+    els.game.hidden = false;
+    els.doneOverlay.hidden = true;
+    els.pairsFound.textContent = "0";
+    els.pairsTotal.textContent = String(mode.n);
+    els.moves.textContent = "0";
+    els.timer.textContent = "00:00";
+
+    renderBoard();
+
+    if (state.timerId) clearInterval(state.timerId);
+    state.timerId = setInterval(tick, 1000);
+  }
+
+  function renderBoard() {
+    els.board.innerHTML = "";
+    state.cards.forEach(function (card, idx) {
+      var el = document.createElement("div");
+      el.className = "card";
+      el.dataset.idx = String(idx);
+      el.setAttribute("role", "button");
+      el.setAttribute("tabindex", "0");
+      el.setAttribute("aria-label", "Karte verdeckt");
+
+      var inner = document.createElement("div");
+      inner.className = "card-inner";
+
+      var back = document.createElement("div");
+      back.className = "face back";
+
+      var front = document.createElement("div");
+      front.className = "face front " + card.type;
+      front.textContent = card.text;
+
+      inner.appendChild(back);
+      inner.appendChild(front);
+      el.appendChild(inner);
+
+      el.addEventListener("click", function () { onCardClick(idx, el); });
+      el.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onCardClick(idx, el); }
+      });
+
+      els.board.appendChild(el);
+    });
+  }
+
+  function onCardClick(idx, el) {
+    if (state.busy) return;
+    if (el.classList.contains("flipped") || el.classList.contains("matched")) return;
+    if (state.flipped.length === 2) return;
+
+    el.classList.add("flipped");
+    state.flipped.push({ idx: idx, el: el });
+
+    if (state.flipped.length === 2) {
+      state.moves++;
+      els.moves.textContent = String(state.moves);
+      state.busy = true;
+      checkMatch();
+    }
+  }
+
+  function checkMatch() {
+    var a = state.flipped[0], b = state.flipped[1];
+    var cardA = state.cards[a.idx], cardB = state.cards[b.idx];
+    var isMatch = cardA.pairId === cardB.pairId && cardA.type !== cardB.type;
+
+    setTimeout(function () {
+      if (isMatch) {
+        a.el.classList.add("matched");
+        b.el.classList.add("matched");
+        a.el.setAttribute("aria-label", "Karte aufgedeckt: " + cardA.text);
+        b.el.setAttribute("aria-label", "Karte aufgedeckt: " + cardB.text);
+        state.matchedCount++;
+        els.pairsFound.textContent = String(state.matchedCount);
+        state.flipped = [];
+        state.busy = false;
+        if (state.matchedCount === state.total) finishGame();
+      } else {
+        a.el.classList.add("wrong");
+        b.el.classList.add("wrong");
+        setTimeout(function () {
+          a.el.classList.remove("flipped", "wrong");
+          b.el.classList.remove("flipped", "wrong");
+          state.flipped = [];
+          state.busy = false;
+        }, 500);
+      }
+    }, 650);
+  }
+
+  function finishGame() {
+    clearInterval(state.timerId);
+    var totalSec = Math.floor((Date.now() - state.startTime) / 1000);
+    els.doneMoves.textContent = String(state.moves);
+    els.doneTime.textContent = fmtTime(totalSec);
+
+    var bestKey = "kimemory-best-" + state.mode;
+    var prevBest = parseInt(safeGet(bestKey) || "0", 10);
+    if (!prevBest || state.moves < prevBest) {
+      safeSet(bestKey, String(state.moves));
+      els.bestMsg.hidden = false;
+      els.bestMsg.textContent = prevBest ? "Neue Bestleistung! Vorher: " + prevBest + " Versuche." : "Erste Bestleistung gespeichert.";
+    } else {
+      els.bestMsg.hidden = false;
+      els.bestMsg.textContent = "Beste Versuche bisher: " + prevBest + ".";
+    }
+
+    setTimeout(function () { els.doneOverlay.hidden = false; }, 300);
+  }
+
+  els.startBtn.addEventListener("click", startGame);
+  els.restartBtn.addEventListener("click", startGame);
+  els.againBtn.addEventListener("click", function () {
+    els.doneOverlay.hidden = true;
+    els.setup.hidden = false;
+    els.game.hidden = true;
+    if (state.timerId) clearInterval(state.timerId);
+  });
+
+  var savedMode = safeGet("kimemory-mode");
+  if (savedMode && MODES.some(function (m) { return m.key === savedMode; })) {
+    state.mode = savedMode;
+  }
+  renderModes();
+
+  function boot() {
+    // page is ready; nothing further needed until Spiel starten
+  }
+  if (window.claude && window.claude.hot && window.claude.hot.ready) {
+    window.claude.hot.ready(boot);
+  } else {
+    boot();
+  }
+})();
+</script>
