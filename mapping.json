@@ -1,5 +1,6 @@
 [
   { "label": "WBL Stufe 3 Betriebsrat", "file": "data.json" },
   { "label": "WBL Stufe 1 Lohnabrechnung und Sozialversicherungen", "file": "Lohnabrechnung.json" },
-  { "label": "KI", "file": "ki.json" }
+  { "label": "KI", "file": "ki.json" },
+  { "label": "WBL 2. Lehrjahr Kostenrechnung", "file": "Kostenrechnung.json" }
 ]

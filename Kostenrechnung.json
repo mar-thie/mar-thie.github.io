@@ -1,0 +1,316 @@
+{
+  "anfaenger": {
+    "sc": [
+      {
+        "q": "Was versteht man unter Einzelkosten?",
+        "opts": [
+          "Kosten, die für alle oder mehrere Produkte gemeinsam anfallen",
+          "Kosten, die einem einzelnen Produkt direkt zugeordnet werden können",
+          "Kosten, die nur einmal im Jahr anfallen",
+          "Kosten, die unabhängig von der Produktionsmenge immer gleich hoch sind"
+        ],
+        "c": 1,
+        "e": "Einzelkosten können einer betrieblichen Leistung (z. B. einem Produkt) direkt zugeordnet werden, weil sie für jedes einzelne Erzeugnis exakt feststellbar sind – man nennt sie daher auch direkte Kosten."
+      },
+      {
+        "q": "Welches der folgenden Beispiele gehört zu den Gemeinkosten?",
+        "opts": [
+          "Fertigungsmaterial",
+          "Fertigungslöhne",
+          "Mietkosten",
+          "Spezialwerkzeug nur für ein Produkt"
+        ],
+        "c": 2,
+        "e": "Mietkosten fallen für den ganzen Betrieb an und lassen sich keinem einzelnen Produkt direkt zurechnen – sie sind Gemeinkosten. Fertigungsmaterial, Fertigungslöhne und Spezialwerkzeug sind Einzelkosten."
+      },
+      {
+        "q": "Woraus setzen sich die Gesamtkosten zusammen?",
+        "opts": [
+          "Einzelkosten + Gewinn",
+          "Gemeinkosten + Mehrwertsteuer",
+          "Einzelkosten + Gemeinkosten",
+          "Fixe Kosten − variable Kosten"
+        ],
+        "c": 2,
+        "e": "Gesamtkosten = Einzelkosten + Gemeinkosten."
+      },
+      {
+        "q": "Welches Hilfsmittel dient als Verteilerschlüssel bei der Kostenstellenrechnung?",
+        "opts": [
+          "Gewinn- und Verlustrechnung (GuV)",
+          "Betriebsabrechnungsbogen (BAB)",
+          "Kostenvoranschlag (KVA)",
+          "Lohnabrechnung"
+        ],
+        "c": 1,
+        "e": "Der Betriebsabrechnungsbogen (BAB) verteilt die Gemeinkosten auf die Kostenstellen."
+      },
+      {
+        "q": "Was bedeutet der Begriff „Skonto“?",
+        "opts": [
+          "Preisnachlass bei großen Abnahmemengen",
+          "Abzug, wenn die Zahlung innerhalb einer bestimmten Frist erfolgt",
+          "Aufschlag für Expresslieferung",
+          "Steuer auf den Nettoverkaufspreis"
+        ],
+        "c": 1,
+        "e": "Skonto ist ein Abzug vom Rechnungsbetrag, wenn innerhalb einer bestimmten Frist gezahlt wird. Ein Preisnachlass z. B. bei großen Abnahmemengen heißt dagegen Rabatt."
+      },
+      {
+        "q": "Welche Frage beantwortet die Kostenstellenrechnung?",
+        "opts": [
+          "Welche Kosten sind entstanden?",
+          "Wo sind die Kosten entstanden?",
+          "Welches Produkt hat die Kosten zu tragen?",
+          "Wie hoch ist der Gewinn?"
+        ],
+        "c": 1,
+        "e": "Kostenstellenrechnung: Wo sind die Kosten entstanden? – Kostenartenrechnung: Welche Kosten sind entstanden? – Kostenträgerrechnung: Welches Produkt bzw. welcher Auftrag hat die Kosten zu tragen?"
+      }
+    ],
+    "open": [
+      {
+        "q": "Was sind Kosten allgemein? (Definition)",
+        "a": "Der in Geld ausgedrückte Einsatz von Rohstoffen, Löhnen, Maschinen, Abschreibungen usw., um etwas zu produzieren (Ausgaben, Investitionen)."
+      },
+      {
+        "q": "Was sind Gemeinkosten?",
+        "a": "Kosten, die der betrieblichen Leistung nicht direkt zugerechnet werden können, da sie für alle oder mehrere Produkte anfallen. Sie werden dem einzelnen Produkt indirekt und prozentual über einen Verteilungsschlüssel zugerechnet."
+      },
+      {
+        "q": "Nenne drei Beispiele für Einzelkosten.",
+        "a": "Z. B. Fertigungslöhne, Fertigungsmaterial, Spezialwerkzeug (nur für das eine Produkt)."
+      },
+      {
+        "q": "Nenne drei Beispiele für Gemeinkosten.",
+        "a": "Z. B. Gehälter der Verwaltung, Mietkosten, Hilfs- und Betriebsstoffe, Abschreibungen, Energiekosten, Kreditkosten, Steuern, Wartungs- und Instandhaltungskosten."
+      },
+      {
+        "q": "Was bedeutet es, einen Preis zu „kalkulieren“?",
+        "a": "Eine verlässliche Grundlage für die Preisgestaltung erstellen (Preisberechnung), z. B. durch Angebotsvergleich und Ermittlung der Selbstkosten."
+      },
+      {
+        "q": "Worin liegt der Unterschied zwischen Selbstkostenpreis und Verkaufspreis?",
+        "a": "Die Selbstkosten sind der Preis für die Produktion. Der Verkaufspreis enthält zusätzlich den Gewinn."
+      }
+    ],
+    "tf": [
+      {
+        "s": "Einzelkosten werden auch als direkte Kosten bezeichnet.",
+        "c": true,
+        "e": "Richtig: Einzelkosten lassen sich einem Produkt <strong>direkt</strong> zuordnen."
+      },
+      {
+        "s": "Verwaltungsgehälter sind Einzelkosten.",
+        "c": false,
+        "e": "Falsch: Gehälter der Verwaltung fallen für alle Produkte an und sind daher <strong>Gemeinkosten</strong>."
+      },
+      {
+        "s": "Rabatt ist ein Preisnachlass, z. B. bei großen Abnahmemengen.",
+        "c": true,
+        "e": "Richtig: Ein <strong>Rabatt</strong> ist ein Preisnachlass, etwa bei großen Abnahmemengen."
+      },
+      {
+        "s": "Der Verkaufspreis ist niedriger als der Selbstkostenpreis.",
+        "c": false,
+        "e": "Falsch: Der Verkaufspreis enthält zusätzlich den <strong>Gewinn</strong> und ist daher höher als die Selbstkosten."
+      },
+      {
+        "s": "Die vier Hauptkostenstellen sind Material-, Fertigungs-, Verwaltungs- und Vertriebsstelle.",
+        "c": true,
+        "e": "Richtig: Das sind die vier <strong>Hauptkostenstellen</strong>."
+      }
+    ],
+    "cloze": [
+      { "t": "Kosten, die einem Produkt direkt zugeordnet werden können, heißen " },
+      { "b": "ka1", "a": ["Einzelkosten"] },
+      { "t": ". Kosten, die für mehrere Produkte anfallen, heißen " },
+      { "b": "ka2", "a": ["Gemeinkosten"] },
+      { "t": ". Beide zusammen ergeben die " },
+      { "b": "ka3", "a": ["Gesamtkosten"] },
+      { "t": ". Die Gemeinkosten werden mit Hilfe des Betriebsabrechnungsbogens, kurz " },
+      { "b": "ka4", "a": ["BAB"] },
+      { "t": ", auf die Kostenstellen verteilt. Ein Abzug bei Zahlung innerhalb einer bestimmten Frist heißt " },
+      { "b": "ka5", "a": ["Skonto"] },
+      { "t": ", ein Preisnachlass bei großen Abnahmemengen heißt " },
+      { "b": "ka6", "a": ["Rabatt"] },
+      { "t": "." }
+    ]
+  },
+  "fortgeschritten": {
+    "sc": [
+      {
+        "q": "Wo wird die Divisionskalkulation hauptsächlich angewendet?",
+        "opts": [
+          "In Betrieben mit vielen verschiedenen Einzelanfertigungen",
+          "Bei einfacher Massenproduktion eines einzigen Erzeugnisses, z. B. in Zementfabriken",
+          "Nur im Handel",
+          "Ausschließlich bei Dienstleistungen"
+        ],
+        "c": 1,
+        "e": "Die Divisionskalkulation wird angewandt, wo nur ein Erzeugnis hergestellt wird, also bei einfacher Massenproduktion wie in Zementfabriken oder Elektrizitätswerken."
+      },
+      {
+        "q": "Was besagt das „Gesetz der industriellen Massenfertigung“?",
+        "opts": [
+          "Bei steigender Produktionsmenge steigen die Stückkosten.",
+          "Bei steigender Produktionsmenge sinken die fixen Kosten pro Stück und damit die Stückkosten.",
+          "Die variablen Kosten bleiben bei jeder Menge gleich.",
+          "Die Gesamtkosten sinken, je mehr produziert wird."
+        ],
+        "c": 1,
+        "e": "Die fixen Kosten verteilen sich auf mehr Stück, daher sinken die Stückkosten (Gesamtkosten geteilt durch Stückzahl)."
+      },
+      {
+        "q": "Welches Beispiel gehört zu den fixen Kosten?",
+        "opts": [
+          "Materialverbrauch",
+          "Energieverbrauch der Produktionsmaschinen",
+          "Miete",
+          "Fertigungsmaterial"
+        ],
+        "c": 2,
+        "e": "Miete fällt unabhängig von der Produktionsmenge in gleicher Höhe an, selbst wenn gar nicht produziert wird – sie ist ein fixer Kostenbestandteil."
+      },
+      {
+        "q": "Wie berechnet man im Kalkulationsschema die Herstellkosten?",
+        "opts": [
+          "Materialkosten + Fertigungskosten",
+          "Fertigungsmaterial + Fertigungslöhne",
+          "Selbstkosten + Gewinn",
+          "Materialkosten + Verwaltungsgemeinkosten"
+        ],
+        "c": 0,
+        "e": "Herstellkosten (7) = Materialkosten (3) + Fertigungskosten (6)."
+      },
+      {
+        "q": "Worauf wird die Mehrwertsteuer im Kalkulationsschema aufgeschlagen?",
+        "opts": [
+          "Auf die Herstellkosten",
+          "Auf die Selbstkosten",
+          "Auf den Nettoverkaufspreis",
+          "Auf den Gewinn"
+        ],
+        "c": 2,
+        "e": "Die Mehrwertsteuer wird auf den Nettoverkaufspreis (12) aufgeschlagen. Das Ergebnis ist der Bruttoverkaufspreis (14)."
+      },
+      {
+        "q": "Handlungssituation: 60 m² Parkett zu 15 €/m², 40 m² Vinyl zu 10 €/m² und sonstiges Material für 100 €. Wie hoch sind die Materialkosten bei 60 % Materialgemeinkosten?",
+        "opts": [
+          "1.400 €",
+          "840 €",
+          "2.240 €",
+          "2.400 €"
+        ],
+        "c": 2,
+        "e": "Fertigungsmaterial: 900 € + 400 € + 100 € = 1.400 €. Materialgemeinkosten: 60 % von 1.400 € = 840 €. Materialkosten: 1.400 € + 840 € = 2.240 €."
+      },
+      {
+        "q": "Handlungssituation: Meister 6 h × 25 €, Geselle 20 h × 15 €, Azubi 20 h × 5 €. Wie hoch sind die Fertigungskosten bei 50 % Fertigungsgemeinkosten?",
+        "opts": [
+          "550 €",
+          "275 €",
+          "825 €",
+          "1.100 €"
+        ],
+        "c": 2,
+        "e": "Fertigungslöhne: 150 € + 300 € + 100 € = 550 €. Fertigungsgemeinkosten: 50 % von 550 € = 275 €. Fertigungskosten: 550 € + 275 € = 825 €."
+      },
+      {
+        "q": "Handlungssituation: Herstellkosten 3.065 €, Verwaltungsgemeinkosten 10 %, Vertriebsgemeinkosten 20 %. Wie hoch sind die Selbstkosten?",
+        "opts": [
+          "3.371,50 €",
+          "3.984,50 €",
+          "3.678,00 €",
+          "4.462,64 €"
+        ],
+        "c": 1,
+        "e": "Verwaltungsgemeinkosten: 10 % von 3.065 € = 306,50 €. Vertriebsgemeinkosten: 20 % von 3.065 € = 613 €. Selbstkosten: 3.065 € + 306,50 € + 613 € = 3.984,50 €."
+      },
+      {
+        "q": "Handlungssituation: Selbstkosten 3.984,50 €, Gewinn 12 %, Mehrwertsteuer 19 %. Wie hoch ist der Bruttoverkaufspreis (Rechnungshöhe)?",
+        "opts": [
+          "4.462,64 €",
+          "4.741,56 €",
+          "5.310,54 €",
+          "5.457,24 €"
+        ],
+        "c": 2,
+        "e": "Gewinn: 12 % von 3.984,50 € = 478,14 €. Nettoverkaufspreis: 4.462,64 €. Mehrwertsteuer: 19 % von 4.462,64 € = 847,90 €. Bruttoverkaufspreis: 4.462,64 € + 847,90 € = 5.310,54 €."
+      }
+    ],
+    "open": [
+      {
+        "q": "Erkläre den Unterschied zwischen fixen und variablen Kosten und nenne jeweils Beispiele.",
+        "a": "Fixe Kosten fallen unabhängig von der Produktionsmenge immer in gleicher Höhe an, selbst wenn überhaupt nicht produziert wird (z. B. Mieten, Leasingraten, Zinsen). Variable Kosten verändern sich gleichmäßig mit der hergestellten Menge: Nimmt die Produktion zu, steigen sie, bei rückläufiger Produktion sinken sie (z. B. Materialverbrauch, Energieverbrauch)."
+      },
+      {
+        "q": "Wie funktioniert die Divisionskalkulation und wo wird sie hauptsächlich angewendet?",
+        "a": "Sie wird dort angewandt, wo nur ein Erzeugnis hergestellt wird, also bei einfacher Massenproduktion (z. B. Zementfabriken, Elektrizitätswerke). Die Kosten eines einzelnen Erzeugnisses erhält man, indem man die Gesamtkosten eines Zeitraums durch die Anzahl der in dieser Zeit hergestellten Produkte teilt."
+      },
+      {
+        "q": "Welche Aufgaben hat die Kostenrechnung allgemein?",
+        "a": "Erfassung aller Kosten; Kostenkalkulation (z. B. Kostenvoranschlag); Planung, ob eine Produktion aufgenommen oder ein Betrieb gekauft wird; Betriebsvergleiche."
+      },
+      {
+        "q": "Ordne die Fragen den Varianten der Kostenrechnung zu: Kostenartenrechnung, Kostenstellenrechnung, Kostenträgerrechnung.",
+        "a": "Kostenartenrechnung: Welche Kosten sind entstanden? Kostenstellenrechnung: Wo sind die Kosten entstanden? Kostenträgerrechnung: Welches Produkt bzw. welcher Auftrag hat die Kosten zu tragen?"
+      },
+      {
+        "q": "Beschreibe den Unterschied zwischen einer einfachen und einer „genauen“ Zuschlagskalkulation.",
+        "a": "Einfache Zuschlagskalkulation: Fertigungskosten + Gemeinkosten. „Genaue“ Zuschlagskalkulation: Fertigungskosten + Gemeinkosten, aber getrennt nach den Hauptkostenstellen Material-, Fertigungs-, Verwaltungs- und Vertriebsstelle."
+      },
+      {
+        "q": "Nenne die Positionen des Kalkulationsschemas der Zuschlagskalkulation in der richtigen Reihenfolge.",
+        "a": "1. Fertigungsmaterial + 2. Materialgemeinkosten = 3. Materialkosten; 4. Fertigungslöhne + 5. Fertigungsgemeinkosten = 6. Fertigungskosten; 3 + 6 = 7. Herstellkosten; + 8. Verwaltungsgemeinkosten + 9. Vertriebsgemeinkosten = 10. Selbstkosten; + 11. Gewinn = 12. Nettoverkaufspreis; + 13. Mehrwertsteuer = 14. Bruttoverkaufspreis."
+      }
+    ],
+    "tf": [
+      {
+        "s": "Fixe Kosten entstehen auch dann, wenn überhaupt nicht produziert wird.",
+        "c": true,
+        "e": "Richtig: <strong>Fixe Kosten</strong> wie Miete oder Zinsen fallen unabhängig von der Produktionsmenge an."
+      },
+      {
+        "s": "Bei steigender Produktionsmenge steigen die fixen Kosten pro Stück.",
+        "c": false,
+        "e": "Falsch: Die fixen Kosten pro Stück <strong>sinken</strong>, weil sie sich auf mehr Einheiten verteilen (Gesetz der industriellen Massenfertigung)."
+      },
+      {
+        "s": "Die Kostenträgerrechnung beantwortet die Frage, welches Produkt bzw. welcher Auftrag die Kosten zu tragen hat.",
+        "c": true,
+        "e": "Richtig: Das ist die Aufgabe der <strong>Kostenträgerrechnung</strong>."
+      },
+      {
+        "s": "Die Selbstkosten ergeben sich aus Herstellkosten + Verwaltungsgemeinkosten + Vertriebsgemeinkosten.",
+        "c": true,
+        "e": "Richtig: <strong>Selbstkosten</strong> (10) = Herstellkosten (7) + Verwaltungsgemeinkosten (8) + Vertriebsgemeinkosten (9)."
+      },
+      {
+        "s": "Der Gewinn wird im Kalkulationsschema auf den Nettoverkaufspreis aufgeschlagen.",
+        "c": false,
+        "e": "Falsch: Der Gewinn wird auf die <strong>Selbstkosten</strong> aufgeschlagen. Das Ergebnis ist der Nettoverkaufspreis."
+      },
+      {
+        "s": "Die Divisionskalkulation eignet sich besonders für Betriebe mit vielen unterschiedlichen Produkten.",
+        "c": false,
+        "e": "Falsch: Die Divisionskalkulation eignet sich für Betriebe, die <strong>nur ein Erzeugnis</strong> in Massenproduktion herstellen."
+      }
+    ],
+    "cloze": [
+      { "t": "Im Kalkulationsschema ergeben Fertigungsmaterial und Materialgemeinkosten zusammen die " },
+      { "b": "kf1", "a": ["Materialkosten"] },
+      { "t": ". Fertigungslöhne und Fertigungsgemeinkosten ergeben die " },
+      { "b": "kf2", "a": ["Fertigungskosten"] },
+      { "t": ". Beide zusammen bilden die " },
+      { "b": "kf3", "a": ["Herstellkosten"] },
+      { "t": ". Addiert man Verwaltungs- und Vertriebsgemeinkosten, erhält man die " },
+      { "b": "kf4", "a": ["Selbstkosten"] },
+      { "t": ". Mit dem Gewinn ergibt sich der " },
+      { "b": "kf5", "a": ["Nettoverkaufspreis"] },
+      { "t": ", und nach Aufschlag der " },
+      { "b": "kf6", "a": ["Mehrwertsteuer", "MwSt", "Umsatzsteuer"] },
+      { "t": " der Bruttoverkaufspreis." }
+    ]
+  }
+}
