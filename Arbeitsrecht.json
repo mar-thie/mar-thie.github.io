@@ -1,0 +1,391 @@
+{
+  "anfaenger": {
+    "sc": [
+      {
+        "q": "Was enthält ein einfaches Arbeitszeugnis?",
+        "opts": [
+          "Nur Art und Dauer der Beschäftigung",
+          "Art und Dauer der Beschäftigung sowie eine Bewertung von Führung, Verhalten und Leistung",
+          "Nur eine Bewertung der Leistung",
+          "Die Höhe des Gehalts und den Kündigungsgrund"
+        ],
+        "c": 0,
+        "e": "Das einfache Arbeitszeugnis enthält nur Art und Dauer der Beschäftigung. Das qualifizierte Arbeitszeugnis bewertet zusätzlich Führung, Verhalten und Leistung (wohlwollend formuliert)."
+      },
+      {
+        "q": "Welche Frage ist in einem Bewerbungsgespräch unzulässig?",
+        "opts": [
+          "Welche Ausbildung haben Sie abgeschlossen?",
+          "Warum möchten Sie bei uns arbeiten?",
+          "Sind Sie schwanger?",
+          "Welche Erfahrungen haben Sie mit dieser Tätigkeit?"
+        ],
+        "c": 2,
+        "e": "Unzulässig sind u. a. Fragen nach Schwangerschaft, Vermögensverhältnissen, Gesundheit allgemein, Vorstrafen sowie nach Religions-, Partei- oder Gewerkschaftszugehörigkeit."
+      },
+      {
+        "q": "In welcher Form kann ein Arbeitsvertrag grundsätzlich abgeschlossen werden?",
+        "opts": [
+          "Nur schriftlich",
+          "Nur notariell beglaubigt",
+          "Schriftlich, mündlich oder durch schlüssiges Verhalten",
+          "Nur mit Zustimmung des Betriebsrats"
+        ],
+        "c": 2,
+        "e": "Es gilt Vertragsfreiheit (Formfreiheit): Ein Arbeitsvertrag kann schriftlich, mündlich oder durch schlüssiges Verhalten (Aufnahme der Tätigkeit) abgeschlossen werden. Ausnahmen sind z. B. der Berufsausbildungsvertrag und der Leiharbeitsvertrag."
+      },
+      {
+        "q": "Welche Pflicht hat der Arbeitgeber?",
+        "opts": [
+          "Gehorsamspflicht",
+          "Schweigepflicht",
+          "Fürsorgepflicht",
+          "Wettbewerbsverbot"
+        ],
+        "c": 2,
+        "e": "Pflichten des Arbeitgebers: Vergütungs-, Beschäftigungs-, Fürsorge- und Zeugnispflicht. Gehorsamspflicht, Schweigepflicht und Wettbewerbsverbot sind Pflichten des Arbeitnehmers."
+      },
+      {
+        "q": "Wofür steht die Abkürzung KSchG?",
+        "opts": [
+          "Kinderschutzgesetz",
+          "Kündigungsschutzgesetz",
+          "Krankenschutzgesetz",
+          "Kurzarbeitsschutzgesetz"
+        ],
+        "c": 1,
+        "e": "KSchG steht für Kündigungsschutzgesetz."
+      },
+      {
+        "q": "Wie lange dauert die tägliche Regelarbeitszeit für Erwachsene (über 18)?",
+        "opts": [
+          "6 Stunden",
+          "8 Stunden",
+          "10 Stunden",
+          "12 Stunden"
+        ],
+        "c": 1,
+        "e": "Die Regelarbeitszeit beträgt 8 Stunden. Sie kann auf 10 Stunden verlängert werden, wenn innerhalb von 6 Monaten der Durchschnitt pro Werktag 8 Stunden beträgt."
+      },
+      {
+        "q": "Wie viele Tage beträgt der gesetzliche Mindesturlaub für Erwachsene pro Jahr?",
+        "opts": [
+          "20 Tage",
+          "24 Tage",
+          "28 Tage",
+          "30 Tage"
+        ],
+        "c": 1,
+        "e": "Der gesetzliche Mindesturlaub beträgt 24 Tage pro Jahr (bezogen auf eine 6-Tage-Woche)."
+      },
+      {
+        "q": "Wie lange muss die Ruhepause für Erwachsene bei einer Arbeitszeit von 6 bis 9 Stunden mindestens sein?",
+        "opts": [
+          "15 Minuten",
+          "30 Minuten",
+          "45 Minuten",
+          "60 Minuten"
+        ],
+        "c": 1,
+        "e": "Bei 6 bis 9 Stunden Arbeitszeit sind 30 Minuten Pause vorgeschrieben, bei mehr als 9 Stunden 45 Minuten."
+      }
+    ],
+    "open": [
+      {
+        "q": "Welche Unterlagen solltest du deiner Bewerbung beifügen?",
+        "a": "Bewerbungsanschreiben, Lebenslauf, letzte Schulzeugnisse, ggf. Arbeitszeugnisse und Zertifikate, Nachweis der Berufsausbildung, ggf. Europapass (bei Bewerbung im Ausland)."
+      },
+      {
+        "q": "Was ist der Unterschied zwischen einem einfachen und einem qualifizierten Arbeitszeugnis?",
+        "a": "Das einfache Arbeitszeugnis enthält nur Art und Dauer der Beschäftigung. Das qualifizierte Arbeitszeugnis enthält zusätzlich eine (wohlwollend formulierte) Bewertung von Führung, Verhalten und Leistung."
+      },
+      {
+        "q": "Nenne drei Fragen, die in einem Bewerbungsgespräch unzulässig sind.",
+        "a": "Z. B. Fragen zu Vermögensverhältnissen, zur Gesundheit allgemein, nach Vorstrafen, nach Religions-, Partei- oder Gewerkschaftszugehörigkeit sowie nach einer Schwangerschaft."
+      },
+      {
+        "q": "Welche Pflichten hat der Arbeitnehmer nach Abschluss des Arbeitsvertrags?",
+        "a": "Arbeitspflicht, Gehorsamspflicht, Sorgfaltspflicht, Schweigepflicht und Wettbewerbsverbot."
+      },
+      {
+        "q": "Welche drei Möglichkeiten gibt es, ein Arbeitsverhältnis zu beenden?",
+        "a": "Zeitablauf (Ende eines befristeten Arbeitsverhältnisses), Aufhebungsvertrag (Beendigung im gegenseitigen Einvernehmen, häufig mit Abfindung – ggf. eingeschränkter Anspruch auf Arbeitslosengeld) und Kündigung durch einen Vertragspartner."
+      },
+      {
+        "q": "Welche Regeln gelten, wenn du dich auf eine Stelle im Ausland bewirbst?",
+        "a": "EU-Staatsangehörige genießen Freizügigkeit und können überall in der EU arbeiten. Außerhalb der EU ist eine Arbeitserlaubnis notwendig."
+      },
+      {
+        "q": "Welche Personengruppen haben einen besonderen Kündigungsschutz?",
+        "a": "Auszubildende, Schwerbehinderte, Schwangere sowie Betriebsrats- und JAV-Mitglieder."
+      }
+    ],
+    "tf": [
+      {
+        "s": "Ein Arbeitsvertrag kann auch dadurch zustande kommen, dass man die Arbeit einfach aufnimmt.",
+        "c": true,
+        "e": "Richtig: Ein Arbeitsvertrag kann auch durch <strong>schlüssiges Verhalten</strong> abgeschlossen werden."
+      },
+      {
+        "s": "Die Frage nach der Religionszugehörigkeit ist im Bewerbungsgespräch zulässig.",
+        "c": false,
+        "e": "Falsch: Fragen nach <strong>Religions-, Partei- oder Gewerkschaftszugehörigkeit</strong> sind unzulässig."
+      },
+      {
+        "s": "Die Zeugnispflicht ist eine Pflicht des Arbeitgebers.",
+        "c": true,
+        "e": "Richtig: Der <strong>Arbeitgeber</strong> muss ein Arbeitszeugnis ausstellen."
+      },
+      {
+        "s": "Arbeit an Sonntagen und gesetzlichen Feiertagen ist in der Regel verboten.",
+        "c": true,
+        "e": "Richtig: In der Regel ist Arbeit an <strong>Sonn- und Feiertagen</strong> verboten. Ausnahmen gelten z. B. für Bäckereien, Gastronomie, Verkehrsbetriebe und Krankenhäuser."
+      },
+      {
+        "s": "EU-Bürger brauchen für eine Arbeitsstelle in einem anderen EU-Land eine Arbeitserlaubnis.",
+        "c": false,
+        "e": "Falsch: EU-Staatsangehörige genießen <strong>Freizügigkeit</strong>. Eine Arbeitserlaubnis ist nur außerhalb der EU nötig."
+      },
+      {
+        "s": "Die gesetzliche Höchstarbeitszeit pro Woche beträgt 48 Stunden.",
+        "c": true,
+        "e": "Richtig: <strong>48 Stunden</strong> (6 Werktage × 8 Stunden)."
+      }
+    ],
+    "cloze": [
+      { "t": "Die tägliche Regelarbeitszeit für Erwachsene beträgt " },
+      { "b": "aa1", "a": ["8", "acht", "8 Stunden"] },
+      { "t": " Stunden. Bei 6 bis 9 Stunden Arbeit steht ihnen eine Pause von " },
+      { "b": "aa2", "a": ["30", "dreißig", "30 Minuten"] },
+      { "t": " Minuten zu. Der gesetzliche Mindesturlaub beträgt " },
+      { "b": "aa3", "a": ["24", "vierundzwanzig", "24 Tage"] },
+      { "t": " Tage pro Jahr. Ein Arbeitszeugnis, das auch Führung, Verhalten und Leistung bewertet, heißt " },
+      { "b": "aa4", "a": ["qualifiziertes", "qualifiziert"] },
+      { "t": " Arbeitszeugnis. Eine Beendigung des Arbeitsverhältnisses im gegenseitigen Einvernehmen nennt man " },
+      { "b": "aa5", "a": ["Aufhebungsvertrag"] },
+      { "t": "." }
+    ]
+  },
+  "fortgeschritten": {
+    "sc": [
+      {
+        "q": "Welche Kündigungsfrist gilt bei einer ordentlichen Kündigung grundsätzlich?",
+        "opts": [
+          "2 Wochen zum Monatsende",
+          "4 Wochen zum 15. oder zum Monatsende",
+          "3 Monate zum Quartalsende",
+          "6 Wochen zum Monatsende"
+        ],
+        "c": 1,
+        "e": "Die Grundkündigungsfrist beträgt 4 Wochen zum 15. oder zum Monatsende. Kündigt der Arbeitgeber, verlängert sie sich mit der Dauer der Betriebszugehörigkeit."
+      },
+      {
+        "q": "Johann arbeitet seit elf Jahren im Unternehmen. Welche Kündigungsfrist gilt, wenn der Chef ihm kündigen will?",
+        "opts": [
+          "1 Monat zum Monatsende",
+          "3 Monate zum Monatsende",
+          "4 Monate zum Monatsende",
+          "6 Monate zum Monatsende"
+        ],
+        "c": 2,
+        "e": "Ab 10 Jahren Betriebszugehörigkeit beträgt die Kündigungsfrist für den Arbeitgeber 4 Monate zum Monatsende (ab 12 Jahren wären es 5 Monate)."
+      },
+      {
+        "q": "Wie lange beträgt die Kündigungsfrist in der Probezeit?",
+        "opts": [
+          "1 Woche",
+          "2 Wochen",
+          "4 Wochen",
+          "Es gibt keine Kündigungsfrist"
+        ],
+        "c": 1,
+        "e": "In der Probezeit gilt für beide Seiten eine Kündigungsfrist von 2 Wochen."
+      },
+      {
+        "q": "Innerhalb welcher Frist muss eine außerordentliche (fristlose) Kündigung nach Bekanntwerden des Kündigungsgrundes erfolgen?",
+        "opts": [
+          "Innerhalb von 3 Tagen",
+          "Innerhalb von 2 Wochen",
+          "Innerhalb von 4 Wochen",
+          "Innerhalb von 3 Monaten"
+        ],
+        "c": 1,
+        "e": "Der Kündigungsgrund darf nicht länger als 2 Wochen zurückliegen."
+      },
+      {
+        "q": "Innerhalb welcher Frist muss ein Arbeitnehmer Klage beim Arbeitsgericht erheben, wenn er seine Kündigung für ungerechtfertigt hält?",
+        "opts": [
+          "1 Woche",
+          "2 Wochen",
+          "3 Wochen",
+          "8 Wochen"
+        ],
+        "c": 2,
+        "e": "Die Kündigungsschutzklage muss innerhalb von 3 Wochen nach Zugang der schriftlichen Kündigung erhoben werden. Innerhalb von 2 Wochen soll ein Gütetermin stattfinden, scheitert dieser, soll innerhalb von 8 Wochen der Prozess beginnen."
+      },
+      {
+        "q": "In einem Arbeitszeugnis steht: „…hat die übertragenen Arbeiten zu unserer Zufriedenheit erledigt.“ Welcher Schulnote entspricht das?",
+        "opts": [
+          "Sehr gut (1)",
+          "Gut (2)",
+          "Befriedigend (3)",
+          "Ausreichend (4)"
+        ],
+        "c": 3,
+        "e": "„Zu unserer Zufriedenheit“ entspricht der Note ausreichend (4)."
+      },
+      {
+        "q": "Wie oft darf ein befristeter Arbeitsvertrag höchstens verlängert werden und wie lang darf die Gesamtlaufzeit sein?",
+        "opts": [
+          "1 Mal, höchstens 1 Jahr",
+          "3 Mal, höchstens 2 Jahre",
+          "5 Mal, höchstens 3 Jahre",
+          "Beliebig oft, höchstens 5 Jahre"
+        ],
+        "c": 1,
+        "e": "Eine Befristung darf maximal 3 Mal verlängert werden, die Gesamtlaufzeit von 2 Jahren darf nicht überschritten werden (bei Existenzgründern 4 Jahre)."
+      },
+      {
+        "q": "Für wen gilt das Jugendarbeitsschutzgesetz (JArbSchG)?",
+        "opts": [
+          "Für 13- bis 15-Jährige",
+          "Für 15- bis 17-Jährige",
+          "Für 16- bis 21-Jährige",
+          "Für alle Auszubildenden unabhängig vom Alter"
+        ],
+        "c": 1,
+        "e": "Das JArbSchG gilt für 15- bis 17-Jährige. Unter 15 gilt man als Kind – Kinderarbeit ist verboten (Ausnahmen für leichte Tätigkeiten ab 13 Jahren)."
+      },
+      {
+        "q": "Wie lange muss die Ruhezeit zwischen zwei Arbeitstagen für Jugendliche (unter 18) mindestens sein?",
+        "opts": [
+          "8 Stunden",
+          "10 Stunden",
+          "11 Stunden",
+          "12 Stunden"
+        ],
+        "c": 3,
+        "e": "Jugendliche: mindestens 12 Stunden. Erwachsene: mindestens 11 Stunden."
+      },
+      {
+        "q": "Wie lange dauert das Beschäftigungsverbot für Mütter nach der Entbindung?",
+        "opts": [
+          "4 Wochen",
+          "6 Wochen",
+          "8 Wochen",
+          "12 Wochen"
+        ],
+        "c": 2,
+        "e": "Nach der Entbindung besteht ein zwingendes Beschäftigungsverbot von 8 Wochen. Vor der Entbindung gilt eine Schutzfrist von 6 Wochen, in der die Frau auf eigenen Wunsch weiterarbeiten kann."
+      },
+      {
+        "q": "Wie viele Monate Elterngeld können Eltern insgesamt beziehen, wenn sie sich die Monate aufteilen?",
+        "opts": [
+          "12 Monate",
+          "14 Monate",
+          "24 Monate",
+          "36 Monate"
+        ],
+        "c": 1,
+        "e": "Teilen sich beide Elternteile die Monate auf, kann insgesamt 14 Monate Basiselterngeld bezogen werden. Ein Elternteil allein kann mindestens 2 und maximal 12 Monate beziehen."
+      }
+    ],
+    "open": [
+      {
+        "q": "Unterscheide die ordentliche von der außerordentlichen Kündigung.",
+        "a": "Ordentliche Kündigung: endet nach Ablauf der Kündigungsfrist (grundsätzlich 4 Wochen zum 15. oder zum Monatsende, bei Kündigung durch den Arbeitgeber je nach Betriebszugehörigkeit länger). Außerordentliche (fristlose) Kündigung: nur bei wichtigem Grund (z. B. Diebstahl, Arbeitsverweigerung, Beleidigung, Tätlichkeiten, Vorenthaltung des Lohnes, vorsätzliche Sachbeschädigung), wenn der kündigenden Partei die Fortsetzung des Arbeitsverhältnisses nicht mehr zumutbar ist. Der Kündigungsgrund darf nicht länger als 2 Wochen zurückliegen."
+      },
+      {
+        "q": "Nenne die drei Kategorien von Kündigungsgründen bei einer fristgerechten Kündigung mit je einem Beispiel.",
+        "a": "Personenbedingt (in der Person): z. B. unzureichende Arbeitsleistung, Krankheit, unzureichende Belastbarkeit. Verhaltensbedingt (im Verhalten, vorherige Abmahnung nötig): z. B. Straftaten, Beleidigungen, Arbeitsverweigerung, häufige Unpünktlichkeit, Mobbing. Betriebsbedingt (betriebliche Erfordernisse): z. B. schlechte Auftragslage, Betriebsänderungen, neue Produktionsmethoden, Rationalisierung."
+      },
+      {
+        "q": "Was muss ein Arbeitnehmer tun, wenn er eine Kündigung für ungerechtfertigt hält, und wie läuft das Verfahren ab?",
+        "a": "Er muss innerhalb von 3 Wochen nach Zugang der schriftlichen Kündigung Klage beim Arbeitsgericht erheben (Feststellung, dass das Arbeitsverhältnis nicht aufgelöst ist). Innerhalb von 2 Wochen soll ein Gütetermin stattfinden, der zu einem Vergleich führen soll. Klappt das nicht, soll innerhalb von 8 Wochen der Prozess beginnen."
+      },
+      {
+        "q": "Was regelt das Nachweisgesetz und welche Inhalte muss der Arbeitgeber schriftlich nachreichen?",
+        "a": "Der Arbeitgeber muss innerhalb eines Monats nach Arbeitsbeginn die wesentlichen Vertragsinhalte schriftlich nachreichen: Name und Anschrift der Vertragspartner, Beginn (bei Befristung auch Ende), Arbeitsort, Beschreibung der Arbeit, Höhe und Zusammensetzung des Arbeitsentgelts, Arbeitszeit, Dauer des Jahresurlaubs, Kündigungsfristen, Hinweise auf Tarifverträge und Betriebsvereinbarungen."
+      },
+      {
+        "q": "Welche Besonderheiten gelten bei einem befristeten Arbeitsvertrag?",
+        "a": "Ist bei Arbeitsbeginn kein schriftlicher Vertrag abgeschlossen worden, gilt er als unbefristet. Befristungen sind z. B. aus sachlichem Grund möglich (Vertretung bei Krankheit oder Elternzeit, Saisonarbeit, Aushilfe, Probe nach Ausbildungsabschluss). Eine Befristung darf maximal 3 Mal verlängert werden, die Gesamtlaufzeit darf 2 Jahre nicht überschreiten (bei Existenzgründern 4 Jahre)."
+      },
+      {
+        "q": "Welche Regelungen muss der Arbeitgeber bei der Bewerberauswahl beachten?",
+        "a": "Diskriminierungsverbot (bei gleicher Qualifikation darf weder Geschlecht, ethnische Herkunft, Religion, Weltanschauung, Behinderung, Alter noch sexuelle Identität ein Ablehnungsgrund sein), Zustimmungspflicht der Erziehungsberechtigten bei nicht voll Geschäftsfähigen, Zustimmungspflicht des Betriebsrats (sofern vorhanden)."
+      },
+      {
+        "q": "Welche Pausen- und Arbeitszeitregeln gelten nach dem JArbSchG für Jugendliche?",
+        "a": "Erste Pause spätestens nach 4,5 Stunden. Bei 4,5 bis 6 Stunden Arbeitszeit 30 Minuten, ab 6 Stunden 60 Minuten Pause. Arbeitsbeginn frühestens 6 Uhr, Arbeitsende spätestens 20 Uhr (Ausnahmen z. B. in Landwirtschaft, Gastronomie, Bäckerei für 16- und 17-Jährige). Ruhezeit mindestens 12 Stunden."
+      },
+      {
+        "q": "Welche Arbeiten sind für werdende Mütter verboten?",
+        "a": "Schwere und gefährliche Arbeiten, Akkord- und Fließbandarbeit, ständiges Stehen sowie Mehr- und Nachtarbeit (nur mit Einverständnis möglich)."
+      },
+      {
+        "q": "Welche besonderen Schutzmaßnahmen gelten für Schwerbehinderte und warum?",
+        "a": "5 Tage mehr Urlaub, besonderer Kündigungsschutz, keine Verpflichtung zur Mehrarbeit. Ziel ist es, Diskriminierung und Benachteiligung in allen Phasen des Arbeitsverhältnisses zu verhindern (z. B. durch Anpassung der Arbeitsaufgaben, gleiche Aufstiegschancen)."
+      }
+    ],
+    "tf": [
+      {
+        "s": "Ist bei Arbeitsbeginn kein schriftlicher Arbeitsvertrag abgeschlossen worden, gilt ein befristeter Vertrag als unbefristet.",
+        "c": true,
+        "e": "Richtig: Eine Befristung muss <strong>schriftlich</strong> vereinbart werden, sonst gilt der Vertrag als unbefristet."
+      },
+      {
+        "s": "Bei einer verhaltensbedingten Kündigung ist in der Regel eine vorherige Abmahnung nötig.",
+        "c": true,
+        "e": "Richtig: Vor einer <strong>verhaltensbedingten</strong> Kündigung muss der Arbeitnehmer in der Regel abgemahnt werden."
+      },
+      {
+        "s": "Eine schlechte Auftragslage ist ein personenbedingter Kündigungsgrund.",
+        "c": false,
+        "e": "Falsch: Eine schlechte Auftragslage gehört zu den <strong>betrieblichen Erfordernissen</strong>."
+      },
+      {
+        "s": "Für den Arbeitnehmer gilt grundsätzlich immer eine Kündigungsfrist von 4 Wochen, unabhängig von der Betriebszugehörigkeit.",
+        "c": true,
+        "e": "Richtig: Die verlängerten Fristen gelten nur für Kündigungen durch den <strong>Arbeitgeber</strong>, sofern im Vertrag nichts anderes steht."
+      },
+      {
+        "s": "Jugendliche dürfen grundsätzlich ab 5 Uhr morgens arbeiten.",
+        "c": false,
+        "e": "Falsch: Jugendliche dürfen frühestens ab <strong>6 Uhr</strong> und höchstens bis <strong>20 Uhr</strong> arbeiten."
+      },
+      {
+        "s": "Ein Berufsschultag mit mehr als 5 Unterrichtsstunden gilt für den Azubi als Arbeitstag.",
+        "c": true,
+        "e": "Richtig: Ab <strong>mehr als 5 Unterrichtsstunden</strong> gilt der Berufsschultag als Arbeitstag."
+      },
+      {
+        "s": "Das Basiselterngeld beträgt zwischen 300 und 1.800 Euro im Monat.",
+        "c": true,
+        "e": "Richtig: Das Basiselterngeld liegt zwischen <strong>300 und 1.800 Euro</strong>."
+      },
+      {
+        "s": "Die maximale Elternzeit beträgt 12 Monate pro Kind.",
+        "c": false,
+        "e": "Falsch: Die maximale Elternzeit beträgt <strong>36 Monate</strong> pro Kind und Elternteil. 12 Monate ist die Höchstdauer, für die ein Elternteil allein Basiselterngeld beziehen kann."
+      }
+    ],
+    "cloze": [
+      { "t": "Die Grundkündigungsfrist beträgt " },
+      { "b": "af1", "a": ["4", "vier"] },
+      { "t": " Wochen zum 15. oder zum Monatsende, in der Probezeit " },
+      { "b": "af2", "a": ["2", "zwei"] },
+      { "t": " Wochen. Eine fristlose Kündigung nennt man auch " },
+      { "b": "af3", "a": ["außerordentliche", "ausserordentliche", "außerordentlich"] },
+      { "t": " Kündigung. Hält ein Arbeitnehmer die Kündigung für ungerechtfertigt, muss er innerhalb von " },
+      { "b": "af4", "a": ["3", "drei"] },
+      { "t": " Wochen Klage beim " },
+      { "b": "af5", "a": ["Arbeitsgericht"] },
+      { "t": " erheben. Das Jugendarbeitsschutzgesetz gilt für 15- bis " },
+      { "b": "af6", "a": ["17", "17-Jährige", "siebzehn"] },
+      { "t": "-Jährige. Nach der Entbindung besteht ein Beschäftigungsverbot von " },
+      { "b": "af7", "a": ["8", "acht"] },
+      { "t": " Wochen." }
+    ]
+  }
+}
